@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2024 at 02:21 AM
+-- Generation Time: Aug 21, 2024 at 08:06 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,7 +60,8 @@ INSERT INTO `accounts` (`account_id`, `username`, `password`, `role`, `profile_p
 (19, 'Resident7', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
 (20, 'Resident8', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
 (21, 'Resident9', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
-(22, 'Resident10', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0);
+(22, 'Resident10', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
+(23, 'DexieDeluxe', 'user', 'residents', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -390,6 +391,26 @@ INSERT INTO `household` (`household_id`, `household_no`, `housing_type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `household_members`
+--
+
+CREATE TABLE `household_members` (
+  `household_members_id` int(10) NOT NULL,
+  `resident_id` int(10) NOT NULL,
+  `household_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `household_members`
+--
+
+INSERT INTO `household_members` (`household_members_id`, `resident_id`, `household_id`) VALUES
+(1, 4, 1),
+(2, 5, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `medical_conditions`
 --
 
@@ -494,7 +515,6 @@ CREATE TABLE `personal_information` (
   `occupation` varchar(255) DEFAULT NULL,
   `religion` varchar(100) DEFAULT NULL,
   `citizenship` varchar(100) DEFAULT NULL,
-  `household_id` int(10) DEFAULT NULL,
   `address_id` int(10) NOT NULL,
   `sex` enum('male','female') NOT NULL,
   `phone_number` varchar(20) NOT NULL,
@@ -507,28 +527,29 @@ CREATE TABLE `personal_information` (
 -- Dumping data for table `personal_information`
 --
 
-INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`, `middlename`, `age`, `date_of_birth`, `civil_status`, `educational_attainment`, `occupation`, `religion`, `citizenship`, `household_id`, `address_id`, `sex`, `phone_number`, `email`, `created_at`, `updated_at`) VALUES
-(1, 'Santos', 'Juan', 'Dela Cruz', 34, '1989-05-10', 'Married', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 1, 'male', '09171234567', 'juan.santos@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(2, 'Reyes', 'Maria', 'Lopez', 29, '1994-03-22', 'Single', 'Highschool Graduate', 'Sales Clerk', 'Roman Catholic', 'Filipino', 2, 2, 'female', '09281234567', 'maria.reyes@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(3, 'Gonzales', 'Pedro', 'Ramos', 45, '1978-11-15', 'Widowed', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 3, 3, 'male', '09331234567', 'pedro.gonzales@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(4, 'Garcia', 'Ana', 'Santos', 38, '1985-07-30', 'Married', 'College Undergraduate', 'Nurse', 'Roman Catholic', 'Filipino', 4, 4, 'female', '09441234567', 'ana.garcia@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(5, 'Mendoza', 'Carlos', 'Alvarez', 27, '1996-12-04', 'Single', 'Highschool Graduate', 'Mechanic', 'Roman Catholic', 'Filipino', 5, 5, 'male', '09551234567', 'carlos.mendoza@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(6, 'Aquino', 'Laura', 'Gomez', 31, '1992-09-18', 'Married', 'College Graduate', 'Accountant', 'Roman Catholic', 'Filipino', 6, 6, 'female', '09661234567', 'laura.aquino@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(7, 'Santos', 'Isabel', 'Navarro', 40, '1983-06-25', 'Legally Separated', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 7, 7, 'female', '09771234567', 'isabel.santos@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(8, 'Cruz', 'Antonio', 'Castro', 50, '1973-01-10', 'Married', 'Elementary Graduate', 'Construction Worker', 'Roman Catholic', 'Filipino', 8, 8, 'male', '09881234567', 'antonio.cruz@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(9, 'Morales', 'Elena', 'Garcia', 24, '1999-04-20', 'Single', 'Highschool Graduate', 'Student', 'Roman Catholic', 'Filipino', 9, 9, 'female', '09991234567', 'elena.morales@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(10, 'Delos Reyes', 'Gabriel', 'Santos', 42, '1981-08-14', 'Married', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 10, 10, 'male', '09182345678', 'gabriel.delosreyes@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(11, 'Luna', 'Olivia', 'Mendoza', 26, '1997-05-05', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 11, 1, 'female', '09293456789', 'olivia.luna@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(12, 'Diaz', 'Ricardo', 'Jimenez', 35, '1988-10-30', 'Married', 'Highschool Graduate', 'Driver', 'Roman Catholic', 'Filipino', 12, 2, 'male', '09384567890', 'ricardo.diaz@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(13, 'Chavez', 'Martha', 'Castro', 44, '1979-02-15', 'Legally Separated', 'College Graduate', 'Administrator', 'Roman Catholic', 'Filipino', 13, 3, 'female', '09475678901', 'martha.chavez@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(14, 'Salvador', 'Luis', 'Macias', 28, '1995-11-20', 'Single', 'College Undergraduate', 'Technician', 'Roman Catholic', 'Filipino', 14, 4, 'male', '09586789012', 'luis.salvador@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(15, 'Villar', 'Carmen', 'Rodriguez', 37, '1986-06-10', 'Married', 'College Graduate', 'Nurse', 'Roman Catholic', 'Filipino', 15, 5, 'female', '09697890123', 'carmen.villar@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(16, 'Santiago', 'Marco', 'Torres', 32, '1991-03-05', 'Married', 'Highschool Graduate', 'Security Guard', 'Roman Catholic', 'Filipino', 16, 6, 'male', '09708901234', 'marco.santiago@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(17, 'Gonzalez', 'Sophia', 'Bautista', 30, '1993-12-30', 'Single', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 17, 7, 'female', '09819012345', 'sophia.gonzalez@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(18, 'Lopez', 'Andres', 'Gonzales', 41, '1982-07-22', 'Married', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 18, 8, 'male', '09920123456', 'andres.lopez@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(19, 'Rivera', 'Beatriz', 'Morales', 25, '1998-11-11', 'Single', 'Highschool Graduate', 'Cashier', 'Roman Catholic', 'Filipino', 19, 9, 'female', '09123456789', 'beatriz.rivera@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(20, 'Victorino', 'Amiel Jose', 'Araneta', 48, '1975-04-12', 'Married', 'College Graduate', 'Brgy. Secretary', 'Roman Catholic', 'Filipino', 20, 10, 'male', '09234567890', 'amielvictorino@gmail.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(21, 'Singua', 'Reyna Jane', 'Bingua', 28, '1996-06-05', 'Single', 'College Graduate', 'Barangay Midwife', 'Roman Catholic', 'Filipino', 43, 3, 'female', '09851354569', 'reynasingua@gmail.com', '2024-07-25 17:45:21', '2024-07-25 17:45:21');
+INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`, `middlename`, `age`, `date_of_birth`, `civil_status`, `educational_attainment`, `occupation`, `religion`, `citizenship`, `address_id`, `sex`, `phone_number`, `email`, `created_at`, `updated_at`) VALUES
+(1, 'Santos', 'Juan', 'Dela Cruz', 34, '1989-05-10', 'Married', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '09171234567', 'juan.santos@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(2, 'Reyes', 'Maria', 'Lopez', 29, '1994-03-22', 'Single', 'Highschool Graduate', 'Sales Clerk', 'Roman Catholic', 'Filipino', 2, 'female', '09281234567', 'maria.reyes@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(3, 'Gonzales', 'Pedro', 'Ramos', 45, '1978-11-15', 'Widowed', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 3, 'male', '09331234567', 'pedro.gonzales@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(4, 'Garcia', 'Ana', 'Santos', 38, '1985-07-30', 'Married', 'College Undergraduate', 'Nurse', 'Roman Catholic', 'Filipino', 4, 'female', '09441234567', 'ana.garcia@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(5, 'Mendoza', 'Carlos', 'Alvarez', 27, '1996-12-04', 'Single', 'Highschool Graduate', 'Mechanic', 'Roman Catholic', 'Filipino', 5, 'male', '09551234567', 'carlos.mendoza@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(6, 'Aquino', 'Laura', 'Gomez', 31, '1992-09-18', 'Married', 'College Graduate', 'Accountant', 'Roman Catholic', 'Filipino', 6, 'female', '09661234567', 'laura.aquino@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(7, 'Santos', 'Isabel', 'Navarro', 40, '1983-06-25', 'Legally Separated', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 7, 'female', '09771234567', 'isabel.santos@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(8, 'Cruz', 'Antonio', 'Castro', 50, '1973-01-10', 'Married', 'Elementary Graduate', 'Construction Worker', 'Roman Catholic', 'Filipino', 8, 'male', '09881234567', 'antonio.cruz@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(9, 'Morales', 'Elena', 'Garcia', 24, '1999-04-20', 'Single', 'Highschool Graduate', 'Student', 'Roman Catholic', 'Filipino', 9, 'female', '09991234567', 'elena.morales@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(10, 'Delos Reyes', 'Gabriel', 'Santos', 42, '1981-08-14', 'Married', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 10, 'male', '09182345678', 'gabriel.delosreyes@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(11, 'Luna', 'Olivia', 'Mendoza', 26, '1997-05-05', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'female', '09293456789', 'olivia.luna@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(12, 'Diaz', 'Ricardo', 'Jimenez', 35, '1988-10-30', 'Married', 'Highschool Graduate', 'Driver', 'Roman Catholic', 'Filipino', 2, 'male', '09384567890', 'ricardo.diaz@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(13, 'Chavez', 'Martha', 'Castro', 44, '1979-02-15', 'Legally Separated', 'College Graduate', 'Administrator', 'Roman Catholic', 'Filipino', 3, 'female', '09475678901', 'martha.chavez@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(14, 'Chavez', 'Luis', 'Macias', 28, '1995-11-20', 'Single', 'College Undergraduate', 'Technician', 'Roman Catholic', 'Filipino', 4, 'male', '09586789012', 'luis.salvador@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(15, 'Villar', 'Carmen', 'Rodriguez', 37, '1986-06-10', 'Married', 'College Graduate', 'Nurse', 'Roman Catholic', 'Filipino', 5, 'female', '09697890123', 'carmen.villar@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(16, 'Santiago', 'Marco', 'Torres', 32, '1991-03-05', 'Married', 'Highschool Graduate', 'Security Guard', 'Roman Catholic', 'Filipino', 6, 'male', '09708901234', 'marco.santiago@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(17, 'Gonzalez', 'Sophia', 'Bautista', 30, '1993-12-30', 'Single', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 7, 'female', '09819012345', 'sophia.gonzalez@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(18, 'Lopez', 'Andres', 'Gonzales', 41, '1982-07-22', 'Married', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 8, 'male', '09920123456', 'andres.lopez@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(19, 'Rivera', 'Beatriz', 'Morales', 25, '1998-11-11', 'Single', 'Highschool Graduate', 'Cashier', 'Roman Catholic', 'Filipino', 9, 'female', '09123456789', 'beatriz.rivera@example.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(20, 'Victorino', 'Amiel Jose', 'Araneta', 48, '1975-04-12', 'Married', 'College Graduate', 'Brgy. Secretary', 'Roman Catholic', 'Filipino', 10, 'male', '09234567890', 'amielvictorino@gmail.com', '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(21, 'Singua', 'Reyna Jane', 'Bingua', 28, '1996-06-05', 'Single', 'College Graduate', 'Barangay Midwife', 'Roman Catholic', 'Filipino', 3, 'female', '09851354569', 'reynasingua@gmail.com', '2024-07-25 17:45:21', '2024-07-25 17:45:21'),
+(22, 'Catapang', 'Ron Christoper', 'Sta Ana', 23, '2001-08-08', 'Single', 'College Graduate', 'Game Tester', 'Roman Catholic', 'Filipino', 7, 'male', '09851354565', 'roncatapang@gmail.com', '2024-08-16 22:34:32', '2024-08-16 22:34:32');
 
 -- --------------------------------------------------------
 
@@ -611,7 +632,8 @@ INSERT INTO `residents` (`resident_id`, `account_id`, `personal_info_id`, `isVal
 (10, 19, 2, 1),
 (11, 20, 3, 1),
 (12, 21, 5, 1),
-(13, 22, 17, 1);
+(13, 22, 17, 1),
+(14, 23, 22, 1);
 
 -- --------------------------------------------------------
 
@@ -633,7 +655,9 @@ CREATE TABLE `residents_medical_condition` (
 INSERT INTO `residents_medical_condition` (`rmc_id`, `resident_id`, `medical_conditions_id`, `created_at`) VALUES
 (1, 5, 2, '2024-07-25 17:54:59.000000'),
 (2, 4, 5, '2024-07-25 17:54:59.000000'),
-(3, 8, 7, '2024-07-25 17:54:59.000000');
+(3, 8, 7, '2024-07-25 17:54:59.000000'),
+(4, 4, 8, '0000-00-00 00:00:00.000000'),
+(5, 4, 11, '0000-00-00 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -791,6 +815,14 @@ ALTER TABLE `household`
   ADD PRIMARY KEY (`household_id`);
 
 --
+-- Indexes for table `household_members`
+--
+ALTER TABLE `household_members`
+  ADD PRIMARY KEY (`household_members_id`),
+  ADD KEY `fk_hmResidentId` (`resident_id`),
+  ADD KEY `fk_hmHouseholdId` (`household_id`);
+
+--
 -- Indexes for table `medical_conditions`
 --
 ALTER TABLE `medical_conditions`
@@ -815,8 +847,7 @@ ALTER TABLE `midwife`
 --
 ALTER TABLE `personal_information`
   ADD PRIMARY KEY (`personal_info_id`),
-  ADD KEY `fk_personalInfoAddressId` (`address_id`),
-  ADD KEY `fk_personalInfoHouseholdId` (`household_id`);
+  ADD KEY `fk_personalInfoAddressId` (`address_id`);
 
 --
 -- Indexes for table `pregnancy`
@@ -879,7 +910,7 @@ ALTER TABLE `vaccines`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `address`
@@ -924,6 +955,12 @@ ALTER TABLE `household`
   MODIFY `household_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
+-- AUTO_INCREMENT for table `household_members`
+--
+ALTER TABLE `household_members`
+  MODIFY `household_members_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `medical_conditions`
 --
 ALTER TABLE `medical_conditions`
@@ -945,7 +982,7 @@ ALTER TABLE `midwife`
 -- AUTO_INCREMENT for table `personal_information`
 --
 ALTER TABLE `personal_information`
-  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `pregnancy`
@@ -963,13 +1000,13 @@ ALTER TABLE `prenatals`
 -- AUTO_INCREMENT for table `residents`
 --
 ALTER TABLE `residents`
-  MODIFY `resident_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `resident_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `residents_medical_condition`
 --
 ALTER TABLE `residents_medical_condition`
-  MODIFY `rmc_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `rmc_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `residents_medication`
@@ -1029,6 +1066,13 @@ ALTER TABLE `health_information`
   ADD CONSTRAINT `fk_HealthInfoResidentId` FOREIGN KEY (`resident_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `household_members`
+--
+ALTER TABLE `household_members`
+  ADD CONSTRAINT `fk_hmHouseholdId` FOREIGN KEY (`household_id`) REFERENCES `household` (`household_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_hmResidentId` FOREIGN KEY (`resident_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `midwife`
 --
 ALTER TABLE `midwife`
@@ -1039,8 +1083,7 @@ ALTER TABLE `midwife`
 -- Constraints for table `personal_information`
 --
 ALTER TABLE `personal_information`
-  ADD CONSTRAINT `fk_personalInfoAddressId` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_personalInfoHouseholdId` FOREIGN KEY (`household_id`) REFERENCES `household` (`household_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_personalInfoAddressId` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pregnancy`
