@@ -2,7 +2,7 @@
 
 ## Introduction
 Welcome to the Barangay Healthcare Management and Information System for Brgy. Punta Mesa.This system is designed to streamline the management
-of healthcare services and information within the barangay, providing a centralized platform for residents, healthcare providers, and local government officials.
+of healthcare services and information within the barangay, providing a centralized platform for residents and healthcare providers.
 
 ## Features
 - Resident Management: Register and manage resident information, including personal and health details.
