@@ -2,19 +2,19 @@
 
 $title = 'Residents';
 
-include './app/models/get_residents.php';
+require './app/models/get_residents.php';
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include './app/views/globals/head.php'; ?>
+    <?php require './app/views/globals/head.php'; ?>
     <link rel="stylesheet" href="./public/css/admin.css">
 </head>
 <body id="body-pd">
-    <?php include 'partials/top_navigation.php'; ?>
-    <?php include 'partials/sidebar.php'; ?>
+    <?php require 'partials/top_navigation.php'; ?>
+    <?php require 'partials/sidebar.php'; ?>
     <div class="height-100 main-content">
         <div class="toolbar">
             <input type="search" placeholder="Search" class="search">
@@ -26,8 +26,12 @@ include './app/models/get_residents.php';
                 <tr>
                     <th><input type="checkbox" id="select-all"></th>
                     <th></th>
-                    <th>Lastname</th>
-                    <th>Firstname</th>
+                    <th class="sortable" data-column="lastname" data-order="desc">
+                        Lastname <i class='bx bx-sort'></i>
+                    </th>
+                    <th class="sortable" data-column="firstname" data-order="desc">
+                        Firstname <i class='bx bx-sort'></i>
+                    </th>
                     <th>Middlename</th>
                     <th>Age</th>
                     <th>Address</th>
@@ -55,8 +59,14 @@ include './app/models/get_residents.php';
                             <div class="p-3 collapse-body">
                                 <div class="collapse-info">
                                     <h5>Personal Information</h5>
-                                    <p>Date of Birth: <?php echo $resident['date_of_birth'] ? htmlspecialchars($resident['date_of_birth']) : 'N/A'; ?></p>
-                                    <p>Sex: <?php echo $resident['sex'] ? htmlspecialchars($resident['sex']) : 'N/A'; ?></p>
+                                    <p>Date of Birth: 
+                                        <?php 
+                                            echo $resident['date_of_birth'] 
+                                                ? htmlspecialchars(date('F j, Y', strtotime($resident['date_of_birth']))) 
+                                                : 'N/A'; 
+                                        ?>
+                                    </p>
+                                    <p>Sex: <?php echo $resident['sex'] ? htmlspecialchars(ucfirst($resident['sex'])) : 'N/A'; ?></p>
                                     <p>Civil Status: <?php echo $resident['civil_status'] ? htmlspecialchars($resident['civil_status']) : 'N/A'; ?></p>
                                     <p>Educational Attainment: <?php echo $resident['educational_attainment'] ? htmlspecialchars($resident['educational_attainment']) : 'N/A'; ?></p>
                                     <p>Occupation: <?php echo $resident['occupation'] ? htmlspecialchars($resident['occupation']) : 'N/A'; ?></p>
@@ -94,7 +104,6 @@ include './app/models/get_residents.php';
                     <option value="20">20</option>
                     <option value="50">50</option>
                 </select>
-
                 <label>rows</label>
             </div>
             <nav>
@@ -108,7 +117,8 @@ include './app/models/get_residents.php';
             </nav>
         </div>
     </div>
-    <?php include './app/views/globals/javascripts.php'; ?>
+    <?php require './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/residentRowModifier.js"></script>
+    <script src="./public/js/admin/sortResidents.js"></script>
 </body>
 </html>

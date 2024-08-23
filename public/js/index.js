@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Prefill input fields from cookies
+    prefillUsernameFromCookies();
+    addLoginButtonListener();
+    addTogglePasswordListener();
+});
+
+// Function to prefill input fields from cookies
+function prefillUsernameFromCookies() {
     const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
         const [name, value] = cookie.split('=');
         acc[name] = value;
@@ -9,64 +15,76 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cookies.username) {
         document.getElementById('username').value = cookies.username;
     }
+}
 
-    // Password field should not be prefilled for security reasons
-});
+// Function to add event listener for the login button
+function addLoginButtonListener() {
+    document.getElementById('loginButton').addEventListener('click', async function() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('remember_me').checked;
+        const formData = new FormData();
 
-document.getElementById('loginButton').addEventListener('click', async function() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const rememberMe = document.getElementById('remember_me').checked;
-    const formData = new FormData();
+        formData.append('username', username);
+        formData.append('password', password);
+        formData.append('remember', rememberMe);
 
-    formData.append('username', username);
-    formData.append('password', password);
-    formData.append('remember', rememberMe);
+        try {
+            const response = await fetch('./app/controllers/login.php', {
+                method: 'POST',
+                body: formData
+            });
 
-    try {
-        const response = await fetch('./app/controllers/login.php', {
-            method: 'POST',
-            body: formData
-        });
+            const data = await response.json();
 
-        const data = await response.json();
-
-        if (data.status === 'success') {
-            // Redirect based on role
-            switch (data.role) {
-                case 'admin':
-                    window.location.href = '/bhcmis/admin';
-                    break;
-                case 'resident':
-                    window.location.href = '/bhcmis/resident-dashboard';
-                    break;
-                default:
-                    window.location.href = 'default_dashboard.php';
-                    break;
+            if (data.status === 'success') {
+                // Redirect based on role
+                redirectToDashboard(data.role);
+            } else {
+                displayErrorMessage(data.message);
             }
-        } else {
-            // Display error message
-            const errorMessage = data.message;
-            const errorDiv = document.querySelector('.error-login');
-            errorDiv.textContent = errorMessage;
-            errorDiv.classList.remove('d-none');
+        } catch (error) {
+            console.error('Error:', error);
         }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-});
+    });
+}
 
-document.getElementById('togglePassword').addEventListener('click', function() {
-    const passwordInput = document.getElementById('password');
-    const eyeIcon = this;
-
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        eyeIcon.classList.remove('fa-eye');
-        eyeIcon.classList.add('fa-eye-slash');
-    } else {
-        passwordInput.type = 'password';
-        eyeIcon.classList.remove('fa-eye-slash');
-        eyeIcon.classList.add('fa-eye');
+// Function to redirect based on user role
+function redirectToDashboard(role) {
+    switch (role) {
+        case 'admin':
+            window.location.href = '/bhcmis/admin';
+            break;
+        case 'resident':
+            window.location.href = '/bhcmis/resident-dashboard';
+            break;
+        default:
+            window.location.href = 'default_dashboard.php';
+            break;
     }
-});
+}
+
+// Function to display error message
+function displayErrorMessage(message) {
+    const errorDiv = document.querySelector('.error-login');
+    errorDiv.textContent = message;
+    errorDiv.classList.remove('d-none');
+}
+
+// Function to add event listener for the password toggle
+function addTogglePasswordListener() {
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = this;
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    });
+}

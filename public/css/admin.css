@@ -269,7 +269,7 @@ a {
 
 .table-dark th,
 .table-dark td {
-    color: #94a3b8 !important; 
+    color: #94a3b8; 
     background-color: #0f172a;
     border-right: none !important;
     border-left: none !important;
@@ -279,6 +279,7 @@ table.table-dark th,
 table.table-dark td {
     vertical-align: middle;
 }
+
 
 .table-dark thead th {
     background-color: #020617 !important;
@@ -387,11 +388,25 @@ input[type="checkbox"] {
     color: #cbd5e1;
 }
 
+.active-page {
+    background-color: #0ea5e9 !important;
+}
+
 .pagination .page-item .page-link {
     background-color: #0f172a;
     color: #cbd5e1;
     border: none;
+    padding: 0.3rem 1rem;
 }
+
+.no-data {
+    color: #ef4444 !important;
+    font-size: 1.2rem;
+    padding: 1.5rem auto;
+}
+
+
+
 
 
 
