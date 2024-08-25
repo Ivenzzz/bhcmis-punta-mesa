@@ -17,5 +17,6 @@ $title = 'Admin Dashboard';
         <h1>Statistics</h1>
     </div>
     <?php include './app/views/globals/javascripts.php'; ?>
+    <script src="./public/js/admin/admin.js" type="module"></script>
 </body>
 </html>

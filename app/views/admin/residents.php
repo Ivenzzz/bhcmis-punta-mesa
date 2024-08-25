@@ -22,22 +22,22 @@ require './app/models/get_residents.php';
             <button><i class='bx bx-plus-circle'></i></button>
         </div>
         <table class="table table-sm table-dark text-center">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" id="select-all"></th>
-                    <th></th>
-                    <th class="sortable" data-column="lastname" data-order="desc">
-                        Lastname <i class='bx bx-sort'></i>
-                    </th>
-                    <th class="sortable" data-column="firstname" data-order="desc">
-                        Firstname <i class='bx bx-sort'></i>
-                    </th>
-                    <th>Middlename</th>
-                    <th>Age</th>
-                    <th>Address</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        <thead class="sticky-top bg-dark">
+            <tr>
+                <th><input type="checkbox" id="select-all"></th>
+                <th></th>
+                <th class="sortable" data-column="lastname" data-order="desc">
+                    Lastname <i class='bx bx-sort'></i>
+                </th>
+                <th class="sortable" data-column="firstname" data-order="desc">
+                    Firstname <i class='bx bx-sort'></i>
+                </th>
+                <th>Middlename</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
             <tbody id="resident-table-body">
                 <?php foreach ($residents_data as $index => $resident): ?>
                     <tr class="main-row">
@@ -118,7 +118,6 @@ require './app/models/get_residents.php';
         </div>
     </div>
     <?php require './app/views/globals/javascripts.php'; ?>
-    <script src="./public/js/admin/residentRowModifier.js"></script>
-    <script src="./public/js/admin/sortResidents.js"></script>
+    <script src="./public/js/admin/admin.js" type="module"></script>
 </body>
 </html>

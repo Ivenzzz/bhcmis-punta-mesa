@@ -405,6 +405,12 @@ input[type="checkbox"] {
     padding: 1.5rem auto;
 }
 
+.sticky-top {
+    top: 4rem; 
+    z-index: 1020;
+}
+
+
 
 
 
