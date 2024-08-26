@@ -17,27 +17,32 @@ require './app/models/get_residents.php';
     <?php require 'partials/sidebar.php'; ?>
     <div class="height-100 main-content">
         <div class="toolbar">
-            <input type="search" placeholder="Search" class="search">
-            <button><i class='bx bx-trash'></i></button>
-            <button><i class='bx bx-plus-circle'></i></button>
+            <div class="left-toolbar">
+                <button class="spinner"><i class='bx bx-refresh'></i></button>
+            </div>
+            <div class="right-toolbar">
+                <input type="search" placeholder="Search" class="search">
+                <button><i class='bx bx-trash'></i></button>
+                <button><i class='bx bx-plus-circle'></i></button>
+            </div>
         </div>
         <table class="table table-sm table-dark text-center">
-        <thead class="sticky-top bg-dark">
-            <tr>
-                <th><input type="checkbox" id="select-all"></th>
-                <th></th>
-                <th class="sortable" data-column="lastname" data-order="desc">
-                    Lastname <i class='bx bx-sort'></i>
-                </th>
-                <th class="sortable" data-column="firstname" data-order="desc">
-                    Firstname <i class='bx bx-sort'></i>
-                </th>
-                <th>Middlename</th>
-                <th>Age</th>
-                <th>Address</th>
-                <th>Action</th>
-            </tr>
-        </thead>
+            <thead class="sticky-top bg-dark">
+                <tr>
+                    <th><input type="checkbox" id="select-all"></th>
+                    <th></th>
+                    <th class="sortable" data-column="lastname" data-order="desc">
+                        Lastname <i class='bx bx-sort'></i>
+                    </th>
+                    <th class="sortable" data-column="firstname" data-order="desc">
+                        Firstname <i class='bx bx-sort'></i>
+                    </th>
+                    <th>Middlename</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
             <tbody id="resident-table-body">
                 <?php foreach ($residents_data as $index => $resident): ?>
                     <tr class="main-row">
@@ -52,7 +57,11 @@ require './app/models/get_residents.php';
                         <td><?php echo htmlspecialchars($resident['middlename']); ?></td>
                         <td><?php echo htmlspecialchars($resident['age']); ?></td>
                         <td><?php echo htmlspecialchars($resident['address_name']); ?></td>
-                        <td><button class="btn btn-edit"><i class='bx bx-edit-alt'></i></button></td>
+                        <td>
+                            <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editResidentModal<?php echo $index; ?>">
+                                <i class='bx bx-edit-alt'></i>
+                            </button>
+                        </td>
                     </tr>
                     <tr class="collapse-row collapse" id="collapseRow<?php echo $index; ?>">
                         <td colspan="8" class="p-0">
@@ -87,14 +96,59 @@ require './app/models/get_residents.php';
                                     <p>Latest Blood Pressure: <?php echo $resident['blood_pressure'] ? htmlspecialchars($resident['blood_pressure']) : 'N/A'; ?></p>
                                     <p>Latest Cholesterol Level: <?php echo $resident['cholesterol_level'] ? htmlspecialchars($resident['cholesterol_level']) : 'N/A'; ?></p>
                                 </div>
-
                             </div>
                         </td>
                     </tr>
 
+                    <!-- Edit Modal for Each Resident -->
+                    <div class="modal fade" id="editResidentModal<?php echo $index; ?>" tabindex="-1" aria-labelledby="editResidentModalLabel<?php echo $index; ?>" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editResidentModalLabel<?php echo $index; ?>">Edit Resident</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="editResidentForm<?php echo $index; ?>">
+                                        <div class="mb-3">
+                                            <label for="editLastname<?php echo $index; ?>" class="form-label">Lastname</label>
+                                            <input type="text" class="form-control" id="editLastname<?php echo $index; ?>" name="lastname" value="<?php echo htmlspecialchars($resident['lastname']); ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editFirstname<?php echo $index; ?>" class="form-label">Firstname</label>
+                                            <input type="text" class="form-control" id="editFirstname<?php echo $index; ?>" name="firstname" value="<?php echo htmlspecialchars($resident['firstname']); ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editMiddlename<?php echo $index; ?>" class="form-label">Middlename</label>
+                                            <input type="text" class="form-control" id="editMiddlename<?php echo $index; ?>" name="middlename" value="<?php echo htmlspecialchars($resident['middlename']); ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editMiddlename<?php echo $index; ?>" class="form-label">Middlename</label>
+                                            <input type="text" class="form-control" id="editMiddlename<?php echo $index; ?>" name="middlename" value="<?php echo htmlspecialchars($resident['middlename']); ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editMiddlename<?php echo $index; ?>" class="form-label">Middlename</label>
+                                            <input type="text" class="form-control" id="editMiddlename<?php echo $index; ?>" name="middlename" value="<?php echo htmlspecialchars($resident['middlename']); ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editMiddlename<?php echo $index; ?>" class="form-label">Middlename</label>
+                                            <input type="text" class="form-control" id="editMiddlename<?php echo $index; ?>" name="middlename" value="<?php echo htmlspecialchars($resident['middlename']); ?>">
+                                        </div>
+                                        <!-- Add more input fields as needed for other resident information -->
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" form="editResidentForm<?php echo $index; ?>">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 <?php endforeach; ?>
             </tbody>
         </table>
+
 
         <div class="pagination-details d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center rows-page">
@@ -105,6 +159,8 @@ require './app/models/get_residents.php';
                     <option value="50">50</option>
                 </select>
                 <label>rows</label>
+                <div id="row-description" class="row-description">
+            </div>
             </div>
             <nav>
                 <ul class="pagination pagination-sm mb-0">
@@ -117,6 +173,7 @@ require './app/models/get_residents.php';
             </nav>
         </div>
     </div>
+
     <?php require './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/admin.js" type="module"></script>
 </body>

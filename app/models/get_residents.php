@@ -3,7 +3,7 @@
 include './config/db_config.php';
 
 // SQL query to retrieve residents' information with joins
-$sql = "SELECT 
+$sql = "SELECT
             r.resident_id,
             pi.lastname,
             pi.firstname,
@@ -29,7 +29,7 @@ $sql = "SELECT
             ac.username,
             ac.role,
             ac.profile_picture,
-            GROUP_CONCAT(mc.condition_name SEPARATOR ', ') AS medical_conditions
+            GROUP_CONCAT(DISTINCT mc.condition_name ORDER BY mc.condition_name ASC SEPARATOR ', ') AS medical_conditions
         FROM 
             residents r
         JOIN 
@@ -47,10 +47,7 @@ $sql = "SELECT
         WHERE 
             r.isValidResident = 1
         GROUP BY 
-            r.resident_id, pi.lastname, pi.firstname, pi.middlename, pi.age, pi.date_of_birth, pi.civil_status, 
-            pi.educational_attainment, pi.occupation, pi.religion, pi.citizenship, pi.phone_number, pi.email, 
-            pi.sex, a.address_name, a.address_type, hi.height_cm, hi.weight_kg, hi.blood_type, hi.blood_pressure, 
-            hi.cholesterol_level, hi.created_at, ac.username, ac.role, ac.profile_picture";
+            r.resident_id";
 
 // Execute the query
 $result = mysqli_query($conn, $sql);
@@ -63,8 +60,8 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 
-
 // Close the connection
 mysqli_close($conn);
 
 ?>
+

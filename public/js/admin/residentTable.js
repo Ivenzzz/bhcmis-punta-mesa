@@ -137,6 +137,64 @@ export function sortResidents() {
     });    
 }
 
+export function spinRefreshButton() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const refreshButton = document.querySelector('.left-toolbar button');
+
+        refreshButton.addEventListener('click', function() {
+            this.classList.add('spin-animation');
+            setTimeout(() => {
+                this.classList.remove('spin-animation');
+                location.reload();
+            }, 500);
+        });
+    });
+}
+
+export function setupEntries() {
+    document.addEventListener('DOMContentLoaded', function () {
+        const rowsPerPageSelect = document.getElementById('rows-per-page');
+        const rowDescription = document.getElementById('row-description');
+        const residentTableBody = document.getElementById('resident-table-body');
+        const totalEntries = residentTableBody.getElementsByTagName('tr').length;
+    
+        function updateRowDescription() {
+            const rowsPerPage = parseInt(rowsPerPageSelect.value);
+            const startEntry = 1;
+            const endEntry = Math.min(rowsPerPage, totalEntries);
+            rowDescription.innerHTML = `Showing ${startEntry}-${endEntry} of ${totalEntries} entries`;
+        }
+    
+        // Initial load
+        updateRowDescription();
+    
+        // Update on rows per page change
+        rowsPerPageSelect.addEventListener('change', updateRowDescription);
+    });
+}
+
+export function toggleCollapseButton() {
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleButtons = document.querySelectorAll('.toggle-btn');
+    
+        toggleButtons.forEach(button => {
+            const collapseRowId = button.getAttribute('data-bs-target');
+            const collapseRow = document.querySelector(collapseRowId);
+            const icon = button.querySelector('i');
+    
+            // Event listener for when the collapse completes showing
+            collapseRow.addEventListener('shown.bs.collapse', function () {
+                icon.classList.replace('bx-plus-circle', 'bx-minus-circle');
+            });
+    
+            // Event listener for when the collapse completes hiding
+            collapseRow.addEventListener('hidden.bs.collapse', function () {
+                icon.classList.replace('bx-minus-circle', 'bx-plus-circle');
+            });
+        });
+    });    
+}
+
 
 
 
