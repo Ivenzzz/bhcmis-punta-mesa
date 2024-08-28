@@ -473,12 +473,20 @@ input[type="checkbox"] {
     margin: 2rem auto;
 }
 
-.entry-wrapper {
+.modal-header {
+    border-bottom: 1px solid #64748b; 
+}
+
+.modal-footer {
+    border-top: 1px solid #64748b; 
+}
+
+.form-group {
     position: relative;
     margin-bottom: 1.5rem;
 }
 
-.entry-wrapper input {
+.form-group input {
     width: 100%;
     font-size: 1rem;
     padding: 0.8rem 0.5rem;
@@ -490,7 +498,7 @@ input[type="checkbox"] {
     z-index: 1; 
 }
 
-.entry-wrapper input + label {
+.form-group input + label {
     position: absolute;
     top: 50%;
     left: 0.5rem;
@@ -504,21 +512,21 @@ input[type="checkbox"] {
 
 
 
-.entry-wrapper input:focus,
-.entry-wrapper input:not(:placeholder-shown) {
+.form-group input:focus,
+.form-group input:not(:placeholder-shown) {
     background-color: transparent;
     color: #e2e8f0;
     border-bottom-color: #0ea5e9; 
 }
 
-.entry-wrapper input:focus {
+.form-group input:focus {
     outline: none; 
     box-shadow: none; 
 }
 
 
-.entry-wrapper input:focus + label,
-.entry-wrapper input:not(:placeholder-shown) + label {
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
     top: -0.75rem;
     left: 0.5rem;
     background-color: #0f172a;
@@ -537,11 +545,11 @@ input[type="checkbox"] {
     border: none;
     font-size: 1.25rem; 
     color: #e2e8f0 !important;
-    background-color: #374151;
+    background-color: #475569;
     border-radius: 100%;
 }
 
-.entry-flex {
+.form-row {
     display: flex;
     gap: 1rem;
     margin-bottom: 4rem;
@@ -551,11 +559,11 @@ input[type="checkbox"] {
 .flex-2 { flex: 2 }
 .flex-3 { flex: 3 }
 
-.select-wrapper {
+.form-group.select-group {
     position: relative;
 }
 
-.select-wrapper .form-label {
+.form-group.select-group .form-label {
     position: absolute;
     top: -0.2rem;
     left: 0.5rem;
@@ -567,7 +575,7 @@ input[type="checkbox"] {
     transition: 0.2s ease;
 }
 
-.select-wrapper select {
+.form-group.select-group select {
     padding: 0.5rem;
     margin-top: 0.68rem;
     background-color: transparent;
@@ -577,12 +585,12 @@ input[type="checkbox"] {
     border-radius: 0;
 }
 
-.select-wrapper select option {
+.form-group.select-group select option {
     background-color: #111827;
     color: #f1f5f9;
 }
 
-.select-wrapper select:focus {
+.form-group.select-group select:focus {
     background-color: transparent;
     outline: none;
     color: #f1f5f9;
@@ -592,24 +600,36 @@ input[type="checkbox"] {
 
 .blue-label {
     color: #0ea5e9;
+    font-size: 0.8rem;
 }
 
-.entry-wrapper textarea {
+.form-group textarea {
     background-color: #111827;
     color: #f1f5f9;
     border: 0.1rem solid #0ea5e9;
 }
 
-.entry-wrapper textarea:focus {
+.form-group textarea:focus {
     background-color: #111827;
     color: #f1f5f9;
 }
 
-.entry-wrapper input[type="file"] {
-    background-color: #111827;
-    color: #f1f5f9;
+.btn-secondary {
+    background-color: #1e293b;
 }
 
+.btn-secondary:hover {
+    background-color: #334155;
+    color: #e2e8f0;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+}
+
+.btn-primary:hover {
+    background-color: #3b83f6d5;
+}
 
 
 
