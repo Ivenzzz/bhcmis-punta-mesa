@@ -1,5 +1,7 @@
 <?php
 
+include './config/db_config.php';
+
 $title = 'Admin Dashboard';
 
 ?>

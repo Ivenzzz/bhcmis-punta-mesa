@@ -2,7 +2,9 @@
 
 $title = 'Residents';
 
+require './config/db_config.php';
 require './app/models/get_residents.php';
+require './app/models/get_addresses.php';
 
 ?>
 
@@ -76,11 +78,7 @@ require './app/models/get_residents.php';
                                         ?>
                                     </p>
                                     <p>Sex: <?php echo $resident['sex'] ? htmlspecialchars(ucfirst($resident['sex'])) : 'N/A'; ?></p>
-                                    <p>Civil Status: <?php echo $resident['civil_status'] ? htmlspecialchars($resident['civil_status']) : 'N/A'; ?></p>
-                                    <p>Educational Attainment: <?php echo $resident['educational_attainment'] ? htmlspecialchars($resident['educational_attainment']) : 'N/A'; ?></p>
                                     <p>Occupation: <?php echo $resident['occupation'] ? htmlspecialchars($resident['occupation']) : 'N/A'; ?></p>
-                                    <p>Religion: <?php echo $resident['religion'] ? htmlspecialchars($resident['religion']) : 'N/A'; ?></p>
-                                    <p>Citizenship: <?php echo $resident['citizenship'] ? htmlspecialchars($resident['citizenship']) : 'N/A'; ?></p>
                                     <p>Account Username: <?php echo $resident['username'] ? htmlspecialchars($resident['username']) : 'N/A'; ?></p>
                                 </div>
                                 <div class="collapse-info">

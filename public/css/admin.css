@@ -88,7 +88,7 @@ a {
   background-color: var(--first-color);
   padding: .5rem 1rem 0 0;
   transition: .5s;
-  z-index: var(--z-fixed);
+  z-index: 1030;
   box-shadow: 0.2rem 0 0.2rem #1e293b;
 }
 
@@ -490,7 +490,7 @@ input[type="checkbox"] {
     z-index: 1; 
 }
 
-.entry-wrapper label {
+.entry-wrapper input + label {
     position: absolute;
     top: 50%;
     left: 0.5rem;
@@ -501,6 +501,7 @@ input[type="checkbox"] {
     pointer-events: none;
     transition: 0.2s ease;
 }
+
 
 
 .entry-wrapper input:focus,
@@ -543,9 +544,76 @@ input[type="checkbox"] {
 .entry-flex {
     display: flex;
     gap: 1rem;
-    margin-bottom: 0.5rem;
-
+    margin-bottom: 4rem;
 }
+
+.flex-1 { flex: 1 }
+.flex-2 { flex: 2 }
+.flex-3 { flex: 3 }
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper .form-label {
+    position: absolute;
+    top: -0.2rem;
+    left: 0.5rem;
+    font-size: 0.8rem;
+    color: #0ea5e9;
+    background-color: transparent;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+.select-wrapper select {
+    padding: 0.5rem;
+    margin-top: 0.68rem;
+    background-color: transparent;
+    color: #f1f5f9;
+    border: none;
+    border-bottom: 0.1rem solid #0ea5e9;
+    border-radius: 0;
+}
+
+.select-wrapper select option {
+    background-color: #111827;
+    color: #f1f5f9;
+}
+
+.select-wrapper select:focus {
+    background-color: transparent;
+    outline: none;
+    color: #f1f5f9;
+    border-bottom: 0.1rem solid #0ea5e9;
+    box-shadow: none;
+}
+
+.blue-label {
+    color: #0ea5e9;
+}
+
+.entry-wrapper textarea {
+    background-color: #111827;
+    color: #f1f5f9;
+    border: 0.1rem solid #0ea5e9;
+}
+
+.entry-wrapper textarea:focus {
+    background-color: #111827;
+    color: #f1f5f9;
+}
+
+.entry-wrapper input[type="file"] {
+    background-color: #111827;
+    color: #f1f5f9;
+}
+
+
+
+
+
 
 
 
