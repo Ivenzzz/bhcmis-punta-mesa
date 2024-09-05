@@ -195,6 +195,88 @@ export function toggleCollapseButton() {
     });    
 }
 
+export function deleteResidents() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const deleteButton = document.querySelector('.bx-trash'); // Delete button
+        const rowCheckboxes = document.querySelectorAll('.row-checkbox'); // Individual checkboxes
+
+        // Function to gather checked residents' IDs
+        const getSelectedResidents = () => {
+            const selectedResidents = [];
+            rowCheckboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    const residentId = checkbox.closest('tr').dataset.residentId;
+                    selectedResidents.push(residentId);
+                }
+            });
+            return selectedResidents;
+        };
+
+        // Function to archive selected residents
+        const archiveResidents = (selectedResidents) => {
+            if (selectedResidents.length > 0) {
+                fetch('./app/controllers/admin-residents/delete_residents.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'resident_ids': selectedResidents
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Remove archived rows from the DOM
+                        selectedResidents.forEach(residentId => {
+                            const row = document.querySelector(`tr[data-resident-id="${residentId}"]`);
+                            if (row) row.remove();
+                        });
+                        // Show success message with number of archived residents
+                        Swal.fire({
+                            title: 'Success',
+                            text: `Successfully deleted ${selectedResidents.length} resident(s).`,
+                            icon: 'success'
+                        });
+                    } else {
+                        Swal.fire('Error', 'Error deleting residents', 'error');
+                    }
+                })
+                .catch(error => Swal.fire('Error', 'An error occurred: ' + error, 'error'));
+            } else {
+                Swal.fire('Error', 'Please select residents to delete.', 'error');
+            }
+        };
+
+        // Add event listener to the delete button
+        deleteButton.addEventListener('click', () => {
+            const selectedResidents = getSelectedResidents();
+
+            if (selectedResidents.length > 0) {
+                // Show confirmation modal using SweetAlert2
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You are about to delete the selected residents.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete them!',
+                    cancelButtonText: 'No, cancel',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Proceed with archiving residents
+                        archiveResidents(selectedResidents);
+                    }
+                });
+            } else {
+                Swal.fire('Error', 'Please select residents to delete.', 'error');
+            }
+        });
+    });
+}
+
+
+
+
 
 
 

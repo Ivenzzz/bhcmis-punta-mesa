@@ -28,7 +28,7 @@ require './app/models/get_addresses.php';
                 <button><i class='bx bx-plus-circle'></i></button>
             </div>
         </div>
-        <table class="table table-sm table-dark text-center">
+        <table class="table table-dark text-center">
             <thead class="sticky-top bg-dark">
                 <tr>
                     <th><input type="checkbox" id="select-all"></th>
@@ -42,12 +42,12 @@ require './app/models/get_addresses.php';
                     <th>Middlename</th>
                     <th>Age</th>
                     <th>Address</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="resident-table-body">
                 <?php foreach ($residents_data as $index => $resident): ?>
-                    <tr class="main-row">
+                    <tr class="main-row" data-resident-id="<?php echo $resident['resident_id']; ?>">
                         <td><input type="checkbox" class="row-checkbox"></td>
                         <td>
                             <button class="toggle-btn" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapse" data-bs-target="#collapseRow<?php echo $index; ?>">
@@ -60,7 +60,7 @@ require './app/models/get_addresses.php';
                         <td><?php echo htmlspecialchars($resident['age']); ?></td>
                         <td><?php echo htmlspecialchars($resident['address_name']); ?></td>
                         <td>
-                            <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editResidentModal<?php echo $index; ?>">
+                            <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editResidentPersonalModal<?php echo $index; ?>">
                                 <i class='bx bx-edit-alt'></i>
                             </button>
                         </td>
@@ -79,6 +79,10 @@ require './app/models/get_addresses.php';
                                     </p>
                                     <p>Sex: <?php echo $resident['sex'] ? htmlspecialchars(ucfirst($resident['sex'])) : 'N/A'; ?></p>
                                     <p>Occupation: <?php echo $resident['occupation'] ? htmlspecialchars($resident['occupation']) : 'N/A'; ?></p>
+                                    <p>Religion: <?php echo $resident['religion'] ? htmlspecialchars($resident['religion']) : 'N/A'; ?></p>
+                                    <p>Citizenship: <?php echo $resident['citizenship'] ? htmlspecialchars($resident['citizenship']) : 'N/A'; ?></p>
+                                    <p>Civil Status: <?php echo $resident['civil_status'] ? htmlspecialchars($resident['civil_status']) : 'N/A'; ?></p>
+                                    <p>Educational Attainment: <?php echo $resident['educational_attainment'] ? htmlspecialchars($resident['educational_attainment']) : 'N/A'; ?></p>
                                     <p>Account Username: <?php echo $resident['username'] ? htmlspecialchars($resident['username']) : 'N/A'; ?></p>
                                 </div>
                                 <div class="collapse-info">
@@ -91,15 +95,12 @@ require './app/models/get_addresses.php';
                                     <p>Height: <?php echo $resident['height_cm'] ? htmlspecialchars($resident['height_cm']).'cm' : 'N/A'; ?></p>
                                     <p>Weight: <?php echo $resident['weight_kg'] ? htmlspecialchars($resident['weight_kg']).'kg' : 'N/A'; ?></p>
                                     <p>Blood Type: <?php echo $resident['blood_type'] ? htmlspecialchars($resident['blood_type']) : 'N/A'; ?></p>
-                                    <p>Latest Blood Pressure: <?php echo $resident['blood_pressure'] ? htmlspecialchars($resident['blood_pressure']) : 'N/A'; ?></p>
-                                    <p>Latest Cholesterol Level: <?php echo $resident['cholesterol_level'] ? htmlspecialchars($resident['cholesterol_level']) : 'N/A'; ?></p>
+                                    <p>Blood Pressure: <?php echo $resident['blood_pressure'] ? htmlspecialchars($resident['blood_pressure']) : 'N/A'; ?></p>
+                                    <p>Cholesterol Level: <?php echo $resident['cholesterol_level'] ? htmlspecialchars($resident['cholesterol_level']) : 'N/A'; ?></p>
                                 </div>
                             </div>
                         </td>
                     </tr>
-
-                    <?php require 'partials/edit_resident_modal.php'; ?>
-
                 <?php endforeach; ?>
             </tbody>
         </table>
@@ -129,7 +130,11 @@ require './app/models/get_addresses.php';
         </div>
     </div>
 
+    
+    <?php require 'partials/edit_resident_personal_modal.php'; ?>
+    
     <?php require './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/admin.js" type="module"></script>
+    <script src="./public/js/admin/functions.js"></script>
 </body>
 </html>

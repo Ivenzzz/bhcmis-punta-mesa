@@ -12,7 +12,7 @@ function getAddresses($conn) {
         }
     }
 
-    return $addresses; // Return the addresses
+    return $addresses;
 }
 
 // Call the function and store the result in a variable

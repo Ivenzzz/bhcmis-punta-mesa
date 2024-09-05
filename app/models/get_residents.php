@@ -8,7 +8,11 @@ function getResidentsData($conn) {
                 pi.middlename,
                 pi.date_of_birth,
                 TIMESTAMPDIFF(YEAR, pi.date_of_birth, CURDATE()) AS age,
+                pi.civil_status,
+                pi.educational_attainment,
                 pi.occupation,
+                pi.religion,
+                pi.citizenship,
                 pi.phone_number,
                 pi.email,
                 pi.sex,
@@ -23,7 +27,9 @@ function getResidentsData($conn) {
                 hi.created_at AS health_info_created_at,
                 ac.username,
                 ac.role,
+                ac.password,
                 ac.profile_picture,
+                ac.isArchived,
                 GROUP_CONCAT(DISTINCT mc.condition_name ORDER BY mc.condition_name ASC SEPARATOR ', ') AS medical_conditions
             FROM 
                 residents r
@@ -39,6 +45,8 @@ function getResidentsData($conn) {
                 residents_medical_condition rmc ON r.resident_id = rmc.resident_id
             LEFT JOIN 
                 medical_conditions mc ON rmc.medical_conditions_id = mc.medical_conditions_id
+            WHERE 
+                ac.isArchived = 0
             GROUP BY 
                 r.resident_id";
 

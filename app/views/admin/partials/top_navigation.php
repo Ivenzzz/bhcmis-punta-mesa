@@ -24,7 +24,7 @@
                                         <a href='#'><i class='bx bx-cog'></i> Settings</a>
                                     </li>
                                     <li class='list-group-item'>
-                                        <a href='#' class='logout'><i class='bx bx-log-out'></i> Logout</a>
+                                        <a href='#' class='logout-text'><i class='bx bx-log-out'></i> Logout</a>
                                     </li>
                                 </ul>"
                 tabindex="0">
