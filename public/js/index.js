@@ -55,7 +55,7 @@ function redirectToDashboard(role) {
         case 'admin':
             window.location.href = '/bhcmis/admin';
             break;
-        case 'resident':
+        case 'residents':
             window.location.href = '/bhcmis/resident-dashboard';
             break;
         default:

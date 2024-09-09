@@ -1,7 +1,7 @@
 <?php
 
 function getResidentsData($conn) {
-    $sql = "SELECT
+    $sql = "SELECT  
                 r.resident_id,
                 pi.lastname,
                 pi.firstname,
@@ -48,7 +48,9 @@ function getResidentsData($conn) {
             WHERE 
                 ac.isArchived = 0
             GROUP BY 
-                r.resident_id";
+                r.resident_id
+            ORDER BY 
+                r.resident_id DESC";  // Latest resident first
 
     $result = mysqli_query($conn, $sql);
     $residents_data = [];
@@ -63,6 +65,7 @@ function getResidentsData($conn) {
 }
 
 $residents_data = getResidentsData($conn);
+
 ?>
 
 

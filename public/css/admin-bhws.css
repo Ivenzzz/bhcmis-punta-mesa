@@ -1,0 +1,42 @@
+.card {
+    background-color: #0f172a !important;
+    color: #94a3b8;
+    height: 16rem;
+    box-shadow: 0 0 0.8rem #0f172a;
+}
+
+.card img {
+    height: 4rem;
+    width: 4rem;
+}
+
+.card button {
+    border: none;
+    background-color: transparent !important;
+    font-size: 1rem;
+
+}
+
+.card .bx-edit-alt {
+    color: #f59e0b;
+}
+
+.card .bx-info-circle {
+    color: #0ea5e9;
+}
+
+.card .bx-trash {
+    color: #ef4444;
+}
+
+.card-text {
+    font-size: 0.8rem;
+}
+
+.card-title {
+    font-size: 1.2rem;
+}
+
+.btn-primary {
+    color: #e2e8f0;
+}

@@ -25,7 +25,7 @@ require './app/models/get_addresses.php';
             <div class="right-toolbar">
                 <input type="search" placeholder="Search" class="search">
                 <button><i class='bx bx-trash'></i></button>
-                <button><i class='bx bx-plus-circle'></i></button>
+                <button data-bs-toggle="modal" data-bs-target="#addResidentModal"><i class='bx bx-plus-circle'></i></button>
             </div>
         </div>
         <table class="table table-dark text-center">
@@ -131,7 +131,8 @@ require './app/models/get_addresses.php';
     </div>
 
     
-    <?php require 'partials/edit_resident_personal_modal.php'; ?>
+    <?php require 'partials/edit_resident_modal.php'; ?>
+    <?php require 'partials/add_resident_modal.php'; ?>
     
     <?php require './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/admin.js" type="module"></script>

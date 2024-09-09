@@ -1,10 +1,17 @@
-CREATE TABLE `residents` (
-  `resident_id` int(10) NOT NULL,
+CREATE TABLE `accounts` (
   `account_id` int(10) NOT NULL,
-  `personal_info_id` int(10) NOT NULL,
-  `isValidResident` tinyint(1) NOT NULL
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('admin','midwife','bhw','residents') NOT NULL,
+  `profile_picture` varchar(255) DEFAULT NULL,
+  `isArchived` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+CREATE TABLE `bhw` (
+  `bhw_id` int(10) NOT NULL,
+  `account_id` int(10) NOT NULL,
+  `personal_info_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 CREATE TABLE `personal_information` (
   `personal_info_id` int(10) NOT NULL,
@@ -25,3 +32,19 @@ CREATE TABLE `personal_information` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `bhw` (
+  `bhw_id` int(10) NOT NULL,
+  `account_id` int(10) NOT NULL,
+  `personal_info_id` int(10) NOT NULL,
+  `assigned_area` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+ALTER TABLE `personal_information`
+  ADD CONSTRAINT `fk_personalInfoAddressId` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `bhw`
+  ADD CONSTRAINT `fk_bhwAccountId` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_bhwAssignedAreaId` FOREIGN KEY (`assigned_area`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_bhwPersonalInfoId` FOREIGN KEY (`personal_info_id`) REFERENCES `personal_information` (`personal_info_id`) ON DELETE CASCADE ON UPDATE CASCADE;

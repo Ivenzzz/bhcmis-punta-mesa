@@ -10,4 +10,5 @@ residentTable.spinRefreshButton();
 residentTable.setupEntries();
 residentTable.toggleCollapseButton();
 residentTable.deleteResidents();
+residentTable.addResidents();
 

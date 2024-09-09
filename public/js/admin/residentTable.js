@@ -274,6 +274,122 @@ export function deleteResidents() {
     });
 }
 
+export function addResidents() {
+    document.getElementById('addResidentForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(document.getElementById('addResidentForm'));
+
+        try {
+            const response = await fetch('./app/controllers/admin-residents/add_residents.php', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Get the modal instance correctly
+                const addResidentModal = bootstrap.Modal.getInstance(document.getElementById('addResidentModal'));
+                addResidentModal.hide(); // Close the modal
+
+                // Wait until the modal is fully hidden before showing SweetAlert2
+                document.getElementById('addResidentModal').addEventListener('hidden.bs.modal', function () {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Resident added!',
+                        text: result.message,
+                    });
+                });
+
+                // Update the resident table with the new data
+                addResidentToTable(result.resident); // Pass the resident data from the server
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: result.message,
+                });
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An unexpected error occurred.',
+            });
+        }
+    });
+
+    function addResidentToTable(resident) {
+        const tableBody = document.getElementById('resident-table-body');
+        const newIndex = tableBody.rows.length; 
+
+        // Create the main row
+        const mainRow = document.createElement('tr');
+        mainRow.className = 'main-row';
+        mainRow.setAttribute('data-resident-id', resident.personal_info_id); 
+
+        mainRow.innerHTML = `
+            <td><input type="checkbox" class="row-checkbox"></td>
+            <td>
+                <button class="toggle-btn" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapse" data-bs-target="#collapseRowNew${newIndex}">
+                    <i class='bx bx-plus-circle'></i>
+                </button>
+            </td>
+            <td>${resident.lastname}</td>
+            <td>${resident.firstname}</td>
+            <td>${resident.middlename}</td>
+            <td>${resident.age}</td> 
+            <td>${resident.address_name}</td> 
+            <td>
+                <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editResidentPersonalModal${newIndex}">
+                    <i class='bx bx-edit-alt'></i>
+                </button>
+            </td>
+        `;
+
+        // Create the collapse row
+        const collapseRow = document.createElement('tr');
+        collapseRow.className = 'collapse-row collapse';
+        collapseRow.id = `collapseRowNew${newIndex}`;
+
+        collapseRow.innerHTML = `
+            <td colspan="8" class="p-0">
+                <div class="p-3 collapse-body">
+                    <div class="collapse-info">
+                        <h5>Personal Information</h5>
+                        <p>Date of Birth: ${resident.date_of_birth || 'N/A'}</p>
+                        <p>Sex: ${resident.sex || 'N/A'}</p>
+                        <p>Occupation: ${resident.occupation || 'N/A'}</p>
+                        <p>Religion: ${resident.religion || 'N/A'}</p>
+                        <p>Citizenship: ${resident.citizenship || 'N/A'}</p>
+                        <p>Civil Status: ${resident.civil_status || 'N/A'}</p>
+                        <p>Educational Attainment: ${resident.educational_attainment || 'N/A'}</p>
+                        <p>Account Username: ${resident.username || 'N/A'}</p>
+                    </div>
+                    <div class="collapse-info">
+                        <h5>Contact Information</h5>
+                        <p>Phone Number: ${resident.phone_number || 'N/A'}</p>
+                        <p>Email: ${resident.email || 'N/A'}</p>
+                    </div>
+                    <div class="collapse-info">
+                        <h5>Health Information</h5>
+                        <p>Height: ${resident.height || 'N/A'}</p>
+                        <p>Weight: ${resident.weight || 'N/A'}</p>
+                        <p>Blood Type: ${resident.blood_type || 'N/A'}</p>
+                        <p>Blood Pressure: ${resident.blood_pressure || 'N/A'}</p>
+                        <p>Cholesterol Level: ${resident.cholesterol_level || 'N/A'}</p>
+                    </div>
+                </div>
+            </td>
+        `;
+
+        tableBody.prepend(collapseRow); // Add the collapse row first
+        tableBody.prepend(mainRow); // Add the main row above it
+    }
+}
+
 
 
 

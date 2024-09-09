@@ -1,0 +1,11 @@
+.midwife-form {
+    background-color: #0f172a;
+    box-shadow: 0 0 0.5rem #1e293b;
+    padding: 4rem;
+    margin-bottom: 3rem;
+    color: #94a3b8 !important;
+}
+
+.midwife-form form {
+    row-gap: 2rem;
+}
