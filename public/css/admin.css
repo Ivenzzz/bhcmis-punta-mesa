@@ -1,6 +1,6 @@
 :root {
     --header-height: 3rem;
-    --nav-width: 4rem;
+    --nav-width: 2rem;
     --first-color: #334155;
     --first-color-light: #AFA5D9;
     --white-color: #F7F6FB;
@@ -55,7 +55,7 @@ body {
 .header_toggle {
     font-size: 1.5rem;
     cursor: pointer;
-    margin-left: 0.3rem;
+    margin-left: 0.2rem;
 }
 
 .header_img {
@@ -464,11 +464,6 @@ input[type="checkbox"] {
     align-items: center;
 }
 
-
-.modal-dialog {
-    width: rem;
-}
-
 .modal-content {
     background-color: #111827;
     border-radius: 1rem;
@@ -476,7 +471,7 @@ input[type="checkbox"] {
 }
 
 .modal-body {
-    margin: 2rem auto;
+    margin-top: 2rem;
 }
 
 .modal-header {

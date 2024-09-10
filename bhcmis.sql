@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2024 at 08:53 AM
+-- Generation Time: Sep 10, 2024 at 05:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,14 +42,14 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`account_id`, `username`, `password`, `role`, `profile_picture`, `isArchived`) VALUES
 (1, 'admin', '$2y$10$wSO7df3nhx9QF06QISRIT.1YNjfANjoIqR3q4X8GWKXT897uTeVly', 'admin', NULL, 0),
-(2, 'BHW1', '$2y$10$Fp06K.3nimzVrtsC.VQMs.mkYrm0vpq5rYhDvktMiIY7SZbWbkozW', 'bhw', NULL, 0),
-(5, 'BHW99', '$2y$10$WGbMOlDHPCI298D8iPgDp.n7Vglk3Gu.Xj2Sdg21BVE8Z.aPRS7wS', 'bhw', NULL, 0),
-(6, 'BHW2', '$2y$10$jo2g7gXKJXysuLCE.WEMo.ZdWhAjO6/ORu4kcGZ75HlMkyfWau4OS', 'bhw', NULL, 0),
-(7, 'BHW3', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', NULL, 0),
-(8, 'BHW4', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', NULL, 0),
-(9, 'BHW5', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', NULL, 0),
-(10, 'BHW6', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', NULL, 0),
-(11, 'BHW7', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', NULL, 0),
+(2, 'BHW1', '$2y$10$Fp06K.3nimzVrtsC.VQMs.mkYrm0vpq5rYhDvktMiIY7SZbWbkozW', 'bhw', '/bhcmis/storage/uploads/avatar-girl1.png', 0),
+(5, 'BHW99', '$2y$10$WGbMOlDHPCI298D8iPgDp.n7Vglk3Gu.Xj2Sdg21BVE8Z.aPRS7wS', 'bhw', '/bhcmis/storage/uploads/avatar-panda.png', 0),
+(6, 'BHW2', '$2y$10$jo2g7gXKJXysuLCE.WEMo.ZdWhAjO6/ORu4kcGZ75HlMkyfWau4OS', 'bhw', '/bhcmis/storage/uploads/avatar-woman1.png', 0),
+(7, 'BHW3', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
+(8, 'BHW4', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman3.png', 0),
+(9, 'BHW5', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman4.png', 0),
+(10, 'BHW6', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
+(11, 'BHW7', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman1.png', 0),
 (12, 'Midwife1', '$2y$10$mHv3MxPW3CnlJ0m0Fp//LeShjQqYgttV40fklrqpW.3MEBweZChqi', 'midwife', '/bhcmis/storage/uploads/midwife-1.jpg', 0),
 (13, 'Resident1', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
 (14, 'Resident2', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
@@ -172,13 +172,13 @@ CREATE TABLE `bhw` (
 --
 
 INSERT INTO `bhw` (`bhw_id`, `account_id`, `personal_info_id`, `assigned_area`) VALUES
-(1, 2, 4, 2),
+(1, 2, 4, 10),
 (2, 6, 6, 1),
 (3, 7, 8, 3),
 (4, 8, 10, 4),
 (5, 9, 12, 5),
 (6, 10, 11, 6),
-(7, 11, 19, 7),
+(7, 11, 19, 12),
 (8, 5, 15, 8);
 
 -- --------------------------------------------------------
@@ -545,25 +545,25 @@ INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`,
 (1, 'Santos', 'Juan', 'Dela Cruz', '1989-05-10', 'Married', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '09171234567', 'juan.santos@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (2, 'Reyes', 'Maria', 'Lopez', '1994-03-22', 'Single', 'Highschool Graduate', 'Sales Clerk', 'Roman Catholic', 'Filipino', 2, 'female', '09281234567', 'maria.reyes@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (3, 'Gonzales', 'Peter', 'Ramos', '1978-11-15', 'Widowed', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 3, 'male', '09331234567', 'pedro.gonzales@example.com', NULL, '2024-07-25 11:07:25', '2024-09-07 08:42:17'),
-(4, 'Garcia', 'Ana', 'Santos', '1985-07-30', 'Married', 'College Undergraduate', 'Nurse', 'Roman Catholic', 'Filipino', 4, 'female', '09441234567', 'ana.garcia@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(4, 'Garcia', 'Ana Mae', 'Santos', '1985-07-30', 'Married', 'College Undergraduate', 'Nurse', 'Roman Catholic', 'Filipino', 4, 'female', '09441234566', 'ana.garcia@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-10 11:22:04'),
 (5, 'Mendoza', 'Carlos', 'Alvarez', '1996-12-04', 'Single', 'Highschool Graduate', 'Mechanic', 'Roman Catholic', 'Filipino', 5, 'male', '09551234567', 'carlos.mendoza@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(6, 'Aquino', 'Laura', 'Gomez', '1992-09-18', 'Married', 'College Graduate', 'Accountant', 'Roman Catholic', 'Filipino', 6, 'female', '09661234567', 'laura.aquino@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(6, 'Aquino', 'Laura', 'Gonzalez', '1992-09-18', 'Married', 'College Graduate', 'Accountant', 'Roman Catholic', 'Filipino', 6, 'female', '09661234567', 'laura.aquino@example.com', NULL, '2024-07-25 11:07:25', '2024-09-10 10:49:09'),
 (7, 'Santos', 'Isabel', 'Navarro', '1983-06-25', 'Legally Separated', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 7, 'female', '09771234567', 'isabel.santos@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (8, 'Cruz', 'Antonio', 'Castro', '1973-01-10', 'Married', 'Elementary Graduate', 'Construction Worker', 'Roman Catholic', 'Filipino', 8, 'male', '09881234567', 'antonio.cruz@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (9, 'Morales', 'Elena', 'Garcia', '1999-04-20', 'Single', 'Highschool Graduate', 'Student', 'Roman Catholic', 'Filipino', 9, 'male', '09991234567', 'elena.morales@example.com', NULL, '2024-07-25 11:07:25', '2024-09-07 08:42:29'),
-(10, 'Delos Reyes', 'Gabriel', 'Santos', '1981-08-14', 'Married', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 10, 'male', '09182345678', 'gabriel.delosreyes@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(10, 'Reyes', 'Gabriela', 'Santos', '1981-08-14', 'Married', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 10, 'male', '09182345678', 'gabriel.delosreyes@example.com', NULL, '2024-07-25 11:07:25', '2024-09-10 10:44:05'),
 (11, 'Luna', 'Olivia', 'Mendoza', '1997-05-05', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'female', '09293456789', 'olivia.luna@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (12, 'Diaz', 'Ricardo', 'Jimenez', '1988-10-30', 'Married', 'Highschool Graduate', 'Driver', 'Roman Catholic', 'Filipino', 2, 'male', '09384567890', 'ricardo.diaz@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (13, 'Marjohn', 'Roy Marjohn', 'Araneta', '2001-08-28', 'Single', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 1, 'male', '09308309624', 'roymarjohnaraneta@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-06 09:32:11'),
-(14, 'Chavez', 'Mary', 'Macias', '1995-11-20', 'Married', 'College Undergraduate', 'Hotel Manager', 'Roman Catholic', 'Filipino', 4, 'male', '09586789012', 'ruvyangcona@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-09 14:03:12'),
+(14, 'Chavez', 'Mary', 'Macias', '1995-11-20', 'Married', 'College Undergraduate', 'Hotel Manager', 'Roman Catholic', 'Filipino', 4, 'male', '09586789012', 'ruvyangcona@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-10 03:31:46'),
 (15, 'Villar', 'Carmen', 'Rodriguez', '1986-06-10', 'Married', 'College Graduate', 'Nurse', 'Roman Catholic', 'Filipino', 5, 'female', '09697890123', 'carmen.villar@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (16, 'Santiago', 'Marc John', 'Torres', '1991-06-12', 'Single', 'College Graduate', 'Security Guard', 'Roman Catholic', 'Filipino', 1, 'male', '09708901234', 'marcojohnsantiago@example.com', NULL, '2024-07-25 11:07:25', '2024-09-06 09:30:29'),
 (17, 'Gonzalez', 'Sophia', 'Bautista', '1993-12-30', 'Single', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 7, 'male', '09819012345', 'sophia.gonzalez@example.com', NULL, '2024-07-25 11:07:25', '2024-09-07 08:27:34'),
 (18, 'Lopez', 'Andres', 'Gonzales', '1982-07-22', 'Married', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 8, 'male', '09920123456', 'andres.lopez@example.com', NULL, '2024-07-25 11:07:25', '2024-09-06 09:30:38'),
-(19, 'Rivera', 'Beatriz', 'Morales', '1998-11-11', 'Single', 'Highschool Graduate', 'Cashier', 'Roman Catholic', 'Filipino', 9, 'female', '09123456789', 'beatriz.rivera@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(19, 'Rivera', 'Beatriz', 'Morales', '1998-11-11', 'Single', 'Highschool Graduate', 'Cashier', 'Roman Catholic', 'Filipino', 9, 'female', '09123456789', 'beatriz.rivera@example.com', NULL, '2024-07-25 11:07:25', '2024-09-10 10:44:40'),
 (20, 'Victorino', 'Amiel Jose', 'Araneta', '1975-04-12', 'Married', 'College Graduate', 'Brgy. Secretary', 'Roman Catholic', 'Filipino', 10, 'male', '09234567890', 'amielvictorino@gmail.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(21, 'Singua', 'Reyna Jane', 'Bingua', '1996-06-05', 'Single', 'College Graduate', 'Barangay Midwife', 'Roman Catholic', 'Filipino', 3, 'female', '09851354569', 'reynasingua@gmail.com', NULL, '2024-07-25 17:45:21', '2024-07-25 17:45:21'),
-(35, 'Gasparillo', 'John Rey', 'Lobaton', '1999-03-03', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '639308309627', 'johnreygasparillo@gmail.com', NULL, '2024-09-09 14:04:46', '2024-09-09 14:04:46');
+(21, 'Singua', 'Reyna Jane', 'Bingua', '1996-06-05', 'Single', 'College Graduate', 'Brgy. Midwife', 'Roman Catholic', 'Filipino', 3, 'female', '09851354569', 'reynasingua@gmail.com', NULL, '2024-07-25 17:45:21', '2024-07-25 17:45:21'),
+(35, 'Gasparillo', 'John Rey', 'Lobaton', '1999-03-03', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '639308309627', 'johnreygasparillo@gmail.com', NULL, '2024-09-09 14:04:46', '2024-09-10 09:39:15');
 
 -- --------------------------------------------------------
 
@@ -925,7 +925,7 @@ ALTER TABLE `vaccines`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `address`

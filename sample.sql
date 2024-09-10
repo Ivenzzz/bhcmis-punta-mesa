@@ -7,11 +7,6 @@ CREATE TABLE `accounts` (
   `isArchived` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-CREATE TABLE `bhw` (
-  `bhw_id` int(10) NOT NULL,
-  `account_id` int(10) NOT NULL,
-  `personal_info_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 CREATE TABLE `personal_information` (
   `personal_info_id` int(10) NOT NULL,

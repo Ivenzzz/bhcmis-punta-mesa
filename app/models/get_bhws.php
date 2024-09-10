@@ -24,13 +24,15 @@ function getBhwData($conn) {
             personal_information.updated_at AS updated_at, 
             accounts.username AS username, 
             accounts.profile_picture AS profile_picture,
+            accounts.isArchived AS isArchived,
             personal_address.address_name AS personal_address_name,  -- Personal address
             assigned_address.address_name AS assigned_area_name      -- Assigned area address
             FROM bhw
             INNER JOIN personal_information ON bhw.personal_info_id = personal_information.personal_info_id
             INNER JOIN accounts ON bhw.account_id = accounts.account_id
             INNER JOIN address AS personal_address ON personal_information.address_id = personal_address.address_id  -- Join for personal address
-            INNER JOIN address AS assigned_address ON bhw.assigned_area = assigned_address.address_id"; 
+            INNER JOIN address AS assigned_address ON bhw.assigned_area = assigned_address.address_id
+            WHERE accounts.isArchived = 0";  // Filter out archived residents
     
     // Execute the query
     $result = mysqli_query($conn, $sql);
@@ -51,4 +53,4 @@ function getBhwData($conn) {
 // Example usage
 $bhw_data = getBhwData($conn);
 
-?>  
+?>
