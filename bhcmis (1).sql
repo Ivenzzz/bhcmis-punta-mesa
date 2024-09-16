@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2024 at 05:22 AM
+-- Generation Time: Sep 16, 2024 at 07:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -164,22 +164,24 @@ CREATE TABLE `bhw` (
   `bhw_id` int(10) NOT NULL,
   `account_id` int(10) NOT NULL,
   `personal_info_id` int(10) NOT NULL,
-  `assigned_area` int(10) NOT NULL
+  `assigned_area` int(10) NOT NULL,
+  `date_started` date NOT NULL DEFAULT current_timestamp(),
+  `employment_status` enum('active','inactive','on_leave') NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `bhw`
 --
 
-INSERT INTO `bhw` (`bhw_id`, `account_id`, `personal_info_id`, `assigned_area`) VALUES
-(1, 2, 4, 10),
-(2, 6, 6, 1),
-(3, 7, 8, 3),
-(4, 8, 10, 4),
-(5, 9, 12, 5),
-(6, 10, 11, 6),
-(7, 11, 19, 12),
-(8, 5, 15, 8);
+INSERT INTO `bhw` (`bhw_id`, `account_id`, `personal_info_id`, `assigned_area`, `date_started`, `employment_status`) VALUES
+(1, 2, 4, 10, '2024-09-16', 'active'),
+(2, 6, 6, 1, '2024-09-16', 'active'),
+(3, 7, 8, 3, '2024-09-16', 'active'),
+(4, 8, 10, 4, '2024-09-16', 'active'),
+(5, 9, 12, 5, '2024-09-16', 'active'),
+(6, 10, 11, 6, '2024-09-16', 'active'),
+(7, 11, 19, 12, '2024-09-16', 'active'),
+(8, 5, 15, 8, '2024-09-16', 'active');
 
 -- --------------------------------------------------------
 
@@ -192,6 +194,8 @@ CREATE TABLE `consultations` (
   `resident_id` int(10) NOT NULL,
   `appointment_id` int(10) DEFAULT NULL,
   `consultation_date` datetime(6) NOT NULL,
+  `reason_for_visit` varchar(255) DEFAULT NULL,
+  `symptoms` varchar(255) DEFAULT NULL,
   `bhw_id` int(10) NOT NULL,
   `height_cm` decimal(5,2) DEFAULT NULL,
   `weight_kg` decimal(5,2) DEFAULT NULL,
@@ -206,15 +210,15 @@ CREATE TABLE `consultations` (
 -- Dumping data for table `consultations`
 --
 
-INSERT INTO `consultations` (`consultation_id`, `resident_id`, `appointment_id`, `consultation_date`, `bhw_id`, `height_cm`, `weight_kg`, `blood_pressure`, `cholesterol_level`, `findings_notes`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, '2024-08-05 08:00:00.000000', 8, 170.50, 70.00, '120/80', 'Normal', 'Patient exhibits normal vital signs and overall health is satisfactory; no immediate concerns.', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(2, 5, NULL, '2024-08-02 10:30:00.000000', 2, 160.00, 65.00, '110/70', 'Normal', 'Patient shows signs of mild hypertension; recommend lifestyle modifications and follow-up visit in 3 months', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(3, 6, 2, '2024-08-03 14:00:00.000000', 3, 175.00, 80.00, '130/85', 'High', 'Patient is underweight; suggest nutritional counseling and a balanced diet to gain weight.', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(4, 7, NULL, '2024-08-04 11:15:00.000000', 1, 168.00, 72.00, '125/80', 'Normal', 'Patient is obese with elevated blood pressure; recommend weight management program and regular exercise.', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(5, 5, 4, '2024-08-05 13:00:00.000000', 4, 172.00, 75.00, '135/90', 'High', 'Patient shows signs of anemia; advise iron supplements and a follow-up blood test in 6 weeks.', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(21, 4, NULL, '2024-07-31 16:37:55.000000', 3, 175.00, 55.00, '120/70', 'Normal', 'Patient has a fever; initiate dietary adjustments.', '2024-07-25 08:39:43', '2024-07-25 08:39:43'),
-(22, 4, NULL, '2024-08-02 16:41:04.000000', 3, 176.00, 58.00, '120/80', 'Normal', 'Patient\'s vital signs are normal; continue with current health regimen and routine check-ups.', '2024-07-25 08:42:04', '2024-07-25 08:42:04'),
-(23, 4, NULL, '2024-08-07 16:42:51.000000', 2, 175.00, 55.00, '120/70', 'Normal', 'Patient\'s health is stable with no new concerns; maintain current health plan and schedule next routine visit.', '2024-07-25 08:43:19', '2024-07-25 08:43:19');
+INSERT INTO `consultations` (`consultation_id`, `resident_id`, `appointment_id`, `consultation_date`, `reason_for_visit`, `symptoms`, `bhw_id`, `height_cm`, `weight_kg`, `blood_pressure`, `cholesterol_level`, `findings_notes`, `created_at`, `updated_at`) VALUES
+(1, 4, 1, '2024-08-05 08:00:00.000000', 'fever', 'Chills, Fatigue / Weakness, sore throat', 8, 170.50, 70.00, '120/80', 'Normal', 'Patient exhibits normal vital signs and overall health is satisfactory; no immediate concerns.', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
+(2, 5, NULL, '2024-08-02 10:30:00.000000', 'fever', 'Chills, Fatigue / Weakness, sore throat', 2, 160.00, 65.00, '110/70', 'Normal', 'Patient shows signs of mild hypertension; recommend lifestyle modifications and follow-up visit in 3 months', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
+(3, 6, 2, '2024-08-03 14:00:00.000000', 'fever', 'Chills, Fatigue / Weakness, sore throat', 3, 175.00, 80.00, '130/85', 'High', 'Patient is underweight; suggest nutritional counseling and a balanced diet to gain weight.', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
+(4, 7, NULL, '2024-08-04 11:15:00.000000', 'fever', 'Chills, Fatigue / Weakness, sore throat', 1, 168.00, 72.00, '125/80', 'Normal', 'Patient is obese with elevated blood pressure; recommend weight management program and regular exercise.', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
+(5, 5, 4, '2024-08-05 13:00:00.000000', 'fever', 'Chills, Fatigue / Weakness, sore throat', 4, 172.00, 75.00, '135/90', 'High', 'Patient shows signs of anemia; advise iron supplements and a follow-up blood test in 6 weeks.', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
+(21, 4, NULL, '2024-07-31 16:37:55.000000', 'fever', 'Chills, Fatigue / Weakness, sore throat', 3, 175.00, 55.00, '120/70', 'Normal', 'Patient has a fever; initiate dietary adjustments.', '2024-07-25 08:39:43', '2024-07-25 08:39:43'),
+(22, 4, NULL, '2024-08-02 16:41:04.000000', 'fever', 'Chills, Fatigue / Weakness, sore throat', 3, 176.00, 58.00, '120/80', 'Normal', 'Patient\'s vital signs are normal; continue with current health regimen and routine check-ups.', '2024-07-25 08:42:04', '2024-07-25 08:42:04'),
+(23, 4, NULL, '2024-08-07 16:42:51.000000', 'fever', 'Chills, Fatigue / Weakness, sore throat', 2, 175.00, 55.00, '120/70', 'Normal', 'Patient\'s health is stable with no new concerns; maintain current health plan and schedule next routine visit.', '2024-07-25 08:43:19', '2024-07-25 08:43:19');
 
 --
 -- Triggers `consultations`
@@ -243,6 +247,19 @@ CREATE TRIGGER `after_consultation_insert` AFTER INSERT ON `consultations` FOR E
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `event_id` int(10) NOT NULL,
+  `event_name` varchar(255) NOT NULL,
+  `event_datetime` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `created_at` datetime(6) NOT NULL DEFAULT current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -544,8 +561,8 @@ CREATE TABLE `personal_information` (
 INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`, `middlename`, `date_of_birth`, `civil_status`, `educational_attainment`, `occupation`, `religion`, `citizenship`, `address_id`, `sex`, `phone_number`, `email`, `id_picture`, `created_at`, `updated_at`) VALUES
 (1, 'Santos', 'Juan', 'Dela Cruz', '1989-05-10', 'Married', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '09171234567', 'juan.santos@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (2, 'Reyes', 'Maria', 'Lopez', '1994-03-22', 'Single', 'Highschool Graduate', 'Sales Clerk', 'Roman Catholic', 'Filipino', 2, 'female', '09281234567', 'maria.reyes@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(3, 'Gonzales', 'Peter', 'Ramos', '1978-11-15', 'Widowed', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 3, 'male', '09331234567', 'pedro.gonzales@example.com', NULL, '2024-07-25 11:07:25', '2024-09-07 08:42:17'),
-(4, 'Garcia', 'Ana Mae', 'Santos', '1985-07-30', 'Married', 'College Undergraduate', 'Nurse', 'Roman Catholic', 'Filipino', 4, 'female', '09441234566', 'ana.garcia@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-10 11:22:04'),
+(3, 'Gonzales', 'Peter', 'Ramos', '1978-11-15', 'Widowed', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 3, 'male', '09331234567', 'pedro.gonzales@example.com', NULL, '2024-07-25 11:07:25', '2024-09-16 12:56:54'),
+(4, 'Garcia', 'Ana', 'Santos', '1985-07-30', 'Married', 'College Undergraduate', 'Nurse', 'Roman Catholic', 'Filipino', 4, 'female', '09441234566', 'ana.garcia@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-16 12:58:15'),
 (5, 'Mendoza', 'Carlos', 'Alvarez', '1996-12-04', 'Single', 'Highschool Graduate', 'Mechanic', 'Roman Catholic', 'Filipino', 5, 'male', '09551234567', 'carlos.mendoza@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (6, 'Aquino', 'Laura', 'Gonzalez', '1992-09-18', 'Married', 'College Graduate', 'Accountant', 'Roman Catholic', 'Filipino', 6, 'female', '09661234567', 'laura.aquino@example.com', NULL, '2024-07-25 11:07:25', '2024-09-10 10:49:09'),
 (7, 'Santos', 'Isabel', 'Navarro', '1983-06-25', 'Legally Separated', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 7, 'female', '09771234567', 'isabel.santos@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
@@ -563,7 +580,7 @@ INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`,
 (19, 'Rivera', 'Beatriz', 'Morales', '1998-11-11', 'Single', 'Highschool Graduate', 'Cashier', 'Roman Catholic', 'Filipino', 9, 'female', '09123456789', 'beatriz.rivera@example.com', NULL, '2024-07-25 11:07:25', '2024-09-10 10:44:40'),
 (20, 'Victorino', 'Amiel Jose', 'Araneta', '1975-04-12', 'Married', 'College Graduate', 'Brgy. Secretary', 'Roman Catholic', 'Filipino', 10, 'male', '09234567890', 'amielvictorino@gmail.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (21, 'Singua', 'Reyna Jane', 'Bingua', '1996-06-05', 'Single', 'College Graduate', 'Brgy. Midwife', 'Roman Catholic', 'Filipino', 3, 'female', '09851354569', 'reynasingua@gmail.com', NULL, '2024-07-25 17:45:21', '2024-07-25 17:45:21'),
-(35, 'Gasparillo', 'John Rey', 'Lobaton', '1999-03-03', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '639308309627', 'johnreygasparillo@gmail.com', NULL, '2024-09-09 14:04:46', '2024-09-10 09:39:15');
+(35, 'Gasparillo', 'John Rey', 'Lobaton', '1999-03-03', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '639308309627', 'johnreygasparillo@gmail.com', NULL, '2024-09-09 14:04:46', '2024-09-16 12:56:49');
 
 -- --------------------------------------------------------
 
@@ -659,6 +676,7 @@ CREATE TABLE `residents_medical_condition` (
   `rmc_id` int(10) NOT NULL,
   `resident_id` int(10) NOT NULL,
   `medical_conditions_id` int(10) NOT NULL,
+  `diagnosed_date` date NOT NULL DEFAULT current_timestamp(),
   `created_at` datetime(6) NOT NULL DEFAULT current_timestamp(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -666,12 +684,12 @@ CREATE TABLE `residents_medical_condition` (
 -- Dumping data for table `residents_medical_condition`
 --
 
-INSERT INTO `residents_medical_condition` (`rmc_id`, `resident_id`, `medical_conditions_id`, `created_at`) VALUES
-(1, 5, 2, '2024-07-25 17:54:59.000000'),
-(2, 4, 5, '2024-07-25 17:54:59.000000'),
-(3, 8, 7, '2024-07-25 17:54:59.000000'),
-(4, 4, 8, '0000-00-00 00:00:00.000000'),
-(5, 4, 11, '0000-00-00 00:00:00.000000');
+INSERT INTO `residents_medical_condition` (`rmc_id`, `resident_id`, `medical_conditions_id`, `diagnosed_date`, `created_at`) VALUES
+(1, 5, 2, '2024-09-16', '2024-07-25 17:54:59.000000'),
+(2, 4, 5, '2024-09-16', '2024-07-25 17:54:59.000000'),
+(3, 8, 7, '2024-09-16', '2024-07-25 17:54:59.000000'),
+(4, 4, 8, '2024-09-16', '0000-00-00 00:00:00.000000'),
+(5, 4, 11, '2024-09-16', '0000-00-00 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -817,6 +835,12 @@ ALTER TABLE `consultations`
   ADD KEY `fk_consultationResidentId` (`resident_id`);
 
 --
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`event_id`);
+
+--
 -- Indexes for table `health_information`
 --
 ALTER TABLE `health_information`
@@ -925,7 +949,7 @@ ALTER TABLE `vaccines`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `address`
@@ -949,13 +973,19 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `bhw`
 --
 ALTER TABLE `bhw`
-  MODIFY `bhw_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `bhw_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `consultations`
 --
 ALTER TABLE `consultations`
   MODIFY `consultation_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `event_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `health_information`
@@ -997,7 +1027,7 @@ ALTER TABLE `midwife`
 -- AUTO_INCREMENT for table `personal_information`
 --
 ALTER TABLE `personal_information`
-  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `pregnancy`

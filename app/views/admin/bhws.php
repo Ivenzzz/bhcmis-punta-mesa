@@ -39,9 +39,10 @@ require './app/models/get_bhws.php';
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editBhwModal<?= $bhw['bhw_id']; ?>">
                                         <i class="bx bx-edit-alt"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger" onclick="confirmDelete(<?= $bhw['bhw_id']; ?>)">
+                                    <button type="button" class="btn btn-danger delete-bhw" data-bhw-id="<?= $bhw['bhw_id']; ?>">
                                         <i class="bx bx-trash"></i>
                                     </button>
+
 
                                 </div>
                             </div>
@@ -55,10 +56,20 @@ require './app/models/get_bhws.php';
             <?php else: ?>
                 <p>No Barangay Health Workers found.</p>
             <?php endif; ?>
+
+            <div class="col-12 text-center mt-4 mb-4">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBhwModal">
+                    <i class="bx bx-plus"></i> Add BHW
+                </button>
+            </div>
+
         </div>
+
+        <?php require 'partials/add_bhw_modal.php'; ?>
     </div>
 
     <?php require './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/admin-bhws.js" type="module"></script>
+    <script src="./public/js/admin/admin-bhws-functions.js" type="module"></script>
 </body>
 </html>

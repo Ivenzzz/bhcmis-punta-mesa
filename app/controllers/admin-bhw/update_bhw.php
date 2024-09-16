@@ -10,7 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $middlename = $_POST['middlename'];
+    $date_of_birth = $_POST['date_of_birth'];
+    $civil_status = $_POST['civil_status'];
+    $educational_attainment = $_POST['educational_attainment'];
+    $occupation = $_POST['occupation'];
+    $religion = $_POST['religion'];
+    $citizenship = $_POST['citizenship'];
+    $sex = $_POST['sex'];
     $assigned_area = $_POST['assigned_area'];
+    $employment_status = $_POST['employment_status'];
+    $date_started = $_POST['date_started'];
     $phone_number = $_POST['phone_number'];
     $email = $_POST['email'];
 
@@ -30,17 +39,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Update `personal_information` table
     $sql_personal_info = "UPDATE personal_information 
-                          SET firstname = ?, lastname = ?, middlename = ?, phone_number = ?, email = ?, updated_at = NOW()
+                          SET firstname = ?, lastname = ?, middlename = ?, date_of_birth = ?, civil_status = ?, 
+                              educational_attainment = ?, occupation = ?, religion = ?, citizenship = ?, 
+                              sex = ?, phone_number = ?, email = ?, updated_at = NOW()
                           WHERE personal_info_id = ?";
 
     $stmt_personal_info = $conn->prepare($sql_personal_info);
-    $stmt_personal_info->bind_param('sssssi', $firstname, $lastname, $middlename, $phone_number, $email, $personal_info_id);
+    $stmt_personal_info->bind_param('ssssssssssssi', $firstname, $lastname, $middlename, $date_of_birth, $civil_status,
+                                     $educational_attainment, $occupation, $religion, $citizenship, $sex,
+                                     $phone_number, $email, $personal_info_id);
 
     if ($stmt_personal_info->execute()) {
-        // Update `bhw` table with assigned area
-        $sql_bhw = "UPDATE bhw SET assigned_area = ? WHERE bhw_id = ?";
+        // Update `bhw` table with assigned area and employment information
+        $sql_bhw = "UPDATE bhw SET assigned_area = ?, employment_status = ?, date_started = ? WHERE bhw_id = ?";
         $stmt_bhw = $conn->prepare($sql_bhw);
-        $stmt_bhw->bind_param('ii', $assigned_area, $bhw_id);
+        $stmt_bhw->bind_param('issi', $assigned_area, $employment_status, $date_started, $bhw_id);
 
         if ($stmt_bhw->execute()) {
             // Redirect with success message

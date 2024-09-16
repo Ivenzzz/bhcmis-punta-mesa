@@ -7,6 +7,8 @@ function getBhwData($conn) {
             bhw.account_id AS account_id, 
             bhw.personal_info_id AS personal_info_id, 
             bhw.assigned_area AS assigned_area, 
+            bhw.date_started AS date_started, 
+            bhw.employment_status AS employment_status, 
             personal_information.lastname AS lastname, 
             personal_information.firstname AS firstname, 
             personal_information.middlename AS middlename,
