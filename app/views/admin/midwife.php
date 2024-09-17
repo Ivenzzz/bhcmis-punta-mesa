@@ -1,9 +1,14 @@
 <?php
 
+session_start();
+
 $title = 'Midwife';
 
 require './config/db_config.php';
 require './app/models/get_midwife.php';
+require './app/models/get_current_user.php';
+
+$user = getCurrentUser($conn);
 
 ?>
 
@@ -143,5 +148,6 @@ require './app/models/get_midwife.php';
 
     <?php require './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/admin-midwife.js" type="module"></script>
+    <script src="./public/js/admin/logout.js"></script>
 </body>
 </html>

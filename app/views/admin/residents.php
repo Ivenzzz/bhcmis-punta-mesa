@@ -1,10 +1,15 @@
 <?php
 
+session_start();
+
 $title = 'Residents';
 
 require './config/db_config.php';
 require './app/models/get_residents.php';
 require './app/models/get_addresses.php';
+require './app/models/get_current_user.php';
+
+$user = getCurrentUser($conn);
 
 ?>
 
@@ -137,5 +142,6 @@ require './app/models/get_addresses.php';
     <?php require './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/admin.js" type="module"></script>
     <script src="./public/js/admin/functions.js"></script>
+    <script src="./public/js/admin/logout.js"></script>
 </body>
 </html>

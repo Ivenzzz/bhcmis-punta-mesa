@@ -1,9 +1,15 @@
 <?php
+
+session_start();
+
 $title = 'Barangay Health Workers';
 
 require './config/db_config.php';
 require './app/models/get_addresses.php';
 require './app/models/get_bhws.php';
+require './app/models/get_current_user.php';
+
+$user = getCurrentUser($conn);
 
 ?>
 
@@ -71,5 +77,6 @@ require './app/models/get_bhws.php';
     <?php require './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/admin-bhws.js" type="module"></script>
     <script src="./public/js/admin/admin-bhws-functions.js" type="module"></script>
+    <script src="./public/js/admin/logout.js"></script>
 </body>
 </html>

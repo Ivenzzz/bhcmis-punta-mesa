@@ -18,6 +18,9 @@ switch ($url) {
     case 'admin-midwife':
         require 'app/views/admin/midwife.php';
         break;
+    case 'admin-events':
+        require 'app/views/admin/events.php';
+        break;
     case 'bhw-dashboard':
         require 'app/views/bhw/dashboard.php';
         break;

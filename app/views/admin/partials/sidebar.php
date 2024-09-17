@@ -11,10 +11,11 @@
                 ?>
 
                 <!-- Statistics Link -->
-                <a href="/bhcmis/admin" class="nav_link <?= strpos($current_page, '/admin') !== false && strpos($current_page, '/admin-residents') === false && strpos($current_page, '/admin/personnels') === false && strpos($current_page, '/admin-midwife') === false && strpos($current_page, '/admin-bhws') === false ? 'active' : '' ?>"> 
+                <a href="/bhcmis/admin" class="nav_link <?= preg_match('/^\/bhcmis\/admin$/', $current_page) ? 'active' : '' ?>"> 
                     <i class='bx bx-line-chart nav_icon'></i> 
                     <span class="nav_name">Statistics</span> 
                 </a>
+
 
                 <!-- Residents Link -->
                 <a href="/bhcmis/admin-residents" class="nav_link <?= strpos($current_page, '/admin-residents') !== false ? 'active' : '' ?>"> 
@@ -51,6 +52,13 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Residents Link -->
+                <a href="/bhcmis/admin-events" class="nav_link <?= strpos($current_page, '/admin-events') !== false ? 'active' : '' ?>"> 
+                    <i class='bx bxs-calendar-check'></i>
+                    <span class="nav_name">Events</span> 
+                </a> 
+
             </div>
         </div>
     </nav>

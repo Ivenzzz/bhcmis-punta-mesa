@@ -10,7 +10,7 @@
             <i class='bx bx-envelope nav_icon'></i>
         </div>
         <div class="header_img"> 
-            <img src="https://media.licdn.com/dms/image/D4E03AQE0NQBonGpnZw/profile-displayphoto-shrink_800_800/0/1676439696857?e=1728518400&v=beta&t=HgnEAyADaiwrZM8oMCUN9jLqZkQa6cenX5WaayXKV2k" 
+            <img src="<?php echo isset($user['profile_picture']) ? $user['profile_picture'] : '/bhcmis/storage/uploads/avatar-default.png'; ?>" 
                 alt="Avatar" 
                 id="avatar"
                 data-bs-toggle="popover"
@@ -24,7 +24,7 @@
                                         <a href='#'><i class='bx bx-cog'></i> Settings</a>
                                     </li>
                                     <li class='list-group-item'>
-                                        <a href='#' class='logout-text'><i class='bx bx-log-out'></i> Logout</a>
+                                        <a href='#' class='logout-text' id='logout-link'><i class='bx bx-log-out'></i> Logout</a>
                                     </li>
                                 </ul>"
                 tabindex="0">
