@@ -482,7 +482,6 @@ CREATE TABLE `medicines` (
   `generic_name` varchar(255) DEFAULT NULL,
   `dosage` varchar(50) NOT NULL,
   `form` varchar(50) NOT NULL,
-  `manufacturer` varchar(255) DEFAULT NULL,
   `expiry_date` date DEFAULT NULL,
   `quantity_in_stock` int(10) NOT NULL DEFAULT 0,
   `description` text DEFAULT NULL,

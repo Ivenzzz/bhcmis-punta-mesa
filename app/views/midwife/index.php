@@ -5,7 +5,7 @@ session_start();
 require './config/db_config.php';
 require './app/models/get_current_user.php';
 
-$title = 'Residents Dashboard';
+$title = 'Midwife Dashboard';
 $user = getCurrentUser($conn);
 
 ?>
@@ -14,14 +14,14 @@ $user = getCurrentUser($conn);
 <html lang="en">
 <head>
     <?php include './app/views/globals/head.php'; ?>
-    <link rel="stylesheet" href="./public/css/residents.css">
+    <link rel="stylesheet" href="./public/css/midwife.css">
 </head>
 <body id="body-pd">
     <?php include 'partials/top_navigation.php'; ?>
     <?php include 'partials/sidebar.php'; ?>
     
     <div class="height-100 main-content">
-        <h1>Residents Page</h1>
+        <h1>Midwife Page</h1>
     </div>
 
 

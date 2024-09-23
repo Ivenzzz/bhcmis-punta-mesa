@@ -21,10 +21,19 @@ switch ($url) {
     case 'admin-events':
         require 'app/views/admin/events.php';
         break;
-    case 'bhw-dashboard':
-        require 'app/views/bhw/dashboard.php';
+    case 'midwife':
+        require 'app/views/midwife/index.php';
         break;
-    case 'resident-dashboard':
+    case 'midwife-medicines':
+        require 'app/views/midwife/inventory_medicines.php';
+        break;
+    case 'midwife-prenatals':
+        require 'app/views/midwife/prenatals.php';
+        break;
+    case 'bhw':
+        require 'app/views/bhw/index.php';
+        break;
+    case 'resident':
         require 'app/views/resident/index.php';
         break;
     default:

@@ -12,6 +12,7 @@ require './app/models/get_current_user.php';
 $total_residents = getTotalResidents($conn); 
 $total_households = getTotalHouseholds($conn); 
 $total_pregnancies = getTotalPregnancies($conn);
+$total_families = getFamilyCount($conn);
 $user = getCurrentUser($conn);
 
 ?>
@@ -37,7 +38,7 @@ $user = getCurrentUser($conn);
                         <img src="./public/images/svg/person-team.svg" alt="" width="50" height="50" class="mb-2">
                         <div class="card-info">
                             <h2 class="text-center mb-1"><?= $total_residents ?></h2>
-                            <h5 class="text-center">Registered Residents</h5>
+                            <h5 class="text-center fw-light">Population</h5>
                         </div>
                     </div>
                 </div>
@@ -50,7 +51,20 @@ $user = getCurrentUser($conn);
                         <img src="./public/images/svg/house-solid.svg" alt="" width="50" height="50" class="mb-2">
                         <div class="card-info">
                             <h2 class="text-center mb-1"><?= $total_households ?></h2>
-                            <h5 class="text-center">Total Households</h5>
+                            <h5 class="text-center fw-light">Total Households</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card for Total Number of Families -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
+                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3">
+                    <div class="card-content">
+                        <img src="./public/images/svg/family.svg" alt="" width="50" height="50" class="mb-2">
+                        <div class="card-info">
+                            <h2 class="text-center mb-1"><?= $total_families ?></h2>
+                            <h5 class="text-center fw-light">Families</h5>
                         </div>
                     </div>
                 </div>
@@ -63,7 +77,7 @@ $user = getCurrentUser($conn);
                         <img src="./public/images/svg/pregnant-woman.svg" alt="" width="50" height="50" class="mb-2">
                         <div class="card-info">
                             <h2 class="text-center mb-1"><?= $total_pregnancies ?></h2>
-                            <h5 class="text-center">Pregnancies</h5>
+                            <h5 class="text-center fw-light">Pregnancies</h5>
                         </div>
                     </div>
                 </div>

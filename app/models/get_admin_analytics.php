@@ -60,5 +60,23 @@ function getTotalPregnancies($conn) {
     }
 }
 
+function getFamilyCount($conn) {
+    // SQL query to count the number of families
+    $sql = "SELECT COUNT(*) AS family_count FROM families";
+    
+    // Execute the query
+    $result = mysqli_query($conn, $sql);
+    
+    // Check if query was successful
+    if ($result) {
+        // Fetch the result
+        $row = mysqli_fetch_assoc($result);
+        return $row['family_count']; // Return the family count
+    } else {
+        // If query fails, return false or handle the error
+        return false;
+    }
+}
+
 
 ?>

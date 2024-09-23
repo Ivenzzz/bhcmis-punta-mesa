@@ -1,21 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-    prefillUsernameFromCookies();
+    prefillFieldsFromCookies();
     addLoginButtonListener();
     addTogglePasswordListener();
 });
 
 // Function to prefill input fields from cookies
-function prefillUsernameFromCookies() {
+function prefillFieldsFromCookies() {
     const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
         const [name, value] = cookie.split('=');
         acc[name] = value;
         return acc;
     }, {});
 
+    const usernameField = document.getElementById('username');
+    const passwordField = document.getElementById('password');
+    const rememberMeCheckbox = document.getElementById('remember_me');
+
+    // Prefill the username if it exists in cookies
     if (cookies.username) {
-        document.getElementById('username').value = cookies.username;
+        usernameField.value = cookies.username;
+    }
+
+    // Prefill the password if it exists in cookies
+    if (cookies.password) {
+        passwordField.value = cookies.password;
+    }
+
+    // If both username and password are prefilled, check the "Remember Me" checkbox
+    if (cookies.username && cookies.password) {
+        rememberMeCheckbox.checked = true;
+    } else {
+        rememberMeCheckbox.checked = false;
     }
 }
+
 
 // Function to add event listener for the login button
 function addLoginButtonListener() {
@@ -55,11 +73,14 @@ function redirectToDashboard(role) {
         case 'admin':
             window.location.href = '/bhcmis/admin';
             break;
-        case 'residents':
-            window.location.href = '/bhcmis/resident-dashboard';
+        case 'midwife':
+            window.location.href = '/bhcmis/midwife';
             break;
-        default:
-            window.location.href = 'default_dashboard.php';
+        case 'residents':
+            window.location.href = '/bhcmis/resident';
+            break;
+        case 'bhw':
+            window.location.href = '/bhcmis/bhw';
             break;
     }
 }
