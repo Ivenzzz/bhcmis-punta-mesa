@@ -1,7 +1,7 @@
 <?php
 
 function getAllPrenatals($conn) {
-    // SQL query to retrieve all prenatals with their associated information
+    // SQL query to retrieve all prenatals with their associated information, including prenatal schedules
     $sql = "
         SELECT 
             p.*,
@@ -11,7 +11,9 @@ function getAllPrenatals($conn) {
             pi.firstname,
             pi.middlename,
             pi.phone_number,
-            pi.email
+            pi.email,
+            ps.sched_date,
+            ps.sched_note
         FROM 
             prenatals AS p
         JOIN 
@@ -20,10 +22,11 @@ function getAllPrenatals($conn) {
             residents AS r ON pr.resident_id = r.resident_id
         JOIN 
             personal_information AS pi ON r.personal_info_id = pi.personal_info_id
+        JOIN 
+            prenatal_schedules AS ps ON p.sched_id = ps.sched_id
         ORDER BY 
             p.prenatal_id DESC
     ";
-
 
     $result = $conn->query($sql);
 
@@ -40,6 +43,7 @@ function getAllPrenatals($conn) {
 
     return $prenatals;
 }
+
 
 
 ?>

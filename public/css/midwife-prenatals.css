@@ -491,57 +491,6 @@ input[type="checkbox"] {
     margin-bottom: 1.5rem;
 }
 
-.form-group input {
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.8rem 0.5rem;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #cbd5e1;
-    border-radius: 0;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-    z-index: 1;
-}
-
-.form-group input+label {
-    position: absolute;
-    top: 50%;
-    left: 0.5rem;
-    font-size: 1rem;
-    color: #94a3b8;
-    background-color: transparent;
-    transform: translateY(-50%);
-    pointer-events: none;
-    transition: 0.2s ease;
-}
-
-
-
-.form-group input:focus,
-.form-group input:not(:placeholder-shown) {
-    background-color: transparent;
-    color: #e2e8f0;
-    border-bottom-color: #0ea5e9;
-}
-
-.form-group input:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-
-.form-group input:focus+label,
-.form-group input:not(:placeholder-shown)+label {
-    top: -0.75rem;
-    left: 0.5rem;
-    background-color: #0f172a;
-    padding: 0 0.25rem;
-    font-size: 0.8rem;
-    color: #0ea5e9;
-    transform: translateY(0);
-    z-index: 2;
-}
-
 .btn-close {
     display: flex;
     justify-content: center;
@@ -612,17 +561,6 @@ input[type="checkbox"] {
 .blue-label {
     color: #0ea5e9;
     font-size: 0.8rem;
-}
-
-.form-group textarea {
-    background-color: #111827;
-    color: #f1f5f9;
-    border: 0.1rem solid #0ea5e9;
-}
-
-.form-group textarea:focus {
-    background-color: #111827;
-    color: #f1f5f9;
 }
 
 .btn-secondary {
