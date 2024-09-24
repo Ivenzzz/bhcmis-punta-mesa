@@ -30,6 +30,9 @@ switch ($url) {
     case 'midwife-prenatals':
         require 'app/views/midwife/prenatals.php';
         break;
+    case 'midwife/print_prenatal':
+        require 'app/views/midwife/print_prenatal_record.php';
+        break;
     case 'bhw':
         require 'app/views/bhw/index.php';
         break;

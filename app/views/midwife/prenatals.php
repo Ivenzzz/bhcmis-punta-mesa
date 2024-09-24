@@ -27,67 +27,72 @@ $pregnantResidents = getPregnantResidents($conn);
 
     <div class="container-fluid height-100 main-content">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-4 prenatal-form">
                 <form method="POST" action="">
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="pregnancy_id">Select Resident</label>
-                        <select name="pregnancy_id" id="pregnancy_id" class="form-control" required>
-                            <option value="">-- Select Pregnant Resident --</option>
-                            <?php foreach ($pregnantResidents as $resident): ?>
-                                <option value="<?= $resident['pregnancy_id'] ?>">
-                                    <?= htmlspecialchars($resident['firstname'] . ' ' . $resident['middlename'] . ' ' . $resident['lastname']) ?> (Due: <?= htmlspecialchars($resident['expected_due_date']) ?>)
-                                </option>
-                            <?php endforeach; ?>
+                        <input type="text" id="resident_search" class="form-control form-control-sm" placeholder="Search Pregnant Resident" data-bs-toggle="modal" data-bs-target="#residentModal" readonly>
+                        <input type="hidden" name="pregnancy_id" id="pregnancy_id" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="visit_date">Visit Date</label>
+                        <input type="date" name="visit_date" id="visit_date" class="form-control form-control-sm" value="<?= date('Y-m-d') ?>" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="weight">Patient's Weight (kg)</label>
+                        <input type="number" step="0.01" name="weight" id="weight" class="form-control form-control-sm">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="blood_pressure">Blood Pressure</label>
+                        <input type="text" name="blood_pressure" id="blood_pressure" class="form-control form-control-sm">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="heart_lungs_condition">Heart & Lungs Condition</label>
+                        <select name="heart_lungs_condition" id="heart_lungs_condition" class="form-control form-control-sm">
+                            <option value="">Select Condition</option>
+                            <option value="Healthy">Healthy</option>
+                            <option value="Mild Issue">Mild Issue</option>
+                            <option value="Moderate Issue">Moderate Issue</option>
+                            <option value="Severe Issue">Severe Issue</option>
+                            <option value="Asthma">Asthma</option>
+                            <option value="COPD">Chronic Obstructive Pulmonary Disease (COPD)</option>
+                            <option value="Heart Disease">Heart Disease</option>
+                            <option value="Hypertension">Hypertension</option>
+                            <option value="Arrhythmia">Arrhythmia</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="visit_date">Visit Date</label>
-                        <input type="date" name="visit_date" id="visit_date" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="weight">Weight (kg)</label>
-                        <input type="number" step="0.01" name="weight" id="weight" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="blood_pressure">Blood Pressure</label>
-                        <input type="text" name="blood_pressure" id="blood_pressure" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="heart_lungs_condition">Heart & Lungs Condition</label>
-                        <input type="text" name="heart_lungs_condition" id="heart_lungs_condition" class="form-control">
-                    </div>
-                    <div class="form-group">
+
+                    <div class="form-group mb-3">
                         <label for="abdominal_exam">Abdominal Exam</label>
-                        <input type="text" name="abdominal_exam" id="abdominal_exam" class="form-control">
+                        <input type="text" name="abdominal_exam" id="abdominal_exam" class="form-control form-control-sm">
                     </div>
-                    <div class="form-group">
-                        <label for="complete_blood_count">Complete Blood Count</label>
-                        <input type="text" name="complete_blood_count" id="complete_blood_count" class="form-control">
-                    </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="fetal_heart_rate">Fetal Heart Rate</label>
-                        <input type="text" name="fetal_heart_rate" id="fetal_heart_rate" class="form-control">
+                        <input type="text" name="fetal_heart_rate" id="fetal_heart_rate" class="form-control form-control-sm">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="fundal_height">Fundal Height</label>
-                        <input type="text" name="fundal_height" id="fundal_height" class="form-control">
+                        <input type="text" name="fundal_height" id="fundal_height" class="form-control form-control-sm">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="fetal_movement">Fetal Movement</label>
-                        <input type="text" name="fetal_movement" id="fetal_movement" class="form-control">
+                        <input type="text" name="fetal_movement" id="fetal_movement" class="form-control form-control-sm">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="checkup_notes">Checkup Notes</label>
-                        <textarea name="checkup_notes" id="checkup_notes" class="form-control"></textarea>
+                        <textarea name="checkup_notes" id="checkup_notes" class="form-control form-control-sm"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="refer_to">Refer To</label>
-                        <input type="text" name="refer_to" id="refer_to" class="form-control">
+                    <div class="form-group mb-3">
+                        <label for="refer_to">Refer To <small>(Specify facilities in municipality)</small></label>
+                        <input type="text" name="refer_to" id="refer_to" class="form-control form-control-sm">
                     </div>
-                    <button type="submit" class="btn btn-primary">Add Prenatal Record</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-sm">Add Prenatal Record</button>
+                    </div>
                 </form>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-8 prenatal-table">
                 <table id="prenatalsTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -117,6 +122,7 @@ $pregnantResidents = getPregnantResidents($conn);
                                         <button class="btn btn-sm view-btn"><i class="fa-solid fa-eye"></i></button>
                                         <button class="btn btn-sm edit-btn"><i class="fa-solid fa-pencil-alt"></i></button>
                                         <button class="btn btn-sm delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="btn btn-sm print-btn" onclick="window.open('midwife/print_prenatal', '_blank');"><i class="fa-solid fa-print"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -131,6 +137,30 @@ $pregnantResidents = getPregnantResidents($conn);
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="residentModal" tabindex="-1" aria-labelledby="residentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="residentModalLabel">Select Pregnant Resident</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="searchResident" class="form-control mb-3" placeholder="Search...">
+                    <ul class="list-group" id="residentList">
+                        <?php foreach ($pregnantResidents as $resident): ?>
+                            <li class="list-group-item resident-item" data-id="<?= $resident['pregnancy_id'] ?>">
+                                <?= htmlspecialchars($resident['firstname'] . ' ' . $resident['middlename'] . ' ' . $resident['lastname']) ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
     <?php include './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/logout.js"></script>
     <script>
@@ -140,5 +170,26 @@ $pregnantResidents = getPregnantResidents($conn);
             });
         });
     </script>
+    <script>
+        document.getElementById('searchResident').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const items = document.querySelectorAll('.resident-item');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+
+        document.querySelectorAll('.resident-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.getElementById('pregnancy_id').value = this.getAttribute('data-id');
+                document.getElementById('resident_search').value = this.textContent;
+                var modal = bootstrap.Modal.getInstance(document.getElementById('residentModal'));
+                modal.hide();
+            });
+        });
+    </script>
+
 </body>
 </html>

@@ -486,11 +486,6 @@ input[type="checkbox"] {
     animation-name: roadRunnerOut;
 }
 
-.form-group {
-    position: relative;
-    margin-bottom: 1.5rem;
-}
-
 .btn-close {
     display: flex;
     justify-content: center;
@@ -503,12 +498,6 @@ input[type="checkbox"] {
     border-radius: 100%;
 }
 
-.form-row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 4rem;
-}
-
 .flex-1 {
     flex: 1
 }
@@ -517,45 +506,6 @@ input[type="checkbox"] {
 }
 .flex-3 {
     flex: 3
-}
-
-.form-group.select-group {
-    position: relative;
-}
-
-.form-group.select-group .form-label {
-    position: absolute;
-    top: -0.2rem;
-    left: 0.5rem;
-    font-size: 0.8rem;
-    color: #0ea5e9;
-    background-color: transparent;
-    transform: translateY(-50%);
-    pointer-events: none;
-    transition: 0.2s ease;
-}
-
-.form-group.select-group select {
-    padding: 0.5rem;
-    margin-top: 0.68rem;
-    background-color: transparent;
-    color: #f1f5f9;
-    border: none;
-    border-bottom: 0.1rem solid #0ea5e9;
-    border-radius: 0;
-}
-
-.form-group.select-group select option {
-    background-color: #111827;
-    color: #f1f5f9;
-}
-
-.form-group.select-group select:focus {
-    background-color: transparent;
-    outline: none;
-    color: #f1f5f9;
-    border-bottom: 0.1rem solid #0ea5e9;
-    box-shadow: none;
 }
 
 .blue-label {
@@ -622,5 +572,10 @@ a {
 
 .delete-btn i {
     color: #ef4444;
+}
+
+.prenatal-form, .prenatal-table {
+    box-shadow: 0 0 0.5rem #1e293b !important;
+    padding: 1rem;
 }
 
