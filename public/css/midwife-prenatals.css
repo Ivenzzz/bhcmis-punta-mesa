@@ -579,3 +579,10 @@ a {
     padding: 1rem;
 }
 
+#prenatalCalendar {
+    max-width: 80%;  /* Set maximum width */
+    margin: 0 auto;  /* Center the calendar */
+    height: 400px !important;   /* Set a specific height */
+}
+
+

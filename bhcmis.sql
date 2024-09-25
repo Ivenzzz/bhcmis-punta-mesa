@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2024 at 08:47 AM
+-- Generation Time: Sep 25, 2024 at 11:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -257,19 +257,6 @@ CREATE TRIGGER `after_consultation_insert` AFTER INSERT ON `consultations` FOR E
 END
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `events`
---
-
-CREATE TABLE `events` (
-  `event_id` int(10) NOT NULL,
-  `event_name` varchar(255) NOT NULL,
-  `event_datetime` datetime(6) NOT NULL DEFAULT current_timestamp(6),
-  `created_at` datetime(6) NOT NULL DEFAULT current_timestamp(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -818,7 +805,6 @@ CREATE TABLE `prenatals` (
   `blood_pressure` varchar(255) DEFAULT NULL,
   `heart_lungs_condition` varchar(255) DEFAULT NULL,
   `abdominal_exam` varchar(255) DEFAULT NULL,
-  `complete_blood_count` varchar(255) DEFAULT NULL,
   `fetal_heart_rate` varchar(255) DEFAULT NULL,
   `fundal_height` varchar(255) DEFAULT NULL,
   `fetal_movement` varchar(255) DEFAULT NULL,
@@ -832,12 +818,12 @@ CREATE TABLE `prenatals` (
 -- Dumping data for table `prenatals`
 --
 
-INSERT INTO `prenatals` (`prenatal_id`, `tracking_code`, `pregnancy_id`, `sched_id`, `bhw_id`, `weight`, `blood_pressure`, `heart_lungs_condition`, `abdominal_exam`, `complete_blood_count`, `fetal_heart_rate`, `fundal_height`, `fetal_movement`, `checkup_notes`, `refer_to`, `created_at`, `updated_at`) VALUES
-(6, 'A1B2C3D4E5F6G7H8', 1, 1, 1, 65.50, '120/80', 'Normal', 'No abnormalities', 'Normal', 'Strong', '20 cm', 'Felt regularly', 'First visit checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
-(7, 'I9J0K1L2M3N4O5P6', 2, 1, 2, 68.00, '118/76', 'Normal', 'No abnormalities', 'Normal', 'Normal', '22 cm', 'Felt regularly', 'Follow-up checkup', 'Manapla Health Center', '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
-(8, 'Q7R8S9T0U1V2W3X4', 3, 1, 3, 70.00, '115/75', 'Normal', 'No abnormalities', 'Normal', 'Normal', '24 cm', 'Felt occasionally', 'Second visit checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
-(9, 'Y5Z6A7B8C9D0E1F2', 4, 1, 4, 72.00, '125/80', 'Normal', 'No abnormalities', 'Normal', 'Normal', '26 cm', 'Felt frequently', 'Routine checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
-(10, 'G3H4I5J6K7L8M9N0', 5, 1, 5, 74.50, '122/78', 'Normal', 'No abnormalities', 'Normal', 'Normal', '28 cm', 'Felt regularly', 'Monthly checkup', 'Ramon B. Gustillo Hospital', '2024-09-23 02:12:40', '2024-09-23 06:25:01');
+INSERT INTO `prenatals` (`prenatal_id`, `tracking_code`, `pregnancy_id`, `sched_id`, `bhw_id`, `weight`, `blood_pressure`, `heart_lungs_condition`, `abdominal_exam`, `fetal_heart_rate`, `fundal_height`, `fetal_movement`, `checkup_notes`, `refer_to`, `created_at`, `updated_at`) VALUES
+(6, 'A1B2C3D4E5F6G7H8', 1, 1, 1, 65.50, '120/80', 'Normal', 'No abnormalities', 'Strong', '20 cm', 'Felt regularly', 'First visit checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
+(7, 'I9J0K1L2M3N4O5P6', 2, 1, 2, 68.00, '118/76', 'Normal', 'No abnormalities', 'Normal', '22 cm', 'Felt regularly', 'Follow-up checkup', 'Manapla Health Center', '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
+(8, 'Q7R8S9T0U1V2W3X4', 3, 1, 3, 70.00, '115/75', 'Normal', 'No abnormalities', 'Normal', '24 cm', 'Felt occasionally', 'Second visit checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
+(9, 'Y5Z6A7B8C9D0E1F2', 4, 1, 4, 72.00, '125/80', 'Normal', 'No abnormalities', 'Normal', '26 cm', 'Felt frequently', 'Routine checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
+(10, 'G3H4I5J6K7L8M9N0', 5, 1, 5, 74.50, '122/78', 'Normal', 'No abnormalities', 'Normal', '28 cm', 'Felt regularly', 'Monthly checkup', 'Ramon B. Gustillo Hospital', '2024-09-23 02:12:40', '2024-09-23 06:25:01');
 
 -- --------------------------------------------------------
 
@@ -1060,12 +1046,6 @@ ALTER TABLE `consultations`
   ADD KEY `fk_consultationResidentId` (`resident_id`);
 
 --
--- Indexes for table `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`event_id`);
-
---
 -- Indexes for table `families`
 --
 ALTER TABLE `families`
@@ -1224,12 +1204,6 @@ ALTER TABLE `bhw`
 --
 ALTER TABLE `consultations`
   MODIFY `consultation_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT for table `events`
---
-ALTER TABLE `events`
-  MODIFY `event_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `families`

@@ -37,10 +37,6 @@
                                 <i class="fa-solid fa-female"></i>
                                 <span class="nav_name">Prenatal</span> 
                             </a>
-                            <a href="/bhcmis/midwife/postpartum" class="nav_link <?= strpos($current_page, '/midwife/postpartum') !== false ? 'active' : '' ?>"> 
-                                <i class="fa-solid fa-baby"></i>
-                                <span class="nav_name">Postpartum</span> 
-                            </a>
                         </div>
                     </div>
                 </div>

@@ -6,11 +6,13 @@ require './config/db_config.php';
 require './app/models/get_current_user.php';
 require './app/models/get_prenatals.php';
 require './app/models/get_pregnant_residents.php';
+require './app/models/get_midwife_analytics.php';
 
 $title = 'Prenatals';
 $user = getCurrentUser($conn);
 $prenatalsData = getAllPrenatals($conn); 
 $pregnantResidents = getPregnantResidents($conn);
+$prenatalSchedules = getPrenatalSchedules($conn);
 
 ?>
 
@@ -26,7 +28,13 @@ $pregnantResidents = getPregnantResidents($conn);
     <?php include 'partials/sidebar.php'; ?>
 
     <div class="container-fluid height-100 main-content">
-        <div class="row">
+        <div class="row mb-3">
+            <div class="col-12">
+                <div id="prenatalCalendar"></div>
+            </div>
+        </div>
+        <div class="row mb-3">
+
             <div class="col-md-4 prenatal-form">
                 <form method="POST" action="">
                     <div class="form-group mb-3">
@@ -92,15 +100,16 @@ $pregnantResidents = getPregnantResidents($conn);
                     </div>
                 </form>
             </div>
+
             <div class="col-md-8 prenatal-table">
-                <table id="prenatalsTable" class="table table-striped table-bordered">
+                <table id="prenatalsTable" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr>
                             <th>Tracking Code</th>
                             <th>Name</th>
                             <th>Visit Date</th>
                             <th>Due Date</th>
-                            <th>Status</th>
+                            <th>Pregnancy Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -134,62 +143,19 @@ $pregnantResidents = getPregnantResidents($conn);
                     </tbody>
                 </table>
             </div>
+            
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="residentModal" tabindex="-1" aria-labelledby="residentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="residentModalLabel">Select Pregnant Resident</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" id="searchResident" class="form-control mb-3" placeholder="Search...">
-                    <ul class="list-group" id="residentList">
-                        <?php foreach ($pregnantResidents as $resident): ?>
-                            <li class="list-group-item resident-item" data-id="<?= $resident['pregnancy_id'] ?>">
-                                <?= htmlspecialchars($resident['firstname'] . ' ' . $resident['middlename'] . ' ' . $resident['lastname']) ?>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Select Resident Modal -->
+    <?php require 'partials/select_pregnant_modal.php'; ?>
     
-
-    <?php include './app/views/globals/javascripts.php'; ?>
+    <?php require './app/views/globals/javascripts.php'; ?>
     <script src="./public/js/admin/logout.js"></script>
+    <script src="./public/js/midwife/prenatals.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#prenatalsTable').DataTable({
-                "ordering": false
-            });
-        });
+        const schedules = <?php echo json_encode($prenatalSchedules); ?>;
     </script>
-    <script>
-        document.getElementById('searchResident').addEventListener('input', function() {
-            const filter = this.value.toLowerCase();
-            const items = document.querySelectorAll('.resident-item');
-
-            items.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                item.style.display = text.includes(filter) ? '' : 'none';
-            });
-        });
-
-        document.querySelectorAll('.resident-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.getElementById('pregnancy_id').value = this.getAttribute('data-id');
-                document.getElementById('resident_search').value = this.textContent;
-                var modal = bootstrap.Modal.getInstance(document.getElementById('residentModal'));
-                modal.hide();
-            });
-        });
-    </script>
-
+    <script src="./public/js/midwife/prenatalCalendar.js"></script>
 </body>
 </html>
