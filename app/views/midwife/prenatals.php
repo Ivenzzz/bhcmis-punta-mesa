@@ -28,14 +28,17 @@ $prenatalSchedules = getPrenatalSchedules($conn);
     <?php include 'partials/sidebar.php'; ?>
 
     <div class="container-fluid height-100 main-content">
-        <div class="row mb-3">
-            <div class="col-12">
-                <div id="prenatalCalendar"></div>
+        <div class="row mb-4 g-3">
+            <div class="col-md-8 shadow p-3">
+                <h4 class="text-center mb-2">Prenatal Schedules</h4>
+                <div id="prenatalCalendar" class="shadow p-4"></div>
+            </div>
+            <div class="col-md-4 shadow p-3">
+                <button class="btn btn-primary">Add Schedule</button>
             </div>
         </div>
-        <div class="row mb-3">
-
-            <div class="col-md-4 prenatal-form">
+        <div class="row my-4 shadow p-3 gx-2">
+            <div class="col-md-4 p-4 prenatal-form shadow">
                 <form method="POST" action="">
                     <div class="form-group mb-3">
                         <label for="pregnancy_id">Select Resident</label>
@@ -101,7 +104,7 @@ $prenatalSchedules = getPrenatalSchedules($conn);
                 </form>
             </div>
 
-            <div class="col-md-8 prenatal-table">
+            <div class="col-md-8 p-4 prenatal-table shadow">
                 <table id="prenatalsTable" class="table table-striped table-bordered text-center">
                     <thead>
                         <tr>

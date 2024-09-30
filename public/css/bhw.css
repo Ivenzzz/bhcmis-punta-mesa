@@ -661,27 +661,5 @@ a {
     color: #ef4444 !important;
 }
 
-.gradient-text {
-    background-image: linear-gradient(to right, #0ea5e9, #22c55e);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
 
-::-webkit-scrollbar {
-    width: 0.6rem; 
-}
-
-::-webkit-scrollbar-track {
-    background: #0f172a; 
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #0ea5e9; 
-    border-radius: 0.4rem;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #0284c7; 
-}
 

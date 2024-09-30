@@ -25,18 +25,18 @@ $totalScheduledAppointments = getScheduledAppointments($conn);
     <?php include 'partials/sidebar.php'; ?>
     
     <div class="container-fluid height-100 main-content">
-        <div class="row mb-4">
+        <div class="row mb-4 shadow p-2">
             <div class="col-md-10 d-flex flex-column">
                 <h5>Welcome Midwife <?php echo $user['firstname'] . ' ' . $user['lastname']; ?></h5>
                 <p><small>Have a nice day at work!</small></p>
             </div>
-            <div class="col-md-2 py-2 h-50 d-flex justify-content-end slate-shadow">
+            <div class="col-md-2 py-2 h-50 d-flex justify-content-end">
                 <?php echo date('F j, Y'); ?>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 p-3 slate-shadow">
-                <div class="card text-center">
+            <div class="col-md-4 p-3">
+                <div class="card text-center shadow">
                     <div class="card-body">
                         <p class="card-text">
                             <i class="fas fa-calendar-check fa-3x"></i>
@@ -45,8 +45,8 @@ $totalScheduledAppointments = getScheduledAppointments($conn);
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 p-3 slate-shadow">
-                <div class="card text-center">
+            <div class="col-md-4 p-3">
+                <div class="card text-center shadow">
                     <div class="card-body">
                         <p class="card-text">
                             <i class="fas fa-calendar-check fa-3x"></i>
@@ -55,8 +55,8 @@ $totalScheduledAppointments = getScheduledAppointments($conn);
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 p-3 slate-shadow">
-                <div class="card text-center">
+            <div class="col-md-4 p-3">
+                <div class="card text-center shadow">
                     <div class="card-body">
                         <p class="card-text">
                             <i class="fas fa-calendar-check fa-3x"></i>

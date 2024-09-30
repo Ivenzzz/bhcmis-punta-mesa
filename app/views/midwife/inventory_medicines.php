@@ -27,58 +27,61 @@ $medicineCountsByForm = getMedicineCountByForm($conn);
     <?php include 'partials/sidebar.php'; ?>
     
     <div class="container-fluid height-100 main-content">
-        <div class="row d-flex justify-content-center">
-            <!-- Card for Total Number of Residents -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
-                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3">
-                    <div class="card-content">
-                        <i class="fa-solid fa-pills lg-icon"></i>
-                        <div class="card-info">
-                            <h2 class="text-center mb-1"><?= $total_medicines ?></h2>
-                            <h5 class="text-center fw-light">Medicines</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <?php foreach ($medicineCountsByForm as $form => $count): ?>
+        <div class="row shadow mb-4 p-3">
+            <h3 class="text-center">Inventory Summary</h3>
+            <div class="row d-flex justify-content-center">
+                <!-- Card for Total Number of Residents -->
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
-                    <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3">
+                    <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3 shadow">
                         <div class="card-content">
-                            <?php
-                            // Determine the icon based on the form type
-                            switch ($form) {
-                                case 'Inhaler':
-                                    $icon = '<i class="fa-solid fa-smog lg-icon"></i>';
-                                    break;
-                                case 'Syrup':
-                                    $icon = '<i class="bx bxs-coffee-togo lg-icon"></i>';
-                                    break;
-                                case 'Tablet':
-                                    $icon = '<i class="fa-solid fa-tablets lg-icon"></i>';
-                                    break;
-                                case 'Capsule':
-                                    $icon = '<i class="fa-solid fa-capsules lg-icon"></i>';
-                                    break;
-                                default:
-                                    $icon = '<i class="fa-solid fa-pills lg-icon"></i>'; // Default icon
-                            }
-                            ?>
-                            <?= $icon; // Display the icon ?>
+                            <i class="fa-solid fa-pills lg-icon"></i>
                             <div class="card-info">
-                                <h2 class="text-center mb-1"><?= htmlspecialchars($count) ?></h2>
-                                <h5 class="text-center fw-light"><?= htmlspecialchars($form) ?></h5>
+                                <h2 class="text-center mb-1"><?= $total_medicines ?></h2>
+                                <h5 class="text-center fw-light">Medicines</h5>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            </div>
+            <div class="row">
+                <?php foreach ($medicineCountsByForm as $form => $count): ?>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
+                        <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3 shadow">
+                            <div class="card-content">
+                                <?php
+                                // Determine the icon based on the form type
+                                switch ($form) {
+                                    case 'Inhaler':
+                                        $icon = '<i class="fa-solid fa-smog lg-icon"></i>';
+                                        break;
+                                    case 'Syrup':
+                                        $icon = '<i class="bx bxs-coffee-togo lg-icon"></i>';
+                                        break;
+                                    case 'Tablet':
+                                        $icon = '<i class="fa-solid fa-tablets lg-icon"></i>';
+                                        break;
+                                    case 'Capsule':
+                                        $icon = '<i class="fa-solid fa-capsules lg-icon"></i>';
+                                        break;
+                                    default:
+                                        $icon = '<i class="fa-solid fa-pills lg-icon"></i>'; // Default icon
+                                }
+                                ?>
+                                <?= $icon; // Display the icon ?>
+                                <div class="card-info">
+                                    <h2 class="text-center mb-1"><?= htmlspecialchars($count) ?></h2>
+                                    <h5 class="text-center fw-light"><?= htmlspecialchars($form) ?></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
 
-        <div class="row gx-5">
+        <div class="row gx-5 shadow mb-5 p-3">
             <!-- Add Medicine Form (Left Column - 50%) -->
-            <div class="col-md-3 medicine-form">
+            <div class="col-md-3 medicine-form shadow p-3">
                 <h2 class="form-title">Add Medicine</h2>
                 <form action="./app/controllers/midwife-medicines/add_medicine.php" method="POST" class="small-form">
                     <div class="mb-2">

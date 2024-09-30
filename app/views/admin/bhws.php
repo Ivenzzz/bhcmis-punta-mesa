@@ -17,7 +17,6 @@ $user = getCurrentUser($conn);
 <html lang="en">
 <head>
     <?php require './app/views/globals/head.php'; ?>
-    <link rel="stylesheet" href="./public/css/admin.css">
     <link rel="stylesheet" href="./public/css/admin-bhws.css">
 </head>
 <body id="body-pd">
@@ -26,10 +25,17 @@ $user = getCurrentUser($conn);
     
     <div class="height-100 main-content container">
         <div class="row">
+            <div class="col-12 text-center m-4 d-flex justify-content-end">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addBhwModal">
+                    <i class="bx bx-plus"></i> Add BHW
+                </button>
+            </div>
+        </div>
+        <div class="row">
             <?php if (!empty($bhw_data)): ?>
                 <?php foreach ($bhw_data as $bhw): ?>
                     <div class="col-md-4 mb-4" id="bhw-card-<?= $bhw['bhw_id']; ?>">
-                        <div class="card text-center">
+                        <div class="card text-center shadow">
                             <img src="<?= !empty($bhw['profile_picture']) ? $bhw['profile_picture'] : './public/images/avatar-panda.png'; ?>" class="card-img-top rounded-circle mx-auto mt-3" alt="Profile Picture">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -62,12 +68,6 @@ $user = getCurrentUser($conn);
             <?php else: ?>
                 <p>No Barangay Health Workers found.</p>
             <?php endif; ?>
-
-            <div class="col-12 text-center mt-4 mb-4">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBhwModal">
-                    <i class="bx bx-plus"></i> Add BHW
-                </button>
-            </div>
 
         </div>
 

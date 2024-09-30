@@ -11,13 +11,13 @@
                 <div class="error-login alert alert-danger d-none"></div>
                 <form class="px-4" method="post" id="loginForm">
                     <div class="mb-4 d-flex align-items-center gap-2">
-                        <i class="fas fa-user text-light"></i>
+                        <i class="fas fa-user"></i>
                         <input class="form-control px-3" type="text" id="username" placeholder="Username" />
                     </div>
                     <div class="mb-5 password-container d-flex align-items-center gap-2">
-                        <i class="fas fa-lock text-light"></i>
+                        <i class="fas fa-lock"></i>
                         <input class="form-control px-3" type="password" id="password" placeholder="••••••" />
-                        <i class="fas fa-eye eye-icon text-light" id="togglePassword"></i>
+                        <i class="fas fa-eye eye-icon" id="togglePassword"></i>
                     </div>
                     <div class="my-4 d-flex justify-content-between">
                         <div>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="mt-5 mb-3">
-                        <button class="btn btn-outline-primary btn-full" type="button" id="loginButton">Login</button>
+                        <button class="btn btn-success btn-full" type="button" id="loginButton">Login</button>
                     </div>
                 </form>
             </div>

@@ -1,38 +1,3 @@
-CREATE TABLE `prenatals` (
-  `prenatal_id` int(10) NOT NULL,
-  `tracking_code` varchar(255) NOT NULL,
-  `pregnancy_id` int(10) NOT NULL,
-  `sched_id` int(10) NOT NULL,
-  `bhw_id` int(10) NOT NULL,
-  `weight` decimal(10,2) DEFAULT NULL,
-  `blood_pressure` varchar(255) DEFAULT NULL,
-  `heart_lungs_condition` varchar(255) DEFAULT NULL,
-  `abdominal_exam` varchar(255) DEFAULT NULL,
-  `complete_blood_count` varchar(255) DEFAULT NULL,
-  `fetal_heart_rate` varchar(255) DEFAULT NULL,
-  `fundal_height` varchar(255) DEFAULT NULL,
-  `fetal_movement` varchar(255) DEFAULT NULL,
-  `checkup_notes` text DEFAULT NULL,
-  `refer_to` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
-CREATE TABLE `prenatal_schedules` (
-  `sched_id` int(10) NOT NULL,
-  `sched_date` datetime(6) NOT NULL,
-  `sched_note` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
-CREATE TABLE `pregnancy` (
-  `pregnancy_id` int(10) NOT NULL,
-  `resident_id` int(10) NOT NULL,
-  `expected_due_date` date NOT NULL,
-  `pregnancy_status` enum('Ongoing','Completed','Terminated') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
 CREATE TABLE `residents` (
   `resident_id` int(10) NOT NULL,
   `account_id` int(10) NOT NULL,
@@ -60,14 +25,21 @@ CREATE TABLE `personal_information` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-ALTER TABLE `pregnancy`
-  ADD CONSTRAINT `fk_pregnancyResidentId` FOREIGN KEY (`resident_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+CREATE TABLE `medical_conditions` (
+  `medical_conditions_id` int(10) NOT NULL,
+  `condition_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-ALTER TABLE `prenatals`
-  ADD CONSTRAINT `fk_prenatalBhwId` FOREIGN KEY (`bhw_id`) REFERENCES `bhw` (`bhw_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_prenatalsPregnancyId` FOREIGN KEY (`pregnancy_id`) REFERENCES `pregnancy` (`pregnancy_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-    ADD CONSTRAINT `fk_prenatalsSchedId` FOREIGN KEY (`sched_id`) REFERENCES `prenatal_schedules` (`sched_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+CREATE TABLE `residents_medical_condition` (
+  `rmc_id` int(10) NOT NULL,
+  `resident_id` int(10) NOT NULL,
+  `medical_conditions_id` int(10) NOT NULL,
+  `diagnosed_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-ALTER TABLE `residents`
-  ADD CONSTRAINT `fk_residentsAccountId` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_residentsPersonaInfoId` FOREIGN KEY (`personal_info_id`) REFERENCES `personal_information` (`personal_info_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+CREATE TABLE `conditions_prescriptions` (
+  `prescription_id` int(10) NOT NULL,
+  `medicine_id` int(10) NOT NULL,
+  `resident_condition_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2024 at 11:50 PM
+-- Generation Time: Sep 30, 2024 at 05:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,8 +51,8 @@ INSERT INTO `accounts` (`account_id`, `username`, `password`, `role`, `profile_p
 (10, 'BHW6', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
 (11, 'BHW7', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman1.png', 0),
 (12, 'Midwife1', '$2y$10$mHv3MxPW3CnlJ0m0Fp//LeShjQqYgttV40fklrqpW.3MEBweZChqi', 'midwife', '/bhcmis/storage/uploads/midwife-1.jpg', 0),
-(13, 'Resident1', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 1),
-(14, 'Resident2', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
+(13, 'Resident1', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
+(14, 'Resident2', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
 (15, 'Resident3', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
 (16, 'Resident4', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
 (17, 'Resident5', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
@@ -71,7 +71,10 @@ INSERT INTO `accounts` (`account_id`, `username`, `password`, `role`, `profile_p
 (43, 'resident7', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident7.jpg', 0),
 (44, 'resident8', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident8.jpg', 0),
 (45, 'resident9', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident9.jpg', 0),
-(46, 'resident10', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident10.jpg', 0);
+(46, 'resident10', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
+(47, 'cccccc', '$2y$10$QofRzrOWQWB8iGxs1j.hN.dZrkSRKb9bned3Xc4ALNjfQQgsr8qLu', 'residents', NULL, 1),
+(48, '', '$2y$10$7pa/0PiDqej4k6pLIV8sfuK.1s9.co5xNDTyoEfAfMe7fy..jo9z6', 'residents', NULL, 0),
+(49, '', '$2y$10$CIRX/FSnbVjzn15Wg25qV.SO4IM9XvF1TOqiHRRfzDYeoL8GFQYO2', 'residents', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -611,10 +614,6 @@ INSERT INTO `medical_conditions` (`medical_conditions_id`, `condition_name`) VAL
 (2, 'Asthma'),
 (3, 'Cancer'),
 (4, 'Heart Disease'),
-(5, 'Colds and Flu'),
-(6, 'Diarrhea'),
-(7, 'Headaches'),
-(8, 'Stomach Aches'),
 (9, 'Alzheimer\'s Disease'),
 (10, 'Anxiety'),
 (11, 'Appendicitis'),
@@ -729,14 +728,14 @@ INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`,
 (3, 'Gonzales', 'Peter', 'Ramos', '1978-11-15', 'Widowed', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 3, 'male', '09331234567', 'pedro.gonzales@example.com', NULL, '2024-07-25 11:07:25', '2024-09-16 12:56:54'),
 (4, 'Garcia', 'Ana', 'Santos', '1985-07-16', 'Married', 'College Undergraduate', 'Nurse', 'Roman Catholic', 'Filipino', 4, 'female', '09441234566', 'ana.garcia@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-16 14:08:19'),
 (5, 'Mendoza', 'Carlos', 'Alvarez', '1996-12-04', 'Single', 'Highschool Graduate', 'Mechanic', 'Roman Catholic', 'Filipino', 5, 'male', '09551234567', 'carlos.mendoza@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(6, 'Aquino', 'Laura', 'Gonzalez', '1992-09-18', 'Married', 'College Graduate', 'Accountant', 'Roman Catholic', 'Filipino', 6, 'female', '09661234567', 'laura.aquino@example.com', NULL, '2024-07-25 11:07:25', '2024-09-10 10:49:09'),
+(6, 'Aquino', 'Laura', 'Gonzalez', '1992-09-18', 'Married', 'College Graduate', 'Accountant', 'Roman Catholic', 'Filipino', 6, 'female', '09661234567', 'laura.aquino@example.com', NULL, '2024-07-25 11:07:25', '2024-09-27 13:40:16'),
 (7, 'Santos', 'Isabel', 'Navarro', '1983-06-25', 'Legally Separated', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 7, 'female', '09771234567', 'isabel.santos@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (8, 'Cruz', 'Annie', 'Castro', '1973-01-10', 'Married', 'Elementary Graduate', 'BHW', 'Roman Catholic', 'Filipino', 8, 'male', '09881234567', 'annie.cruz@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-16 14:07:55'),
 (9, 'Morales', 'Elena', 'Garcia', '1999-04-20', 'Single', 'Highschool Graduate', 'Student', 'Roman Catholic', 'Filipino', 9, 'male', '09991234567', 'elena.morales@example.com', NULL, '2024-07-25 11:07:25', '2024-09-07 08:42:29'),
 (10, 'Reyes', 'Gabriela', 'Santos', '1981-08-14', 'Married', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 10, 'male', '09182345678', 'gabriel.delosreyes@example.com', NULL, '2024-07-25 11:07:25', '2024-09-10 10:44:05'),
 (11, 'Luna', 'Olivia', 'Mendoza', '1997-05-05', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'female', '09293456789', 'olivia.luna@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (12, 'Diaz', 'Ricardo', 'Jimenez', '1988-10-30', 'Married', 'Highschool Graduate', 'Driver', 'Roman Catholic', 'Filipino', 2, 'male', '09384567890', 'ricardo.diaz@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(13, 'Marjohn', 'Roy Marjohn', 'Araneta', '2001-08-28', 'Single', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 1, 'male', '09308309624', 'roymarjohnaraneta@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-06 09:32:11'),
+(13, 'Araneta', 'Roy Marjohn', 'Galjlfad', '2001-08-28', 'Single', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 1, 'male', '09308309624', 'roymarjohnaraneta@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-06 09:32:11'),
 (14, 'Chavez', 'Mary', 'Macias', '1995-11-20', 'Married', 'College Undergraduate', 'Hotel Manager', 'Roman Catholic', 'Filipino', 4, 'male', '09586789012', 'ruvyangcona@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-10 03:31:46'),
 (15, 'Villar', 'Carmen', 'Rodriguez', '1986-06-10', 'Married', 'College Graduate', 'Nurse', 'Roman Catholic', 'Filipino', 5, 'female', '09697890123', 'carmen.villar@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (16, 'Santiago', 'Marc John', 'Torres', '1991-06-12', 'Single', 'College Graduate', 'Security Guard', 'Roman Catholic', 'Filipino', 1, 'male', '09708901234', 'marcojohnsantiago@example.com', NULL, '2024-07-25 11:07:25', '2024-09-06 09:30:29'),
@@ -746,7 +745,7 @@ INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`,
 (20, 'Victorino', 'Amiel Jose', 'Araneta', '1975-04-12', 'Married', 'College Graduate', 'Brgy. Secretary', 'Roman Catholic', 'Filipino', 10, 'male', '09234567890', 'amielvictorino@gmail.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
 (21, 'Singua', 'Reyna Jane', 'Bingua', '1996-06-05', 'Single', 'College Graduate', 'Brgy. Midwife', 'Roman Catholic', 'Filipino', 3, 'female', '09851354569', 'reynasingua@gmail.com', NULL, '2024-07-25 17:45:21', '2024-07-25 17:45:21'),
 (35, 'Gasparillo', 'John Rey', 'Lobaton', '1999-03-03', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '639308309627', 'johnreygasparillo@gmail.com', NULL, '2024-09-09 14:04:46', '2024-09-16 12:56:49'),
-(50, 'Smith', 'John', 'A', '1985-01-01', 'Single', 'College Graduate', 'Software Engineer', 'Christian', 'American', 1, 'male', '09171234567', 'john.smith@example.com', 'john.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
+(50, 'Smith', 'John', 'A', '1985-01-01', 'Single', 'College Graduate', 'Software Engineer', 'Christian', 'American', 1, 'male', '09171234567', 'john.smith@example.com', 'john.jpg', '2024-09-18 12:59:36', '2024-09-29 03:14:34'),
 (51, 'Johnson', 'Mary', 'B', '1990-05-12', 'Married', 'Highschool Graduate', 'Teacher', 'Catholic', 'Canadian', 2, 'female', '09181234567', 'mary.johnson@example.com', 'mary.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
 (52, 'Williams', 'Robert', 'C', '1983-03-15', 'Widowed', 'College Undergraduate', 'Accountant', 'Protestant', 'British', 3, 'male', '09191234567', 'robert.williams@example.com', 'robert.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
 (53, 'Brown', 'Jennifer', 'D', '1975-07-21', 'Legally Separated', 'Highschool Undergraduate', 'Nurse', 'Jewish', 'Australian', 4, 'female', '09201234567', 'jennifer.brown@example.com', 'jennifer.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
@@ -754,14 +753,15 @@ INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`,
 (55, 'Garcia', 'David', 'F', '1995-06-20', 'Married', 'College Graduate', 'Architect', 'Catholic', 'Filipino', 6, 'male', '09221234567', 'david.garcia@example.com', 'david.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
 (56, 'Martinez', 'Emily', 'G', '1982-09-09', 'Widowed', 'Highschool Graduate', 'Doctor', 'Muslim', 'Spanish', 7, 'female', '09231234567', 'emily.martinez@example.com', 'emily.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
 (57, 'Rodriguez', 'James', 'H', '1978-02-17', 'Single', 'College Undergraduate', 'Businessman', 'Christian', 'American', 8, 'male', '09241234567', 'james.rodriguez@example.com', 'james.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(58, 'Davis', 'Patricia', 'Insldfj', '1980-04-23', 'Legally Separated', 'Elementary Undergraduate', 'Chef', 'Buddhist', 'Japanese', 9, 'male', '09251234567', 'patricia.davis@example.com', 'patricia.jpg', '2024-09-18 12:59:36', '2024-09-18 13:53:13'),
-(59, 'Miller', 'Chris', 'Jibble', '1992-08-18', 'Married', 'Highschool Undergraduate', 'Pilot', 'Catholic', 'German', 10, 'male', '09261234567', 'chris.miller@example.com', 'chris.jpg', '2024-09-18 12:59:36', '2024-09-18 13:52:58'),
+(58, 'Davis', 'Patricia', 'Smith', '1980-04-23', 'Single', 'Elementary Undergraduate', 'Chef', 'Buddhist', 'Japanese', 9, 'male', '09251234567', 'patricia.davis@example.com', 'patricia.jpg', '2024-09-18 12:59:36', '2024-09-29 03:14:30'),
+(59, 'Miller', 'Chris', 'Heinz', '1992-08-18', 'Married', 'Highschool Undergraduate', 'Pilot', 'Catholic', 'German', 10, 'male', '09261234567', 'chris.miller@example.com', 'chris.jpg', '2024-09-18 12:59:36', '2024-09-29 03:14:26'),
 (60, 'Watson', 'Sophia', 'Z', '1996-11-22', 'Single', 'College Graduate', 'Scientist', 'Atheist', 'British', 11, 'female', '09301234567', 'sophia.watson@example.com', 'sophia.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
 (61, 'King', 'Lucas', 'K', '1989-01-09', 'Single', 'Highschool Graduate', 'Journalist', 'Christian', 'American', 12, 'male', '09311234567', 'lucas.king@example.com', 'lucas.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
 (62, 'Young', 'Olivia', 'L', '1994-03-19', 'Married', 'College Graduate', 'Lawyer', 'Catholic', 'British', 1, 'female', '09321234567', 'olivia.young@example.com', 'olivia.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
 (63, 'Harris', 'Ethan', 'M', '1986-02-28', 'Single', 'Elementary Graduate', 'Plumber', 'Christian', 'Canadian', 2, 'male', '09331234567', 'ethan.harris@example.com', 'ethan.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
 (64, 'Walker', 'Isabella', 'N', '1991-05-11', 'Widowed', 'Highschool Graduate', 'Nurse', 'Muslim', 'Spanish', 3, 'female', '09341234567', 'isabella.walker@example.com', 'isabella.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(65, 'Brown', 'Sophia', 'Y', '1996-11-22', 'Single', 'College Graduate', 'Data Scientist', 'Atheist', 'British', 12, 'female', '09351234567', 'sophia.brown@example.com', 'sophia.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36');
+(65, 'Brown', 'Sophia', 'Y', '1996-11-22', 'Single', 'College Graduate', 'Data Scientist', 'Atheist', 'British', 12, 'female', '09351234567', 'sophia.brown@example.com', 'sophia.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
+(66, 'cccccc', 'ccccc', 'ccccc', '2024-09-05', 'Single', 'Elementary Undergraduate', 'ccccc', 'cccccc', 'cccccc', 3, 'male', '09308309627', 'cccccc@gmail.com', NULL, '2024-09-27 11:33:16', '2024-09-27 11:33:16');
 
 -- --------------------------------------------------------
 
@@ -886,7 +886,8 @@ INSERT INTO `residents` (`resident_id`, `account_id`, `personal_info_id`, `isVal
 (34, 43, 56, 1),
 (35, 44, 57, 1),
 (36, 45, 58, 1),
-(37, 46, 59, 1);
+(37, 46, 59, 1),
+(38, 47, 66, 1);
 
 -- --------------------------------------------------------
 
@@ -898,8 +899,8 @@ CREATE TABLE `residents_medical_condition` (
   `rmc_id` int(10) NOT NULL,
   `resident_id` int(10) NOT NULL,
   `medical_conditions_id` int(10) NOT NULL,
-  `diagnosed_date` date NOT NULL DEFAULT current_timestamp(),
-  `created_at` datetime(6) NOT NULL DEFAULT current_timestamp(6)
+  `diagnosed_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -907,11 +908,9 @@ CREATE TABLE `residents_medical_condition` (
 --
 
 INSERT INTO `residents_medical_condition` (`rmc_id`, `resident_id`, `medical_conditions_id`, `diagnosed_date`, `created_at`) VALUES
-(1, 5, 2, '2024-09-16', '2024-07-25 17:54:59.000000'),
-(2, 4, 5, '2024-09-16', '2024-07-25 17:54:59.000000'),
-(3, 8, 7, '2024-09-16', '2024-07-25 17:54:59.000000'),
-(4, 4, 8, '2024-09-16', '0000-00-00 00:00:00.000000'),
-(5, 4, 11, '2024-09-16', '0000-00-00 00:00:00.000000');
+(17, 4, 10, '2024-09-30 11:40:54', '2024-09-30 11:40:54'),
+(18, 4, 2, '2024-09-30 11:40:54', '2024-09-30 11:40:54'),
+(19, 4, 11, '2024-09-30 11:40:54', '2024-09-30 11:40:54');
 
 -- --------------------------------------------------------
 
@@ -1173,7 +1172,7 @@ ALTER TABLE `vaccines`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `address`
@@ -1257,7 +1256,7 @@ ALTER TABLE `midwife`
 -- AUTO_INCREMENT for table `personal_information`
 --
 ALTER TABLE `personal_information`
-  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `pregnancy`
@@ -1281,13 +1280,13 @@ ALTER TABLE `prenatal_schedules`
 -- AUTO_INCREMENT for table `residents`
 --
 ALTER TABLE `residents`
-  MODIFY `resident_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `resident_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `residents_medical_condition`
 --
 ALTER TABLE `residents_medical_condition`
-  MODIFY `rmc_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `rmc_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `residents_medication`

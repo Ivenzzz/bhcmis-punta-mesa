@@ -22,8 +22,8 @@ $title = 'BHCMIS - Punta Mesa';
             <div class="col d-flex flex-column justify-content-center">
                 <h4 class="fw-light">Empowering Barangay Health Centers by streamlining patient management, appointment scheduling and healthcare data recording.</h4>
                 <div class="d-flex gap-2 mt-4">
-                    <button class="btn btn-outline-info px-4 py-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-                    <button class="btn btn-outline-primary px-4 py-2">Register</button>
+                    <button class="btn btn-success px-4 py-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    <button class="btn btn-outline-success px-4 py-2">Register</button>
                 </div>
             </div>
             <div class="col d-flex justify-content-center">

@@ -33,7 +33,7 @@ $user = getCurrentUser($conn);
 
             <!-- Card for Total Number of Residents -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
-                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3">
+                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3 shadow">
                     <div class="card-content">
                         <img src="./public/images/svg/person-team.svg" alt="" width="50" height="50" class="mb-2">
                         <div class="card-info">
@@ -46,7 +46,7 @@ $user = getCurrentUser($conn);
 
             <!-- Card for Total Number of Households -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
-                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3">
+                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3 shadow">
                     <div class="card-content">
                         <img src="./public/images/svg/house-solid.svg" alt="" width="50" height="50" class="mb-2">
                         <div class="card-info">
@@ -59,7 +59,7 @@ $user = getCurrentUser($conn);
 
             <!-- Card for Total Number of Families -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
-                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3">
+                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3 shadow">
                     <div class="card-content">
                         <img src="./public/images/svg/family.svg" alt="" width="50" height="50" class="mb-2">
                         <div class="card-info">
@@ -72,7 +72,7 @@ $user = getCurrentUser($conn);
 
             <!-- Card for Total Number of Pregnancies -->
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
-                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3">
+                <div class="card w-100 d-flex justify-content-center align-items-center text-center p-3 shadow">
                     <div class="card-content">
                         <img src="./public/images/svg/pregnant-woman.svg" alt="" width="50" height="50" class="mb-2">
                         <div class="card-info">
