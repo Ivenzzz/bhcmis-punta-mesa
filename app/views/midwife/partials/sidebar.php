@@ -13,7 +13,7 @@
                 <!-- Dashboard Link -->
                 <a href="/bhcmis/midwife" class="nav_link <?= preg_match('/^\/bhcmis\/midwife$/', $current_page) ? 'active' : '' ?>"> 
                     <i class='bx bx-line-chart nav_icon'></i> 
-                    <span class="nav_name">Statistics</span> 
+                    <span class="nav_name">Home</span> 
                 </a>
 
                 <!-- Maternal Services Link with Collapsible Sub-links -->
@@ -73,6 +73,11 @@
                 <a href="/bhcmis/midwife/bhw-tasks" class="nav_link <?= strpos($current_page, '/midwife/bhw-tasks') !== false ? 'active' : '' ?>"> 
                     <i class="fa-solid fa-tasks"></i>
                     <span class="nav_name">Task Management</span> 
+                </a>
+
+                <a href="/bhcmis/midwife/bhw-tasks" class="nav_link <?= strpos($current_page, '/midwife/bhw-tasks') !== false ? 'active' : '' ?>"> 
+                    <i class="fa-solid fa-tasks"></i>
+                    <span class="nav_name">Audit Logs</span> 
                 </a>    
             </div>
         </div>

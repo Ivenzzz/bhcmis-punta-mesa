@@ -83,4 +83,37 @@ function getPrenatalSchedules($conn) {
     }
 }
 
+function getAppointmentStats($conn) {
+    // SQL query to count appointments by their status
+    $sql = "
+        SELECT 
+            status, COUNT(*) as count 
+        FROM 
+            appointments 
+        GROUP BY 
+            status
+    ";
+
+    // Execute the query
+    $result = $conn->query($sql);
+
+    // Initialize an array to hold the counts for each status
+    $appointmentStats = [
+        'Scheduled' => 0,
+        'Cancelled' => 0,
+        'Completed' => 0
+    ];
+
+    // Fetch the results and assign the counts to the respective statuses
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // Update the count for each status
+            $appointmentStats[$row['status']] = $row['count'];
+        }
+    }
+
+    // Return the array with the appointment statistics
+    return $appointmentStats;
+}
+
 ?>

@@ -3,6 +3,7 @@
 // Get the URL and resident_id from the query parameters
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 $resident_id = isset($_GET['resident_id']) ? intval($_GET['resident_id']) : null;
+$sched_id = isset($_GET['sched_id']) ? intval($_GET['sched_id']) : null;
 
 switch ($url) { 
     
@@ -34,6 +35,18 @@ switch ($url) {
         require 'app/views/admin/events.php';
         break;
 
+    case 'admin-medical_conditions':
+        if ($resident_id) {
+            require 'app/views/admin/resident_medical_conditions.php';
+        } else {
+            require 'app/views/globals/error.php';
+        }
+        break;
+
+    case 'population-breakdown':
+        require 'app/views/admin/population_breakdown.php';
+        break;
+
     case 'midwife':
         require 'app/views/midwife/index.php';
         break;
@@ -46,6 +59,14 @@ switch ($url) {
         require 'app/views/midwife/prenatals.php';
         break;
 
+    case 'midwife-appointments':
+        if ($sched_id) {
+            require 'app/views/midwife/appointment_list.php';
+        } else {
+            require 'app/views/midwife/appointments.php';
+        }
+        break;
+
     case 'midwife/print_prenatal':
         require 'app/views/midwife/print_prenatal_record.php';
         break;
@@ -56,14 +77,6 @@ switch ($url) {
 
     case 'resident':
         require 'app/views/resident/index.php';
-        break;
-
-    case 'admin-medical_conditions':
-        if ($resident_id) {
-            require 'app/views/admin/resident_medical_conditions.php';
-        } else {
-            require 'app/views/globals/error.php';
-        }
         break;
 
     default:

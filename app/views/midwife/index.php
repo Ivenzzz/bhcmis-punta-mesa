@@ -42,6 +42,11 @@ $totalScheduledAppointments = getScheduledAppointments($conn);
                             <i class="fas fa-calendar-check fa-3x"></i>
                         </p>
                         <h5 class="card-title"><?php echo $totalAppointments; ?> Appointments</h5>
+                        <div>
+                            <a href="/bhcmis/midwife-appointments" class="btn btn-sm mt-2">
+                                View More <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,7 +54,7 @@ $totalScheduledAppointments = getScheduledAppointments($conn);
                 <div class="card text-center shadow">
                     <div class="card-body">
                         <p class="card-text">
-                            <i class="fas fa-calendar-check fa-3x"></i>
+                            <i class="fa-solid fa-hospital-user fa-3x"></i>
                         </p>
                         <h5 class="card-title"><?php echo $totalConsultations ?> Consultations</h5>
                     </div>
@@ -59,7 +64,7 @@ $totalScheduledAppointments = getScheduledAppointments($conn);
                 <div class="card text-center shadow">
                     <div class="card-body">
                         <p class="card-text">
-                            <i class="fas fa-calendar-check fa-3x"></i>
+                            <i class="fa-regular fa-hourglass fa-3x"></i>
                         </p>
                         <h5 class="card-title"><?php echo $totalScheduledAppointments ?> Pending</h5>
                     </div>

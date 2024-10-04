@@ -494,3 +494,23 @@ input[type="checkbox"] {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
 }
+
+.card-text .fa-hospital-user {
+    color: #f59e0b;
+}
+
+.card-text .fa-calendar-check {
+    color: #14b8a6;
+}
+
+.card-text .fa-hourglass {
+    color: #ef4444;
+}
+
+.fc-day {
+    cursor: pointer;
+}
+
+.fc-day:hover {
+    background-color: #e2e8f0;
+}

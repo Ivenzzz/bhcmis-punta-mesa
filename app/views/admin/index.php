@@ -21,14 +21,13 @@ $user = getCurrentUser($conn);
 <html lang="en">
 <head>
     <?php include './app/views/globals/head.php'; ?>
-    <link rel="stylesheet" href="./public/css/admin.css"> <!-- Include Boxicons -->
+    <link rel="stylesheet" href="./public/css/admin.css">
 </head>
 <body id="body-pd">
     <?php include 'partials/top_navigation.php'; ?>
     <?php include 'partials/sidebar.php'; ?>
     
     <div class="height-100 main-content">
-        <!-- Bootstrap row for total numbers -->
         <div class="row justify-content-center">
 
             <!-- Card for Total Number of Residents -->
@@ -40,6 +39,9 @@ $user = getCurrentUser($conn);
                             <h2 class="text-center mb-1"><?= $total_residents ?></h2>
                             <h5 class="text-center fw-light">Population</h5>
                         </div>
+                        <a href="/bhcmis/population-breakdown" class="btn btn-sm mt-2">
+                            View More <i class="fas fa-chevron-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -53,6 +55,9 @@ $user = getCurrentUser($conn);
                             <h2 class="text-center mb-1"><?= $total_households ?></h2>
                             <h5 class="text-center fw-light">Total Households</h5>
                         </div>
+                        <a href="households-statistics.php" class="btn btn-sm mt-2">
+                            View More <i class="fas fa-chevron-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -66,6 +71,9 @@ $user = getCurrentUser($conn);
                             <h2 class="text-center mb-1"><?= $total_families ?></h2>
                             <h5 class="text-center fw-light">Families</h5>
                         </div>
+                        <a href="families-statistics.php" class="btn btn-sm mt-2">
+                            View More <i class="fas fa-chevron-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -79,13 +87,16 @@ $user = getCurrentUser($conn);
                             <h2 class="text-center mb-1"><?= $total_pregnancies ?></h2>
                             <h5 class="text-center fw-light">Pregnancies</h5>
                         </div>
+                        <a href="pregnancies-statistics.php" class="btn btn-sm mt-2">
+                            View More <i class="fas fa-chevron-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
 
-
         </div>
     </div>
+
 
 
     <?php include './app/views/globals/javascripts.php'; ?>
