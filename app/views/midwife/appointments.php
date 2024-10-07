@@ -29,7 +29,7 @@ $consultation_schedules_json = json_encode($consultation_schedules);
     <?php include 'partials/top_navigation.php'; ?>
     <?php include 'partials/sidebar.php'; ?>
     
-    <div class="container-fluid height-100 main-content">
+    <div class="container-fluid height-100 main-content mb-4">
 
         <div class="row mb-4">
             <div class="col-md-12">
@@ -85,12 +85,40 @@ $consultation_schedules_json = json_encode($consultation_schedules);
 
         </div>
 
-        <div class="row shadow p-2">
+        <div class="row shadow p-2 mb-4">
             <div class="col-md-6 shadow p-3">
                 <h6 class="text-center mb-3">Schedule of Consultations</h6>
                 <div id="calendar" data-schedules='<?= $consultation_schedules_json; ?>'></div>
             </div>
         </div>
+
+        <!-- Modal for Adding a Consultation Schedule -->
+        <div class="modal fade" id="addConsultationModal" tabindex="-1" aria-labelledby="addConsultationModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addConsultationModalLabel">Add Consultation Schedule</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addConsultationForm" action="./app/controllers/midwife-appointments/save_consultation_schedule.php" method="POST">
+                            <div class="mb-3">
+                                <label for="consultationDate" class="form-label">Consultation Date</label>
+                                <input type="text" class="form-control" id="consultationDate" name="consultationDate" readonly>
+                            </div>  
+                            <div class="mb-3">
+                                <label for="consultationTime" class="form-label">Consultation Time</label>
+                                <!-- Default value set to 08:00 for 8:00 AM -->
+                                <input type="time" class="form-control" id="consultationTime" name="consultationTime" value="08:00" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Consultation</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
 

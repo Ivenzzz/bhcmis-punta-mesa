@@ -2,13 +2,9 @@ showConsultationCalendar();
 
 function showConsultationCalendar() {
     document.addEventListener('DOMContentLoaded', function() {
-        // Get the calendar element
         var calendarEl = document.getElementById('calendar');
-
-        // Get the consultation schedules from the data attribute
         const consultationSchedules = JSON.parse(calendarEl.getAttribute('data-schedules'));
 
-        // Initialize the FullCalendar
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             eventTimeFormat: {
@@ -21,12 +17,20 @@ function showConsultationCalendar() {
                 color: 'blue',
                 sched_id: schedule.con_sched_id 
             })),
+            
             dateClick: function(info) {
-                const clickedDate = info.date; // This is a Date object
+                const clickedDate = info.date;
+            
+                // Format the date (YYYY-MM-DD) while accounting for local time zone
+                const year = clickedDate.getFullYear();
+                const month = String(clickedDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based, so we add 1
+                const day = String(clickedDate.getDate()).padStart(2, '0'); 
+            
+                const formattedDate = `${year}-${month}-${day}`; // YYYY-MM-DD format
 
-                // Find a schedule with the same date (ignore time)
+                // Check if the clicked date has a schedule
                 const schedule = consultationSchedules.find(s => {
-                    const scheduleDate = new Date(s.con_sched_date); // Convert to Date object
+                    const scheduleDate = new Date(s.con_sched_date);
                     return (
                         scheduleDate.getFullYear() === clickedDate.getFullYear() &&
                         scheduleDate.getMonth() === clickedDate.getMonth() &&
@@ -35,17 +39,23 @@ function showConsultationCalendar() {
                 });
 
                 if (schedule) {
+                    // If a schedule exists, redirect to the appointment list page with the schedule ID
                     window.location.href = `midwife-appointments?sched_id=${schedule.con_sched_id}`;
                 } else {
-                    alert('No appointments scheduled for this day.');
+                    // If no schedule exists, set the formatted date in the modal input field
+                    const consultationDateInput = document.getElementById('consultationDate');
+                    consultationDateInput.value = formattedDate;
+
+                    // Show the modal for adding a new consultation schedule
+                    var addConsultationModal = new bootstrap.Modal(document.getElementById('addConsultationModal'));
+                    addConsultationModal.show();
                 }
             },
+            
             dayCellDidMount: function(info) {
-                const clickedDate = info.date; // This is a Date object
-
-                // Check if there's a schedule for the clicked date
+                const clickedDate = info.date;
                 const schedule = consultationSchedules.find(s => {
-                    const scheduleDate = new Date(s.con_sched_date); // Convert to Date object
+                    const scheduleDate = new Date(s.con_sched_date);
                     return (
                         scheduleDate.getFullYear() === clickedDate.getFullYear() &&
                         scheduleDate.getMonth() === clickedDate.getMonth() &&
@@ -53,9 +63,7 @@ function showConsultationCalendar() {
                     );
                 });
 
-                // Set tooltip content based on whether there is a schedule
                 const tooltipContent = schedule ? 'View Appointments' : 'Add Schedule';
-
                 tippy(info.el, {
                     content: tooltipContent,
                     trigger: 'mouseenter',
@@ -64,7 +72,6 @@ function showConsultationCalendar() {
             }
         });
 
-        // Render the calendar
         calendar.render();
     });
 }

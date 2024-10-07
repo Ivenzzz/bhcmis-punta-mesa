@@ -265,6 +265,14 @@ table.table-dark td {
     color: #f59e0b;
 }
 
+.bxs-edit-alt {
+    color: #d97706;
+}
+
+.bx-printer {
+    color: #22c55e;
+}
+
 
 .toolbar button {
     padding: 0.2rem 0.5rem;
