@@ -235,25 +235,6 @@ a {
     margin-bottom: 0.8rem;
 }
 
-.table-dark thead tr th {
-    color: #cbd5e1;
-    font-weight: 800;
-    padding: 1rem;
-}
-
-table.table-dark th,
-table.table-dark td {
-    vertical-align: middle;
-}
-
-.table-dark thead tr {
-    height: 1.5rem;
-}
-
-.table tbody .btn-view {
-    background-color: #06b6d4;
-}
-
 .btn-edit {
     padding: 0 0.3rem;
     border: none;
@@ -494,18 +475,3 @@ input[type="checkbox"] {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
 }
-
-
-
-.medicine-actions .fa-pencil-alt {
-    color: #f59e0b;
-}
-
-.medicine-actions .fa-trash {
-    color: #ef4444;
-}
-
-.lg-icon {
-    font-size: 6rem;
-}
-

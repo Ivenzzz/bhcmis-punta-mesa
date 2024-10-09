@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="mt-5 mb-3">
-                        <button class="btn btn-success btn-full" type="button" id="loginButton">Login</button>
+                        <button class="btn btn-primary btn-full" type="button" id="loginButton">Login</button>
                     </div>
                 </form>
             </div>

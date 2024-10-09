@@ -77,7 +77,7 @@ function redirectToDashboard(role) {
             window.location.href = '/bhcmis/midwife';
             break;
         case 'residents':
-            window.location.href = '/bhcmis/resident';
+            window.location.href = '/bhcmis/r-appointments';
             break;
         case 'bhw':
             window.location.href = '/bhcmis/bhw';

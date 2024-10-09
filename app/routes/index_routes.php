@@ -75,7 +75,7 @@ switch ($url) {
         require 'app/views/bhw/index.php';
         break;
 
-    case 'resident':
+    case 'r-appointments':
         require 'app/views/resident/index.php';
         break;
 

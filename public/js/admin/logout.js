@@ -4,23 +4,21 @@ document.addEventListener('DOMContentLoaded', function () {
         return new bootstrap.Popover(popoverTriggerEl);
     });
 
-    // Attach event listener to the document to capture clicks on dynamically created elements
     document.addEventListener('click', function (event) {
         if (event.target && event.target.id === 'logout-link') {
-            event.preventDefault(); // Prevent default link behavior
+            event.preventDefault();
 
             // SweetAlert2 confirmation modal
             Swal.fire({
                 title: 'Are you sure you want to logout?',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
                 confirmButtonText: 'Logout',
                 cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Perform Fetch request to logout.php to destroy the session
                     fetch('./app/controllers/logout.php', {
                         method: 'POST',
                         headers: {
