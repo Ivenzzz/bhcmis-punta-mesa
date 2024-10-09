@@ -475,3 +475,9 @@ input[type="checkbox"] {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
 }
+
+.vertical-divider {
+    border-left: 1px solid #ccc; /* Customize the color */
+    height: 100%; /* Full height of the card body */
+    margin: 0 10px; /* Spacing around the divider */
+}
