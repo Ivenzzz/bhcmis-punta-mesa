@@ -126,7 +126,7 @@ a {
     color: #1e293b;
     margin-bottom: 0.1rem;
     transition: .3s;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .nav_icon {
@@ -235,23 +235,8 @@ a {
     margin-bottom: 0.8rem;
 }
 
-.table-dark thead tr th {
-    color: #cbd5e1;
-    font-weight: 800;
-    padding: 1rem;
-}
-
-table.table-dark th,
-table.table-dark td {
-    vertical-align: middle;
-}
-
-.table-dark thead tr {
-    height: 1.5rem;
-}
-
 .table tbody .btn-view {
-    background-color: #06b6d4;
+    color: #06b6d4;
 }
 
 .btn-edit {
@@ -297,24 +282,6 @@ table.table-dark td {
     color: #06b6d4;
 }
 
-.toolbar .search {
-    margin-right: 1rem;
-    background-color: transparent;
-    border: none;
-    border-bottom: 0.1rem solid #94a3b8;
-    color: #cbd5e1;
-    font-size: 0.9rem;
-}
-
-.toolbar .search::placeholder {
-    color: #64748b;
-}
-
-.toolbar .search:focus {
-    border: none;
-    outline: none;
-    border-bottom: 0.1rem solid #0ea4e9a9;
-}
 
 .left-toolbar {
     display: flex;
@@ -326,65 +293,11 @@ table.table-dark td {
     align-items: center;
 }
 
-.toggle-btn {
-    cursor: pointer;
-    padding: 0.3rem;
-    background-color: transparent;
-    border: none;
-    color: #06b6d4;
-    font-size: 1rem;
-}
-
 
 input[type="checkbox"] {
     width: 1.2rem;
     cursor: pointer;
     accent-color: #0ea5e9;
-}
-
-.collapse-body {
-    display: flex;
-    gap: 3rem;
-    width: 100%;
-    text-align: left;
-    justify-content: center;
-}
-
-.collapse-info h5 {
-    text-decoration: underline;
-    text-underline-offset: 0.4rem;
-    font-weight: 800;
-}
-
-.pagination-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 2rem;
-}
-
-.pagination-details label {
-    font-size: 0.9rem;
-}
-
-.row-description {
-    margin-left: 2rem;
-    font-size: 0.9rem;
-}
-
-#rows-per-page {
-    width: auto;
-    display: inline-flex;
-    border: none;
-}
-
-.active-page {
-    background-color: #22c55e !important;
-}
-
-.pagination .page-item .page-link {
-    border: none;
-    padding: 0.3rem 1rem;
 }
 
 @keyframes spin {
@@ -400,31 +313,6 @@ input[type="checkbox"] {
     animation: spin 0.5s ease-in-out;
 }
 
-@keyframes roadRunnerIn {
-    0% {
-        transform:translateX(-1500px) skewX(30deg) scaleX(1.3);
-    }
-    70% {
-        transform:translateX(30px) skewX(0deg) scaleX(.9);
-    }
-    100% {
-        transform:translateX(0px) skewX(0deg) scaleX(1);
-    }
-}
-  
-@keyframes roadRunnerOut {
-    0% {
-        transform:translateX(0px) skewX(0deg) scaleX(1);
-    }
-    30% {
-        transform:translateX(-30px) skewX(-5deg) scaleX(.9);
-    }
-    100% {
-        transform:translateX(1500px) skewX(30deg) scaleX(1.3);
-    }
-}
-
-
 .modal {
     top: 0;
     left: 0;
@@ -437,61 +325,49 @@ input[type="checkbox"] {
     align-items: center;
 }
 
-.modal-content {
-    border-radius: 1rem;
-    padding: 1rem 1rem;
-}
-
-.modal-body {
-    margin-top: 2rem;
-}
-
-.modal-header {
-    border-bottom: 1px solid #64748b;
-}
-
-.modal-footer {
-    border-top: 1px solid #64748b;
-}
-
-.modal.fade .modal-dialog {
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-}
-
-.modal.fade.show .modal-dialog {
-    animation-name: roadRunnerIn;
-}
-
-.modal.fade:not(.show) .modal-dialog {
-    animation-name: roadRunnerOut;
-}
-
-.btn-close {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right: 1rem;
-    border: none;
-    font-size: 1.25rem;
-    color: #e2e8f0 !important;
-    background-color: #475569;
-    border-radius: 100%;
-}
-
 .logout-text {
     color: #ef4444 !important;
 }
 
-/* Default down arrow */
-.nav_link[aria-expanded="false"] .bx-chevron-down {
-    transform: rotate(0deg);
-    transition: transform 0.3s ease;
+.bhw .card {
+    height: 16rem;
+    background-color: #f0fdf4;
 }
 
-/* Rotate the arrow when expanded (up arrow) */
-.nav_link[aria-expanded="true"] .bx-chevron-down {
-    transform: rotate(180deg);
-    transition: transform 0.3s ease;
+.bhw .card img {
+    height: 4rem;
+    width: 4rem;
 }
+
+.bhw .card button {
+    border: none;
+    background-color: transparent !important;
+    font-size: 1rem;
+
+}
+
+.bhw .card .bx-edit-alt {
+    color: #f59e0b;
+}
+
+.bhw .card .bx-info-circle {
+    color: #0ea5e9;
+}
+
+.bhw .card .bx-trash {
+    color: #ef4444;
+}
+
+.bhw .card-text {
+    font-size: 0.8rem;
+}
+
+.bhw .card-title {
+    font-size: 1.2rem;
+}
+
+.modal-body {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+} 
 

@@ -19,7 +19,7 @@ $medicineCountsByForm = getMedicineCountByForm($conn);
 <html lang="en">
 <head>
     <?php include './app/views/globals/head.php'; ?>
-    <link rel="stylesheet" href="./public/css/midwife-inventory.css">
+    <link rel="stylesheet" href="./public/css/midwife.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 </head>
 <body id="body-pd">

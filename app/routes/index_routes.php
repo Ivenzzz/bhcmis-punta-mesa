@@ -4,6 +4,7 @@
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 $resident_id = isset($_GET['resident_id']) ? intval($_GET['resident_id']) : null;
 $sched_id = isset($_GET['sched_id']) ? intval($_GET['sched_id']) : null;
+$appointment_id = isset($_GET['appointment_id']) ? intval($_GET['appointment_id']) : null;
 
 switch ($url) { 
     
@@ -75,8 +76,20 @@ switch ($url) {
         require 'app/views/bhw/index.php';
         break;
 
+    case 'bhw-household-profiling':
+        require 'app/views/bhw/household_profiling.php';
+        break;
+
     case 'r-appointments':
         require 'app/views/resident/index.php';
+        break;
+        
+    case 'r-consultations':
+        if ($appointment_id) {
+            require 'app/views/resident/consultation_result.php';
+        } else {
+            require 'app/views/globals/error.php';
+        }
         break;
 
     default:

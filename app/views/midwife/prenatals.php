@@ -21,7 +21,7 @@ $prenatalSchedules = getPrenatalSchedules($conn);
 <head>
     <?php include './app/views/globals/head.php'; ?>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="./public/css/midwife-prenatals.css">
+    <link rel="stylesheet" href="./public/css/midwife.css">
 </head>
 <body>
     <?php include 'partials/top_navigation.php'; ?>

@@ -5,8 +5,8 @@ require './app/models/get_resident_by_id.php';
 require './app/models/get_current_user.php';
 require './app/models/get_addresses.php';
 require './app/models/get_resident_medical_conditions.php';
+require './app/models/get_resident_allergies.php';
 
-// Get the resident ID from the URL
 $resident_id = isset($_GET['resident_id']) ? intval($_GET['resident_id']) : null;
 
 if ($resident_id) {
@@ -17,13 +17,14 @@ $user = getCurrentUser($conn);
 $resident_details = getResidentById($conn, $resident_id);
 $title = $resident_details['firstname'] . ' ' . $resident_details['lastname'] . ' Information';
 $medical_conditions = getResidentMedicalConditions($conn, $resident_id);
+$allergies = getResidentAllergies($conn, $resident_id);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <?php require './app/views/globals/head.php'; ?>
-    <link rel="stylesheet" href="./public/css/admin-resident-details.css">
+    <link rel="stylesheet" href="./public/css/admin.css">
 </head>
 <body id="body-pd">
     <?php require 'partials/top_navigation.php'; ?>
@@ -47,7 +48,11 @@ $medical_conditions = getResidentMedicalConditions($conn, $resident_id);
                 <form action="./app/controllers/admin-residents/update_resident.php">
                     <div class="row">
                         <div class="col-md-5 p-3 d-flex justify-content-center flex-column align-items-center">
-                            <img src="<?php echo $resident_details['profile_picture']?>" class="w-50 rounded-circle border border-success" alt="Profile Picture">
+                            <?php 
+                                // Check if the resident has a profile picture
+                                $profilePicture = !empty($resident_details['profile_picture']) ? $resident_details['profile_picture'] : './storage/uploads/avatar-default.png';
+                            ?>
+                            <img src="<?php echo $profilePicture; ?>" class="w-50 rounded-circle border border-success" alt="Profile Picture">
                             <input type="file" name="profile_picture" id="profile_picture" class="form-control form-control-sm mt-2" accept="image/*">
                         </div>
                         <div class="col-md-7 p-4 shadow">
@@ -165,8 +170,8 @@ $medical_conditions = getResidentMedicalConditions($conn, $resident_id);
 
         <div class="row shadow mb-4 p-4">
             <div class="col-md-6">
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-dark">
+                <table class="table table-bordered table-hover shadow" id="conditionsTable">
+                    <thead>
                         <tr>
                             <th>#</th>
                             <th>Condition Name</th>
@@ -197,8 +202,35 @@ $medical_conditions = getResidentMedicalConditions($conn, $resident_id);
                     </tbody>
                 </table>
             </div>
-        </div>
 
+            <div class="col-md-6">
+                <table class="table table-bordered table-hover shadow" id="allergiesTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Allergen</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($allergies)) : ?>
+                            <?php foreach ($allergies as $index => $allergy) : ?>
+                                <tr>
+                                    <td><?php echo $index + 1; ?></td>
+                                    <td><?php echo htmlspecialchars($allergy['allergen']); ?></td>
+                                    <td><?php echo htmlspecialchars($allergy['allergy_type']); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <tr>
+                                <td colspan="4" class="text-center">No allergies found for this resident.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
 
     <script src="./public/js/admin/logout.js"></script>

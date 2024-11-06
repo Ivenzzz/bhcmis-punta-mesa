@@ -17,7 +17,7 @@ $user = getCurrentUser($conn);
 <html lang="en">
 <head>
     <?php require './app/views/globals/head.php'; ?>
-    <link rel="stylesheet" href="./public/css/admin-bhws.css">
+    <link rel="stylesheet" href="./public/css/admin.css">
 </head>
 <body id="body-pd">
     <?php require 'partials/top_navigation.php'; ?>
@@ -34,7 +34,7 @@ $user = getCurrentUser($conn);
         <div class="row">
             <?php if (!empty($bhw_data)): ?>
                 <?php foreach ($bhw_data as $bhw): ?>
-                    <div class="col-md-4 mb-4" id="bhw-card-<?= $bhw['bhw_id']; ?>">
+                    <div class="col-md-4 mb-4 bhw" id="bhw-card-<?= $bhw['bhw_id']; ?>">
                         <div class="card text-center shadow">
                             <img src="<?= !empty($bhw['profile_picture']) ? $bhw['profile_picture'] : './public/images/avatar-panda.png'; ?>" class="card-img-top rounded-circle mx-auto mt-3" alt="Profile Picture">
                             <div class="card-body">

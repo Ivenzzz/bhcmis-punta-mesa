@@ -44,7 +44,7 @@
                                     <button class="btn btn-sm btn-secondary mt-2" disabled>Cancelled</button>
                                 <?php elseif ($appointment['status'] === 'Completed'): ?>
                                     <button class="btn btn-sm btn-success mt-2" disabled>Completed</button>
-                                    <a href="consultation?tc=<?= htmlspecialchars($appointment['tracking_code']); ?>" class="btn btn-sm btn-primary mt-2">View Consultation Result</a>
+                                    <a href="r-consultations?appointment_id=<?= htmlspecialchars($appointment['appointment_id']); ?>" class="btn btn-sm btn-primary mt-2">View Consultation Result</a>
                                 <?php endif; ?>
                             </div>
                         </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2024 at 04:38 AM
+-- Generation Time: Nov 04, 2024 at 07:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,48 +33,27 @@ CREATE TABLE `accounts` (
   `password` varchar(255) NOT NULL,
   `role` enum('admin','midwife','bhw','residents') NOT NULL,
   `profile_picture` varchar(255) DEFAULT NULL,
-  `isArchived` tinyint(1) NOT NULL DEFAULT 0
+  `isArchived` tinyint(1) NOT NULL DEFAULT 0,
+  `isValid` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`account_id`, `username`, `password`, `role`, `profile_picture`, `isArchived`) VALUES
-(1, 'admin', '$2y$10$wSO7df3nhx9QF06QISRIT.1YNjfANjoIqR3q4X8GWKXT897uTeVly', 'admin', '/bhcmis/storage/uploads/avatar-admin.png', 0),
-(2, 'BHW1', '$2y$10$Fp06K.3nimzVrtsC.VQMs.mkYrm0vpq5rYhDvktMiIY7SZbWbkozW', 'bhw', '/bhcmis/storage/uploads/avatar-girl1.png', 0),
-(5, 'BHW99', '$2y$10$WGbMOlDHPCI298D8iPgDp.n7Vglk3Gu.Xj2Sdg21BVE8Z.aPRS7wS', 'bhw', '/bhcmis/storage/uploads/avatar-panda.png', 0),
-(6, 'BHW2', '$2y$10$jo2g7gXKJXysuLCE.WEMo.ZdWhAjO6/ORu4kcGZ75HlMkyfWau4OS', 'bhw', '/bhcmis/storage/uploads/avatar-woman1.png', 0),
-(7, 'BHW3', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
-(8, 'BHW4', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman3.png', 0),
-(9, 'BHW5', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman4.png', 0),
-(10, 'BHW6', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
-(11, 'BHW7', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman1.png', 0),
-(12, 'Midwife1', '$2y$10$mHv3MxPW3CnlJ0m0Fp//LeShjQqYgttV40fklrqpW.3MEBweZChqi', 'midwife', '/bhcmis/storage/uploads/midwife-1.jpg', 0),
-(13, 'Resident1', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
-(14, 'Resident2', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
-(15, 'Resident3', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
-(16, 'Resident4', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
-(17, 'Resident5', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
-(18, 'Resident6', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
-(19, 'Resident7', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
-(20, 'Resident8', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
-(21, 'Resident9', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
-(22, 'Resident10', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0),
-(36, 'JohnRey', '$2y$10$T9fBKwZraBxSwDc6eK1SvO49mvW3.2W7Fju1wWA4Q72iB/Ag9.KO.', 'residents', NULL, 0),
-(37, 'resident1', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident1.jpg', 0),
-(38, 'resident2', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident2.jpg', 0),
-(39, 'resident3', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident3.jpg', 0),
-(40, 'resident4', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident4.jpg', 0),
-(41, 'resident5', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident5.jpg', 0),
-(42, 'resident6', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident6.jpg', 0),
-(43, 'resident7', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident7.jpg', 0),
-(44, 'resident8', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident8.jpg', 0),
-(45, 'resident9', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', 'resident9.jpg', 0),
-(46, 'resident10', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', '/bhcmis/storage/uploads/avatar-woman2.png', 0),
-(47, 'cccccc', '$2y$10$QofRzrOWQWB8iGxs1j.hN.dZrkSRKb9bned3Xc4ALNjfQQgsr8qLu', 'residents', NULL, 1),
-(48, '', '$2y$10$7pa/0PiDqej4k6pLIV8sfuK.1s9.co5xNDTyoEfAfMe7fy..jo9z6', 'residents', NULL, 0),
-(49, '', '$2y$10$CIRX/FSnbVjzn15Wg25qV.SO4IM9XvF1TOqiHRRfzDYeoL8GFQYO2', 'residents', NULL, 0);
+INSERT INTO `accounts` (`account_id`, `username`, `password`, `role`, `profile_picture`, `isArchived`, `isValid`) VALUES
+(1, 'admin', '$2y$10$wSO7df3nhx9QF06QISRIT.1YNjfANjoIqR3q4X8GWKXT897uTeVly', 'admin', '/bhcmis/storage/uploads/avatar-admin.png', 0, 1),
+(2, 'BHW1', '$2y$10$Fp06K.3nimzVrtsC.VQMs.mkYrm0vpq5rYhDvktMiIY7SZbWbkozW', 'bhw', '/bhcmis/storage/uploads/avatar-girl1.png', 0, 1),
+(6, 'BHW2', '$2y$10$jo2g7gXKJXysuLCE.WEMo.ZdWhAjO6/ORu4kcGZ75HlMkyfWau4OS', 'bhw', '/bhcmis/storage/uploads/avatar-woman1.png', 0, 1),
+(7, 'BHW3', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman2.png', 0, 1),
+(8, 'BHW4', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman3.png', 0, 1),
+(9, 'BHW5', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman4.png', 0, 1),
+(10, 'BHW6', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman2.png', 0, 1),
+(11, 'BHW7', '$2y$10$R4JsPDggEqrbXeMxjdwFNOQOM2t.AhDm4mkX8auBE2jnHrI8z0B9a', 'bhw', '/bhcmis/storage/uploads/avatar-woman1.png', 0, 1),
+(12, 'Midwife1', '$2y$10$mHv3MxPW3CnlJ0m0Fp//LeShjQqYgttV40fklrqpW.3MEBweZChqi', 'midwife', '/bhcmis/storage/uploads/midwife-1.jpg', 0, 1),
+(13, 'Resident1', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', '/bhcmis/storage/uploads/avatar-woman2.png', 0, 1),
+(14, 'Resident2', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', '/bhcmis/storage/uploads/avatar-woman2.png', 0, 1),
+(50, 'Resident3', '$2y$10$PhtFVyI7r3nW3J3KRIaxLuwPT5GDuqKt1lahofGd0VeCEOk8tMDIW', 'residents', NULL, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -123,7 +102,31 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `account_id`, `personal_information_id`) VALUES
-(4, 1, 20);
+(1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `allergies`
+--
+
+CREATE TABLE `allergies` (
+  `allergy_id` int(10) NOT NULL,
+  `resident_id` int(10) NOT NULL,
+  `allergy_type` varchar(255) NOT NULL,
+  `allergen` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `allergies`
+--
+
+INSERT INTO `allergies` (`allergy_id`, `resident_id`, `allergy_type`, `allergen`) VALUES
+(1, 4, 'Food', 'Peanuts'),
+(2, 4, 'Drug', 'Penicillin'),
+(3, 4, 'Environmental', 'Pollen'),
+(4, 5, 'Food', 'Seafood'),
+(5, 5, 'Insect', 'Bee Sting');
 
 -- --------------------------------------------------------
 
@@ -133,8 +136,10 @@ INSERT INTO `admin` (`admin_id`, `account_id`, `personal_information_id`) VALUES
 
 CREATE TABLE `appointments` (
   `appointment_id` int(10) NOT NULL,
+  `tracking_code` varchar(100) NOT NULL,
   `resident_id` int(10) NOT NULL,
   `sched_id` int(10) NOT NULL,
+  `priority_number` int(10) NOT NULL,
   `status` enum('Scheduled','Cancelled','Completed') NOT NULL DEFAULT 'Scheduled',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -144,12 +149,12 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`appointment_id`, `resident_id`, `sched_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, 'Scheduled', '2024-07-25 03:51:10', '2024-07-25 03:51:10'),
-(2, 5, 1, 'Scheduled', '2024-07-25 03:51:10', '2024-07-25 03:51:10'),
-(3, 6, 2, 'Scheduled', '2024-07-25 03:51:10', '2024-07-25 03:51:10'),
-(4, 7, 2, 'Scheduled', '2024-07-25 03:51:10', '2024-07-25 03:51:10'),
-(5, 8, 1, 'Scheduled', '2024-07-25 03:51:10', '2024-07-25 03:51:10');
+INSERT INTO `appointments` (`appointment_id`, `tracking_code`, `resident_id`, `sched_id`, `priority_number`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'HC467245364359PH', 4, 1, 1, 'Cancelled', '2024-07-25 03:51:10', '2024-10-09 00:00:24'),
+(2, 'HC191823420527PH', 5, 1, 2, 'Scheduled', '2024-07-25 03:51:10', '2024-10-07 06:01:33'),
+(33, 'HC813792096667PH', 4, 7, 1, 'Completed', '2024-10-09 06:43:13', '2024-10-09 06:47:51'),
+(34, 'HC736135777798PH', 4, 2, 3, 'Scheduled', '2024-10-09 06:47:04', '2024-10-09 06:47:04'),
+(35, 'HC882902703689PH', 4, 6, 1, 'Cancelled', '2024-10-10 04:12:17', '2024-10-10 04:12:44');
 
 -- --------------------------------------------------------
 
@@ -174,36 +179,7 @@ INSERT INTO `bhw` (`bhw_id`, `account_id`, `personal_info_id`, `assigned_area`, 
 (1, 2, 4, 9, '2024-09-16', 'active'),
 (2, 6, 6, 1, '2024-09-16', 'active'),
 (3, 7, 8, 3, '2024-09-16', 'active'),
-(4, 8, 10, 4, '2024-09-16', 'active'),
-(5, 9, 12, 5, '2024-09-16', 'active'),
-(6, 10, 11, 6, '2024-09-16', 'active'),
-(7, 11, 19, 12, '2024-09-16', 'active'),
-(8, 5, 15, 8, '2024-09-16', 'active');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `children`
---
-
-CREATE TABLE `children` (
-  `child_id` int(10) NOT NULL,
-  `guardian_id` int(10) NOT NULL,
-  `personal_information_id` int(10) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `children`
---
-
-INSERT INTO `children` (`child_id`, `guardian_id`, `personal_information_id`, `created_at`, `updated_at`) VALUES
-(6, 5, 66, '2024-10-03 03:11:31', '2024-10-03 03:11:31'),
-(7, 6, 65, '2024-10-03 03:11:31', '2024-10-03 03:11:31'),
-(8, 6, 64, '2024-10-03 03:11:31', '2024-10-03 03:11:31'),
-(9, 5, 63, '2024-10-03 03:11:31', '2024-10-03 03:11:31'),
-(10, 4, 62, '2024-10-03 03:11:31', '2024-10-03 03:11:31');
+(4, 8, 10, 4, '2024-09-16', 'active');
 
 -- --------------------------------------------------------
 
@@ -236,7 +212,7 @@ CREATE TABLE `consultations` (
   `resident_id` int(10) NOT NULL,
   `appointment_id` int(10) DEFAULT NULL,
   `reason_for_visit` varchar(100) NOT NULL,
-  `consultation_date` datetime DEFAULT NULL,
+  `sched_id` int(10) DEFAULT NULL,
   `symptoms` varchar(255) DEFAULT NULL,
   `weight_kg` decimal(5,2) DEFAULT NULL,
   `temperature` varchar(100) DEFAULT NULL,
@@ -254,15 +230,12 @@ CREATE TABLE `consultations` (
 -- Dumping data for table `consultations`
 --
 
-INSERT INTO `consultations` (`consultation_id`, `resident_id`, `appointment_id`, `reason_for_visit`, `consultation_date`, `symptoms`, `weight_kg`, `temperature`, `heart_rate`, `respiratory_rate`, `blood_pressure`, `cholesterol_level`, `physical_findings`, `refer_to`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, '', NULL, 'diarrhea', 70.00, NULL, NULL, NULL, '120/80', 'Normal', 'Patient exhibits normal vital signs and overall health is satisfactory; no immediate concerns.', '', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(2, 5, NULL, '', NULL, 'Chills, Fatigue / Weakness, sore throat', 65.00, NULL, NULL, NULL, '110/70', 'Normal', 'Patient shows signs of mild hypertension; recommend lifestyle modifications and follow-up visit in 3 months', '', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(3, 6, 2, '', NULL, 'Chills, Fatigue / Weakness, sore throat', 80.00, NULL, NULL, NULL, '130/85', 'High', 'Patient is underweight; suggest nutritional counseling and a balanced diet to gain weight.', '', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(4, 7, NULL, '', NULL, 'Chills, Fatigue / Weakness, sore throat', 72.00, NULL, NULL, NULL, '125/80', 'Normal', 'Patient is obese with elevated blood pressure; recommend weight management program and regular exercise.', '', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(5, 5, 4, '', NULL, 'Chills, Fatigue / Weakness, sore throat', 75.00, NULL, NULL, NULL, '135/90', 'High', 'Patient shows signs of anemia; advise iron supplements and a follow-up blood test in 6 weeks.', '', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
-(21, 4, NULL, '', NULL, 'Chills, Fatigue / Weakness, sore throat', 55.00, NULL, NULL, NULL, '120/70', 'Normal', 'Patient has a fever; initiate dietary adjustments.', '', '2024-07-25 08:39:43', '2024-07-25 08:39:43'),
-(22, 4, NULL, '', NULL, 'Chills, Fatigue / Weakness, sore throat', 58.00, NULL, NULL, NULL, '120/80', 'Normal', 'Patient\'s vital signs are normal; continue with current health regimen and routine check-ups.', '', '2024-07-25 08:42:04', '2024-07-25 08:42:04'),
-(23, 4, NULL, '', NULL, 'Chills, Fatigue / Weakness, sore throat', 55.00, NULL, NULL, NULL, '120/70', 'Normal', 'Patient\'s health is stable with no new concerns; maintain current health plan and schedule next routine visit.', '', '2024-07-25 08:43:19', '2024-07-25 08:43:19');
+INSERT INTO `consultations` (`consultation_id`, `resident_id`, `appointment_id`, `reason_for_visit`, `sched_id`, `symptoms`, `weight_kg`, `temperature`, `heart_rate`, `respiratory_rate`, `blood_pressure`, `cholesterol_level`, `physical_findings`, `refer_to`, `created_at`, `updated_at`) VALUES
+(1, 4, 33, 'not feeling well', 1, 'diarrhea', 70.00, NULL, NULL, NULL, '120/80', 'Normal', 'Patient exhibits normal vital signs and overall health is satisfactory; no immediate concerns.', '', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
+(2, 5, NULL, 'not feeling well', NULL, 'sore throat, fever', 65.00, NULL, NULL, NULL, '110/70', 'Normal', 'Patient shows signs of mild hypertension; recommend lifestyle modifications and follow-up visit in 3 months', '', '2024-07-24 19:54:36', '2024-07-24 19:54:36'),
+(21, 4, NULL, 'not feeling well', NULL, 'fever, cough', 55.00, NULL, NULL, NULL, '120/70', 'Normal', 'Patient has a fever; initiate dietary adjustments.', '', '2024-07-25 08:39:43', '2024-07-25 08:39:43'),
+(22, 4, NULL, 'not feeling well', NULL, 'fatigue, weakness, fever', 58.00, NULL, NULL, NULL, '120/80', 'Normal', 'Patient\'s vital signs are normal; continue with current health regimen and routine check-ups.', '', '2024-07-25 08:42:04', '2024-07-25 08:42:04'),
+(23, 4, NULL, 'not feeling well', NULL, 'headache, sneeze, cough', 55.00, NULL, NULL, NULL, '120/70', 'Normal', 'Patient\'s health is stable with no new concerns; maintain current health plan and schedule next routine visit.', '', '2024-07-25 08:43:19', '2024-07-25 08:43:19');
 
 -- --------------------------------------------------------
 
@@ -303,9 +276,12 @@ CREATE TABLE `consultation_schedules` (
 --
 
 INSERT INTO `consultation_schedules` (`con_sched_id`, `con_sched_date`) VALUES
-(1, '2024-12-12 08:00:00'),
-(2, '2024-12-17 09:00:00'),
-(3, '2024-11-12 09:00:00');
+(1, '2024-10-05 08:00:00'),
+(2, '2024-10-06 09:00:00'),
+(3, '2024-10-16 09:00:00'),
+(6, '2024-11-07 08:00:00'),
+(7, '2024-10-03 08:00:00'),
+(8, '2024-10-11 08:00:00');
 
 -- --------------------------------------------------------
 
@@ -316,6 +292,7 @@ INSERT INTO `consultation_schedules` (`con_sched_id`, `con_sched_date`) VALUES
 CREATE TABLE `families` (
   `family_id` int(10) NOT NULL,
   `family_no` int(100) NOT NULL,
+  `parent_family_id` int(10) DEFAULT NULL,
   `4PsMember` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -323,137 +300,9 @@ CREATE TABLE `families` (
 -- Dumping data for table `families`
 --
 
-INSERT INTO `families` (`family_id`, `family_no`, `4PsMember`) VALUES
-(1, 10001, 0),
-(2, 10002, 0),
-(3, 10003, 0),
-(4, 10004, 0),
-(5, 10005, 0),
-(6, 10006, 0),
-(7, 10007, 0),
-(8, 10008, 0),
-(9, 10009, 0),
-(10, 10010, 0),
-(11, 10011, 0),
-(12, 10012, 0),
-(13, 10013, 0),
-(14, 10014, 0),
-(15, 10015, 0),
-(16, 10016, 0),
-(17, 10017, 0),
-(18, 10018, 0),
-(19, 10019, 0),
-(20, 10020, 0),
-(21, 10021, 0),
-(22, 10022, 0),
-(23, 10023, 0),
-(24, 10024, 0),
-(25, 10025, 0),
-(26, 10026, 0),
-(27, 10027, 0),
-(28, 10028, 0),
-(29, 10029, 0),
-(30, 10030, 0),
-(31, 10031, 0),
-(32, 10032, 0),
-(33, 10033, 0),
-(34, 10034, 0),
-(35, 10035, 0),
-(36, 10036, 0),
-(37, 10037, 0),
-(38, 10038, 0),
-(39, 10039, 0),
-(40, 10040, 0),
-(41, 10041, 0),
-(42, 10042, 0),
-(43, 10043, 0),
-(44, 10044, 0),
-(45, 10045, 0),
-(46, 10046, 0),
-(47, 10047, 0),
-(48, 10048, 0),
-(49, 10049, 0),
-(50, 10050, 0),
-(51, 10051, 0),
-(52, 10052, 0),
-(53, 10053, 0),
-(54, 10054, 0),
-(55, 10055, 0),
-(56, 10056, 0),
-(57, 10057, 0),
-(58, 10058, 0),
-(59, 10059, 0),
-(60, 10060, 0),
-(61, 10061, 0),
-(62, 10062, 0),
-(63, 10063, 0),
-(64, 10064, 0),
-(65, 10065, 0),
-(66, 10066, 0),
-(67, 10067, 0),
-(68, 10068, 0),
-(69, 10069, 0),
-(70, 10070, 0),
-(71, 10071, 0),
-(72, 10072, 0),
-(73, 10073, 0),
-(74, 10074, 0),
-(75, 10075, 0),
-(76, 10076, 0),
-(77, 10077, 0),
-(78, 10078, 0),
-(79, 10079, 0),
-(80, 10080, 0),
-(81, 10081, 0),
-(82, 10082, 0),
-(83, 10083, 0),
-(84, 10084, 0),
-(85, 10085, 0),
-(86, 10086, 0),
-(87, 10087, 0),
-(88, 10088, 0),
-(89, 10089, 0),
-(90, 10090, 0),
-(91, 10091, 0),
-(92, 10092, 0),
-(93, 10093, 0),
-(94, 10094, 0),
-(95, 10095, 0),
-(96, 10096, 0),
-(97, 10097, 0),
-(98, 10098, 0),
-(99, 10099, 0),
-(100, 10100, 0),
-(101, 10101, 0),
-(102, 10102, 0),
-(103, 10103, 0),
-(104, 10104, 0),
-(105, 10105, 0),
-(106, 10106, 0),
-(107, 10107, 0),
-(108, 10108, 0),
-(109, 10109, 0),
-(110, 10110, 0),
-(111, 10111, 0),
-(112, 10112, 0),
-(113, 10113, 0),
-(114, 10114, 0),
-(115, 10115, 0),
-(116, 10116, 0),
-(117, 10117, 0),
-(118, 10118, 0),
-(119, 10119, 0),
-(120, 10120, 0),
-(121, 10121, 0),
-(122, 10122, 0),
-(123, 10123, 0),
-(124, 10124, 0),
-(125, 10125, 0),
-(126, 10126, 0),
-(127, 10127, 0),
-(128, 10128, 0),
-(129, 10129, 0),
-(130, 10130, 0);
+INSERT INTO `families` (`family_id`, `family_no`, `parent_family_id`, `4PsMember`) VALUES
+(1, 10001, NULL, 1),
+(2, 10002, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -474,7 +323,7 @@ CREATE TABLE `family_members` (
 
 INSERT INTO `family_members` (`fmember_id`, `family_id`, `resident_id`, `role`) VALUES
 (1, 1, 4, 'husband'),
-(2, 2, 5, 'wife');
+(2, 1, 5, 'wife');
 
 -- --------------------------------------------------------
 
@@ -485,11 +334,7 @@ INSERT INTO `family_members` (`fmember_id`, `family_id`, `resident_id`, `role`) 
 CREATE TABLE `health_information` (
   `health_information_id` int(10) NOT NULL,
   `resident_id` int(10) NOT NULL,
-  `height_cm` decimal(5,2) NOT NULL,
-  `weight_kg` decimal(5,2) NOT NULL,
   `blood_type` enum('A','B','AB','O') DEFAULT NULL,
-  `blood_pressure` varchar(100) NOT NULL,
-  `cholesterol_level` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -497,13 +342,37 @@ CREATE TABLE `health_information` (
 -- Dumping data for table `health_information`
 --
 
-INSERT INTO `health_information` (`health_information_id`, `resident_id`, `height_cm`, `weight_kg`, `blood_type`, `blood_pressure`, `cholesterol_level`, `created_at`) VALUES
-(1, 4, 170.50, 70.00, 'B', '120/80', 'Normal', '2024-07-25 08:37:06'),
-(2, 5, 160.00, 65.00, 'B', '110/70', 'Normal', '2024-07-25 08:37:06'),
-(3, 6, 175.00, 80.00, 'AB', '130/85', 'High', '2024-07-25 08:37:06'),
-(4, 7, 168.00, 72.00, 'A', '125/80', 'Normal', '2024-07-25 08:37:06'),
-(5, 5, 172.00, 75.00, 'B', '135/90', 'High', '2024-07-25 08:37:06'),
-(8, 4, 175.00, 55.00, 'B', '120/70', 'Normal', '2024-07-25 08:43:19');
+INSERT INTO `health_information` (`health_information_id`, `resident_id`, `blood_type`, `created_at`) VALUES
+(1, 4, 'B', '2024-07-25 08:37:06'),
+(2, 5, 'B', '2024-07-25 08:37:06'),
+(5, 5, 'B', '2024-07-25 08:37:06'),
+(8, 4, 'B', '2024-07-25 08:43:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hospitalizations`
+--
+
+CREATE TABLE `hospitalizations` (
+  `hospitalization_id` int(10) NOT NULL,
+  `resident_id` int(10) NOT NULL,
+  `hospital_name` varchar(255) NOT NULL,
+  `admission_date` date NOT NULL,
+  `discharge_date` date NOT NULL,
+  `reason_for_admission` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `hospitalizations`
+--
+
+INSERT INTO `hospitalizations` (`hospitalization_id`, `resident_id`, `hospital_name`, `admission_date`, `discharge_date`, `reason_for_admission`) VALUES
+(1, 4, 'Corazon Montelibano Memorial Hospital', '2024-02-15', '2024-02-20', 'Appendicitis Surgery'),
+(2, 4, 'Dr. Ramon B. Gustillo Hospital', '2023-10-05', '2023-10-12', 'Pneumonia Treatment'),
+(3, 4, 'Teresita Lopez Jalandoni Provincial Hospital', '2023-07-01', '2023-07-10', 'Fractured Leg'),
+(4, 5, 'Cadiz District Hospital', '2024-01-10', '2024-01-15', 'Severe Asthma Attack'),
+(5, 5, 'Riverside Medical Center', '2023-09-20', '2023-09-25', 'Food Poisoning');
 
 -- --------------------------------------------------------
 
@@ -514,8 +383,8 @@ INSERT INTO `health_information` (`health_information_id`, `resident_id`, `heigh
 CREATE TABLE `household` (
   `household_id` int(10) NOT NULL,
   `household_no` int(100) NOT NULL,
+  `address_id` int(10) NOT NULL,
   `residency_length_years` decimal(3,1) NOT NULL,
-  `assigned_bhw` int(10) NOT NULL,
   `housing_type` enum('Owned','Rented','Other') NOT NULL,
   `construction_materials` enum('light','strong') NOT NULL,
   `lighting_facilities` enum('electricity','kerosene') NOT NULL,
@@ -527,107 +396,9 @@ CREATE TABLE `household` (
 -- Dumping data for table `household`
 --
 
-INSERT INTO `household` (`household_id`, `household_no`, `residency_length_years`, `assigned_bhw`, `housing_type`, `construction_materials`, `lighting_facilities`, `water_source`, `toilet_facility`) VALUES
-(1, 101, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(2, 102, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(3, 103, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(4, 104, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(5, 105, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(6, 106, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(7, 107, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(8, 108, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(9, 109, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(10, 110, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(11, 111, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(12, 112, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(13, 113, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(14, 114, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(15, 115, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(16, 116, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(17, 117, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(18, 118, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(19, 119, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(20, 120, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(21, 121, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(22, 122, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(23, 123, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(24, 124, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(25, 125, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(26, 126, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(27, 127, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(28, 128, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(29, 129, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(30, 130, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(31, 131, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(32, 132, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(33, 133, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(34, 134, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(35, 135, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(36, 136, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(37, 137, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(38, 138, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(39, 139, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(40, 140, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(41, 141, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(42, 142, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(43, 143, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(44, 144, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(45, 145, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(46, 146, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(47, 147, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(48, 148, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(49, 149, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(50, 150, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(51, 151, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(52, 152, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(53, 153, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(54, 154, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(55, 155, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(56, 156, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(57, 157, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(58, 158, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(59, 159, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(60, 160, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(61, 161, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(62, 162, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(63, 163, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(64, 164, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(65, 165, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(66, 166, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(67, 167, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(68, 168, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(69, 169, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(70, 170, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(71, 171, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(72, 172, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(73, 173, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(74, 174, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(75, 175, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(76, 176, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(77, 177, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(78, 178, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(79, 179, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(80, 180, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(81, 181, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(82, 182, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(83, 183, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(84, 184, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(85, 185, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(86, 186, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(87, 187, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(88, 188, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(89, 189, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(90, 190, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(91, 191, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(92, 192, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(93, 193, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(94, 194, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(95, 195, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(96, 196, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(97, 197, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(98, 198, 2.0, 3, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(99, 199, 2.0, 3, 'Other', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(100, 200, 2.0, 3, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank');
+INSERT INTO `household` (`household_id`, `household_no`, `address_id`, `residency_length_years`, `housing_type`, `construction_materials`, `lighting_facilities`, `water_source`, `toilet_facility`) VALUES
+(1, 101, 6, 2.0, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
+(2, 102, 6, 2.0, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank');
 
 -- --------------------------------------------------------
 
@@ -636,7 +407,7 @@ INSERT INTO `household` (`household_id`, `household_no`, `residency_length_years
 --
 
 CREATE TABLE `household_members` (
-  `household_members_id` int(10) NOT NULL,
+  `hm_id` int(10) NOT NULL,
   `household_id` int(10) NOT NULL,
   `family_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -645,11 +416,9 @@ CREATE TABLE `household_members` (
 -- Dumping data for table `household_members`
 --
 
-INSERT INTO `household_members` (`household_members_id`, `household_id`, `family_id`) VALUES
+INSERT INTO `household_members` (`hm_id`, `household_id`, `family_id`) VALUES
 (1, 1, 1),
-(2, 1, 2),
-(3, 1, 1),
-(4, 3, 2);
+(2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -679,7 +448,16 @@ INSERT INTO `medical_conditions` (`medical_conditions_id`, `condition_name`) VAL
 (14, 'Breast Cancer'),
 (15, 'Brain Tumor'),
 (16, 'Bronchitis'),
-(17, 'Cerebral Palsy');
+(17, 'Cerebral Palsy'),
+(18, 'Current Wound/Skin Problems'),
+(19, 'Stroke'),
+(20, 'Bone/Joint Problems'),
+(21, 'Bowel/Bladder Problems'),
+(22, 'History of heavy alcohol use'),
+(23, 'Drug use'),
+(24, 'Smoking habits'),
+(26, 'Kidney Problems'),
+(27, 'Sleeping Problems');
 
 -- --------------------------------------------------------
 
@@ -747,7 +525,7 @@ CREATE TABLE `midwife` (
 --
 
 INSERT INTO `midwife` (`midwife_id`, `account_id`, `personal_info_id`, `employment_status`, `employment_date`, `license_number`) VALUES
-(1, 12, 21, 'active', '2024-09-08', '003104');
+(1, 12, 2, 'active', '2024-09-08', '003104');
 
 -- --------------------------------------------------------
 
@@ -771,6 +549,9 @@ CREATE TABLE `personal_information` (
   `phone_number` varchar(20) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `id_picture` varchar(255) DEFAULT NULL,
+  `isAlive` tinyint(1) NOT NULL DEFAULT 1,
+  `isTransferred` tinyint(1) NOT NULL DEFAULT 0,
+  `isArchived` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -779,46 +560,20 @@ CREATE TABLE `personal_information` (
 -- Dumping data for table `personal_information`
 --
 
-INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`, `middlename`, `date_of_birth`, `civil_status`, `educational_attainment`, `occupation`, `religion`, `citizenship`, `address_id`, `sex`, `phone_number`, `email`, `id_picture`, `created_at`, `updated_at`) VALUES
-(1, 'Santos', 'Juan', 'Dela Cruz', '1989-05-10', 'Married', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '09171234567', 'juan.santos@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(2, 'Reyes', 'Maria', 'Lopez', '1994-03-22', 'Single', 'Highschool Graduate', 'Sales Clerk', 'Roman Catholic', 'Filipino', 2, 'female', '09281234567', 'maria.reyes@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(3, 'Gonzales', 'Peter', 'Ramos', '1978-11-15', 'Widowed', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 3, 'male', '09331234567', 'pedro.gonzales@example.com', NULL, '2024-07-25 11:07:25', '2024-09-16 12:56:54'),
-(4, 'Garcia', 'Ana', 'Santos', '1985-07-16', 'Married', 'College Undergraduate', 'Nurse', 'Roman Catholic', 'Filipino', 4, 'female', '09441234566', 'ana.garcia@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-16 14:08:19'),
-(5, 'Mendoza', 'Carlos', 'Alvarez', '1996-12-04', 'Single', 'Highschool Graduate', 'Mechanic', 'Roman Catholic', 'Filipino', 5, 'male', '09551234567', 'carlos.mendoza@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(6, 'Aquino', 'Laura', 'Gonzalez', '1992-09-18', 'Married', 'College Graduate', 'Accountant', 'Roman Catholic', 'Filipino', 6, 'female', '09661234567', 'laura.aquino@example.com', NULL, '2024-07-25 11:07:25', '2024-09-27 13:40:16'),
-(7, 'Santos', 'Isabel', 'Navarro', '1983-06-25', 'Legally Separated', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 7, 'female', '09771234567', 'isabel.santos@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(8, 'Cruz', 'Annie', 'Castro', '1973-01-10', 'Married', 'Elementary Graduate', 'BHW', 'Roman Catholic', 'Filipino', 8, 'male', '09881234567', 'annie.cruz@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-16 14:07:55'),
-(9, 'Morales', 'Elena', 'Garcia', '1999-04-20', 'Single', 'Highschool Graduate', 'Student', 'Roman Catholic', 'Filipino', 9, 'male', '09991234567', 'elena.morales@example.com', NULL, '2024-07-25 11:07:25', '2024-09-07 08:42:29'),
-(10, 'Reyes', 'Gabriela', 'Santos', '1981-08-14', 'Married', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 10, 'male', '09182345678', 'gabriel.delosreyes@example.com', NULL, '2024-07-25 11:07:25', '2024-09-10 10:44:05'),
-(11, 'Luna', 'Olivia', 'Mendoza', '1997-05-05', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'female', '09293456789', 'olivia.luna@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(12, 'Diaz', 'Ricardo', 'Jimenez', '1988-10-30', 'Married', 'Highschool Graduate', 'Driver', 'Roman Catholic', 'Filipino', 2, 'male', '09384567890', 'ricardo.diaz@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(13, 'Araneta', 'Roy Marjohn', 'Galjlfad', '2001-08-28', 'Single', 'College Graduate', 'Businessman', 'Roman Catholic', 'Filipino', 1, 'male', '09308309624', 'roymarjohnaraneta@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-06 09:32:11'),
-(14, 'Chavez', 'Mary', 'Macias', '1995-11-20', 'Married', 'College Undergraduate', 'Hotel Manager', 'Roman Catholic', 'Filipino', 4, 'male', '09586789012', 'ruvyangcona@gmail.com', NULL, '2024-07-25 11:07:25', '2024-09-10 03:31:46'),
-(15, 'Villar', 'Carmen', 'Rodriguez', '1986-06-10', 'Married', 'College Graduate', 'Nurse', 'Roman Catholic', 'Filipino', 5, 'female', '09697890123', 'carmen.villar@example.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(16, 'Santiago', 'Marc John', 'Torres', '1991-06-12', 'Single', 'College Graduate', 'Security Guard', 'Roman Catholic', 'Filipino', 1, 'male', '09708901234', 'marcojohnsantiago@example.com', NULL, '2024-07-25 11:07:25', '2024-09-06 09:30:29'),
-(17, 'Gonzalez', 'Sophia', 'Bautista', '1993-12-30', 'Single', 'College Graduate', 'Engineer', 'Roman Catholic', 'Filipino', 7, 'male', '09819012345', 'sophia.gonzalez@example.com', NULL, '2024-07-25 11:07:25', '2024-09-07 08:27:34'),
-(18, 'Lopez', 'Andres', 'Gonzales', '1982-07-22', 'Married', 'Elementary Graduate', 'Farmer', 'Roman Catholic', 'Filipino', 8, 'male', '09920123456', 'andres.lopez@example.com', NULL, '2024-07-25 11:07:25', '2024-09-06 09:30:38'),
-(19, 'Rivera', 'Beatriz', 'Morales', '1998-11-11', 'Single', 'Highschool Graduate', 'Cashier', 'Roman Catholic', 'Filipino', 9, 'female', '09123456789', 'beatriz.rivera@example.com', NULL, '2024-07-25 11:07:25', '2024-09-10 10:44:40'),
-(20, 'Victorino', 'Amiel Jose', 'Araneta', '1975-04-12', 'Married', 'College Graduate', 'Brgy. Secretary', 'Roman Catholic', 'Filipino', 10, 'male', '09234567890', 'amielvictorino@gmail.com', NULL, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
-(21, 'Singua', 'Reyna Jane', 'Bingua', '1996-06-05', 'Single', 'College Graduate', 'Brgy. Midwife', 'Roman Catholic', 'Filipino', 3, 'female', '09851354569', 'reynasingua@gmail.com', NULL, '2024-07-25 17:45:21', '2024-07-25 17:45:21'),
-(35, 'Gasparillo', 'John Rey', 'Lobaton', '2023-03-08', 'Single', 'College Graduate', 'Teacher', 'Roman Catholic', 'Filipino', 1, 'male', '639308309627', 'johnreygasparillo@gmail.com', NULL, '2024-09-09 14:04:46', '2024-09-16 12:56:49'),
-(50, 'Smith', 'John', 'A', '1985-01-01', 'Single', 'College Graduate', 'Software Engineer', 'Christian', 'American', 1, 'male', '09171234567', 'john.smith@example.com', 'john.jpg', '2024-09-18 12:59:36', '2024-09-29 03:14:34'),
-(51, 'Johnson', 'Mary', 'B', '1990-05-12', 'Married', 'Highschool Graduate', 'Teacher', 'Catholic', 'Canadian', 2, 'female', '09181234567', 'mary.johnson@example.com', 'mary.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(52, 'Williams', 'Robert', 'C', '1983-03-15', 'Widowed', 'College Undergraduate', 'Accountant', 'Protestant', 'British', 3, 'male', '09191234567', 'robert.williams@example.com', 'robert.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(53, 'Brown', 'Jennifer', 'D', '1975-07-21', 'Legally Separated', 'Highschool Undergraduate', 'Nurse', 'Jewish', 'Australian', 4, 'female', '09201234567', 'jennifer.brown@example.com', 'jennifer.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(54, 'Jones', 'Michael', 'E', '1988-12-11', 'Single', 'Elementary Graduate', 'Engineer', 'Hindu', 'Indian', 5, 'male', '09211234567', 'michael.jones@example.com', 'michael.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(55, 'Garcia', 'David', 'F', '1995-06-20', 'Married', 'College Graduate', 'Architect', 'Catholic', 'Filipino', 6, 'male', '09221234567', 'david.garcia@example.com', 'david.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(56, 'Martinez', 'Emily', 'G', '1982-09-09', 'Widowed', 'Highschool Graduate', 'Doctor', 'Muslim', 'Spanish', 7, 'female', '09231234567', 'emily.martinez@example.com', 'emily.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(57, 'Rodriguez', 'James', 'H', '1978-02-17', 'Single', 'College Undergraduate', 'Businessman', 'Christian', 'American', 8, 'male', '09241234567', 'james.rodriguez@example.com', 'james.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(58, 'Davis', 'Patricia', 'Smith', '1980-04-23', 'Single', 'Elementary Undergraduate', 'Chef', 'Buddhist', 'Japanese', 9, 'male', '09251234567', 'patricia.davis@example.com', 'patricia.jpg', '2024-09-18 12:59:36', '2024-09-29 03:14:30'),
-(59, 'Miller', 'Chris', 'Heinz', '1992-08-18', 'Married', 'Highschool Undergraduate', 'Pilot', 'Catholic', 'German', 10, 'male', '09261234567', 'chris.miller@example.com', 'chris.jpg', '2024-09-18 12:59:36', '2024-09-29 03:14:26'),
-(60, 'Watson', 'Sophia', 'Z', '1996-11-22', 'Single', 'College Graduate', 'Scientist', 'Atheist', 'British', 11, 'female', '09301234567', 'sophia.watson@example.com', 'sophia.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(61, 'King', 'Lucas', 'K', '1989-01-09', 'Single', 'Highschool Graduate', 'Journalist', 'Christian', 'American', 12, 'male', '09311234567', 'lucas.king@example.com', 'lucas.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(62, 'Young', 'Olivia', 'L', '1994-03-19', 'Married', 'College Graduate', 'Lawyer', 'Catholic', 'British', 1, 'female', '09321234567', 'olivia.young@example.com', 'olivia.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(63, 'Harris', 'Ethan', 'M', '1986-02-28', 'Single', 'Elementary Graduate', 'Plumber', 'Christian', 'Canadian', 2, 'male', '09331234567', 'ethan.harris@example.com', 'ethan.jpg', '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(64, 'Walker', 'Isabella', 'N', '2022-05-02', NULL, NULL, NULL, NULL, NULL, 3, 'female', NULL, NULL, NULL, '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(65, 'Brown', 'Sophia', 'Y', '2022-11-02', NULL, NULL, NULL, NULL, NULL, 12, 'female', NULL, NULL, NULL, '2024-09-18 12:59:36', '2024-09-18 12:59:36'),
-(66, 'cccccc', 'ccccc', 'ccccc', '2023-09-13', NULL, NULL, NULL, NULL, NULL, 1, 'female', NULL, NULL, NULL, '2024-09-27 11:33:16', '2024-09-27 11:33:16');
+INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`, `middlename`, `date_of_birth`, `civil_status`, `educational_attainment`, `occupation`, `religion`, `citizenship`, `address_id`, `sex`, `phone_number`, `email`, `id_picture`, `isAlive`, `isTransferred`, `isArchived`, `created_at`, `updated_at`) VALUES
+(1, 'Victorino', 'Amiel Jose', 'Lakobalo', '2002-04-09', 'Single', 'College Graduate', 'Brgy. Secretary', 'Roman Catholic', 'Filipino', 6, 'male', '09171234567', 'amieljosevictorino@gmail.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(2, 'Singua', 'Reyna Jane', 'Lakobalo', '1994-03-09', 'Single', 'College Graduate', 'Brgy. Midwife', 'Roman Catholic', 'Filipino', 6, 'female', '09281234567', 'reynajanesingua@gmail.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(3, 'Gonzales', 'Ann', 'Ramos', '1978-11-15', 'Married', 'College Undergraduate', 'Barangay Health Worker', 'Roman Catholic', 'Filipino', 3, 'male', '09331234567', 'anngonzales@gmail.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-16 12:56:54'),
+(4, 'Garcia', 'Ana', 'Santos', '1985-07-16', 'Married', 'College Undergraduate', 'Barangay Health Worker', 'Roman Catholic', 'Filipino', 4, 'female', '09441234566', 'ana.garcia@gmail.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-16 14:08:19'),
+(5, 'Mendoza', 'May', 'Alvarez', '1996-12-04', 'Single', 'College Graduate', 'Barangay Health Worker', 'Roman Catholic', 'Filipino', 5, 'male', '09551234567', 'carlos.mendoza@example.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(6, 'Aquino', 'Laura', 'Gonzalez', '1992-09-18', 'Married', 'College Graduate', 'Barangay Health Worker', 'Roman Catholic', 'Filipino', 6, 'female', '09661234567', 'laura.aquino@example.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-27 13:40:16'),
+(7, 'Santos', 'Isabel', 'Navarro', '1983-06-25', 'Legally Separated', 'College Graduate', 'Barangay Health Worker', 'Roman Catholic', 'Filipino', 7, 'female', '09771234567', 'isabel.santos@example.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-07-25 11:07:25'),
+(8, 'Cruz', 'Annie', 'Castro', '1973-01-10', 'Married', 'Highschool Graduate', 'Barangay Health Worker', 'Roman Catholic', 'Filipino', 8, 'male', '09881234567', 'annie.cruz@gmail.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-16 14:07:55'),
+(9, 'Morales', 'Elena', 'Garcia', '1999-04-20', 'Single', 'Highschool Graduate', 'Barangay Health Worker', 'Roman Catholic', 'Filipino', 9, 'male', '09991234567', 'elena.morales@example.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-07 08:42:29'),
+(10, 'Reyes', 'Gabriela', 'Santos', '1981-08-14', 'Married', 'College Graduate', 'Barangay Health Worker', 'Roman Catholic', 'Filipino', 10, 'male', '09182345678', 'gabriel.delosreyes@example.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-10 10:44:05'),
+(13, 'Araneta', 'Roy Marjohn', 'Galjlfad', '2001-08-28', 'Married', 'College Graduate', 'Kingpin', 'Roman Catholic', 'Filipino', 6, 'male', '09308309624', 'roymarjohnaraneta@gmail.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-06 09:32:11'),
+(14, 'Angcona', 'Ruvy', 'Lakobalo', '2001-11-09', 'Married', 'College Undergraduate', 'Teacher', 'Roman Catholic', 'Filipino', 6, 'female', '09586789012', 'ruvyangcona@gmail.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-10 03:31:46'),
+(67, 'Araneta', 'Roy Marjohn Jr.', 'Lakobalo', '2018-10-03', 'Single', NULL, NULL, 'Filipino', 'Roman Catholic', 6, 'male', NULL, NULL, NULL, 1, 0, 0, '2024-10-11 15:08:06', '2024-10-11 15:08:06');
 
 -- --------------------------------------------------------
 
@@ -840,11 +595,7 @@ CREATE TABLE `pregnancy` (
 --
 
 INSERT INTO `pregnancy` (`pregnancy_id`, `resident_id`, `expected_due_date`, `pregnancy_status`, `created_at`, `updated_at`) VALUES
-(1, 4, '2024-12-15', 'Ongoing', '2024-07-25 09:49:51', '2024-07-25 09:49:51'),
-(2, 8, '2025-03-22', 'Ongoing', '2024-07-25 09:49:51', '2024-07-25 09:49:51'),
-(3, 10, '2024-09-30', 'Completed', '2024-07-25 09:49:51', '2024-07-25 09:49:51'),
-(4, 12, '2024-11-05', 'Terminated', '2024-07-25 09:49:51', '2024-07-25 09:49:51'),
-(5, 6, '2025-06-18', 'Ongoing', '2024-07-25 09:49:51', '2024-07-25 09:49:51');
+(1, 5, '2024-12-15', 'Ongoing', '2024-07-25 09:49:51', '2024-10-11 07:02:10');
 
 -- --------------------------------------------------------
 
@@ -876,11 +627,7 @@ CREATE TABLE `prenatals` (
 --
 
 INSERT INTO `prenatals` (`prenatal_id`, `tracking_code`, `pregnancy_id`, `sched_id`, `bhw_id`, `weight`, `blood_pressure`, `heart_lungs_condition`, `abdominal_exam`, `fetal_heart_rate`, `fundal_height`, `fetal_movement`, `checkup_notes`, `refer_to`, `created_at`, `updated_at`) VALUES
-(6, 'A1B2C3D4E5F6G7H8', 1, 1, 1, 65.50, '120/80', 'Normal', 'No abnormalities', 'Strong', '20 cm', 'Felt regularly', 'First visit checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
-(7, 'I9J0K1L2M3N4O5P6', 2, 1, 2, 68.00, '118/76', 'Normal', 'No abnormalities', 'Normal', '22 cm', 'Felt regularly', 'Follow-up checkup', 'Manapla Health Center', '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
-(8, 'Q7R8S9T0U1V2W3X4', 3, 1, 3, 70.00, '115/75', 'Normal', 'No abnormalities', 'Normal', '24 cm', 'Felt occasionally', 'Second visit checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
-(9, 'Y5Z6A7B8C9D0E1F2', 4, 1, 4, 72.00, '125/80', 'Normal', 'No abnormalities', 'Normal', '26 cm', 'Felt frequently', 'Routine checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01'),
-(10, 'G3H4I5J6K7L8M9N0', 5, 1, 5, 74.50, '122/78', 'Normal', 'No abnormalities', 'Normal', '28 cm', 'Felt regularly', 'Monthly checkup', 'Ramon B. Gustillo Hospital', '2024-09-23 02:12:40', '2024-09-23 06:25:01');
+(6, 'A1B2C3D4E5F6G7H8', 1, 1, 1, 65.50, '120/80', 'Normal', 'No abnormalities', 'Strong', '20 cm', 'Felt regularly', 'First visit checkup', NULL, '2024-09-23 02:12:40', '2024-09-23 06:25:01');
 
 -- --------------------------------------------------------
 
@@ -908,55 +655,23 @@ INSERT INTO `prenatal_schedules` (`sched_id`, `sched_date`, `sched_note`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `referrals`
---
-
-CREATE TABLE `referrals` (
-  `referral_id` int(10) NOT NULL,
-  `referral_cause` varchar(255) NOT NULL,
-  `referred_by` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `residents`
 --
 
 CREATE TABLE `residents` (
   `resident_id` int(10) NOT NULL,
   `account_id` int(10) NOT NULL,
-  `personal_info_id` int(10) NOT NULL,
-  `isValidResident` tinyint(1) NOT NULL
+  `personal_info_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `residents`
 --
 
-INSERT INTO `residents` (`resident_id`, `account_id`, `personal_info_id`, `isValidResident`) VALUES
-(4, 13, 13, 1),
-(5, 14, 14, 1),
-(6, 15, 1, 1),
-(7, 16, 16, 1),
-(8, 17, 18, 1),
-(9, 18, 9, 1),
-(10, 19, 2, 1),
-(11, 20, 3, 1),
-(12, 21, 5, 1),
-(13, 22, 17, 1),
-(27, 36, 35, 1),
-(28, 37, 50, 1),
-(29, 38, 51, 1),
-(30, 39, 52, 1),
-(31, 40, 53, 1),
-(32, 41, 54, 1),
-(33, 42, 55, 1),
-(34, 43, 56, 1),
-(35, 44, 57, 1),
-(36, 45, 58, 1),
-(37, 46, 59, 1),
-(38, 47, 66, 1);
+INSERT INTO `residents` (`resident_id`, `account_id`, `personal_info_id`) VALUES
+(4, 13, 13),
+(5, 14, 14),
+(99, 50, 67);
 
 -- --------------------------------------------------------
 
@@ -1000,15 +715,7 @@ CREATE TABLE `vaccinations` (
 
 INSERT INTO `vaccinations` (`vaccination_id`, `resident_id`, `vaccine_id`, `vaccination_date`) VALUES
 (1, 4, 16, '2024-01-15'),
-(2, 5, 16, '2024-02-20'),
-(3, 6, 17, '2024-03-25'),
-(4, 7, 17, '2024-04-30'),
-(5, 8, 18, '2024-05-10'),
-(6, 9, 19, '2024-06-15'),
-(7, 10, 20, '2024-07-20'),
-(8, 11, 20, '2024-08-25'),
-(9, 12, 17, '2024-09-30'),
-(10, 13, 17, '2024-10-15');
+(2, 5, 16, '2024-02-20');
 
 -- --------------------------------------------------------
 
@@ -1072,6 +779,13 @@ ALTER TABLE `admin`
   ADD KEY `fk_adminPersonalInfoId` (`personal_information_id`);
 
 --
+-- Indexes for table `allergies`
+--
+ALTER TABLE `allergies`
+  ADD PRIMARY KEY (`allergy_id`),
+  ADD KEY `fk_allergiesResId` (`resident_id`);
+
+--
 -- Indexes for table `appointments`
 --
 ALTER TABLE `appointments`
@@ -1089,14 +803,6 @@ ALTER TABLE `bhw`
   ADD KEY `fk_bhwAssignedAreaId` (`assigned_area`);
 
 --
--- Indexes for table `children`
---
-ALTER TABLE `children`
-  ADD PRIMARY KEY (`child_id`),
-  ADD KEY `fk_childrenGuardianId` (`guardian_id`),
-  ADD KEY `fk_childrenPiId` (`personal_information_id`);
-
---
 -- Indexes for table `conditions_prescriptions`
 --
 ALTER TABLE `conditions_prescriptions`
@@ -1110,7 +816,8 @@ ALTER TABLE `conditions_prescriptions`
 ALTER TABLE `consultations`
   ADD PRIMARY KEY (`consultation_id`),
   ADD KEY `fk_consultationAppointmentId` (`appointment_id`),
-  ADD KEY `fk_consultationResidentId` (`resident_id`);
+  ADD KEY `fk_consultationResidentId` (`resident_id`),
+  ADD KEY `fk_consultationSchedId` (`sched_id`);
 
 --
 -- Indexes for table `consultations_prescriptions`
@@ -1130,15 +837,16 @@ ALTER TABLE `consultation_schedules`
 -- Indexes for table `families`
 --
 ALTER TABLE `families`
-  ADD PRIMARY KEY (`family_id`);
+  ADD PRIMARY KEY (`family_id`),
+  ADD KEY `fk_fParentFamilyId` (`parent_family_id`);
 
 --
 -- Indexes for table `family_members`
 --
 ALTER TABLE `family_members`
   ADD PRIMARY KEY (`fmember_id`),
-  ADD KEY `fk_memberFamilyId` (`family_id`),
-  ADD KEY `fk_memberResidentId` (`resident_id`);
+  ADD UNIQUE KEY `resident_id` (`resident_id`),
+  ADD KEY `fk_memberFamilyId` (`family_id`);
 
 --
 -- Indexes for table `health_information`
@@ -1148,18 +856,26 @@ ALTER TABLE `health_information`
   ADD KEY `fk_HealthInfoResidentId` (`resident_id`);
 
 --
+-- Indexes for table `hospitalizations`
+--
+ALTER TABLE `hospitalizations`
+  ADD PRIMARY KEY (`hospitalization_id`),
+  ADD KEY `fk_hospitalizationResId` (`resident_id`);
+
+--
 -- Indexes for table `household`
 --
 ALTER TABLE `household`
-  ADD PRIMARY KEY (`household_id`);
+  ADD PRIMARY KEY (`household_id`),
+  ADD KEY `fk_householdAddressId` (`address_id`);
 
 --
 -- Indexes for table `household_members`
 --
 ALTER TABLE `household_members`
-  ADD PRIMARY KEY (`household_members_id`),
-  ADD KEY `fk_hmHouseholdId` (`household_id`),
-  ADD KEY `fk_hmFamId` (`family_id`);
+  ADD PRIMARY KEY (`hm_id`),
+  ADD UNIQUE KEY `family_id` (`family_id`),
+  ADD KEY `fk_hmHouseholdId` (`household_id`);
 
 --
 -- Indexes for table `medical_conditions`
@@ -1211,12 +927,6 @@ ALTER TABLE `prenatal_schedules`
   ADD PRIMARY KEY (`sched_id`);
 
 --
--- Indexes for table `referrals`
---
-ALTER TABLE `referrals`
-  ADD PRIMARY KEY (`referral_id`);
-
---
 -- Indexes for table `residents`
 --
 ALTER TABLE `residents`
@@ -1254,7 +964,7 @@ ALTER TABLE `vaccines`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `address`
@@ -1269,10 +979,16 @@ ALTER TABLE `admin`
   MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `allergies`
+--
+ALTER TABLE `allergies`
+  MODIFY `allergy_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `appointment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `bhw`
@@ -1302,7 +1018,7 @@ ALTER TABLE `consultations_prescriptions`
 -- AUTO_INCREMENT for table `consultation_schedules`
 --
 ALTER TABLE `consultation_schedules`
-  MODIFY `con_sched_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `con_sched_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `families`
@@ -1314,13 +1030,19 @@ ALTER TABLE `families`
 -- AUTO_INCREMENT for table `family_members`
 --
 ALTER TABLE `family_members`
-  MODIFY `fmember_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `fmember_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `health_information`
 --
 ALTER TABLE `health_information`
   MODIFY `health_information_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `hospitalizations`
+--
+ALTER TABLE `hospitalizations`
+  MODIFY `hospitalization_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `household`
@@ -1332,13 +1054,13 @@ ALTER TABLE `household`
 -- AUTO_INCREMENT for table `household_members`
 --
 ALTER TABLE `household_members`
-  MODIFY `household_members_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `hm_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `medical_conditions`
 --
 ALTER TABLE `medical_conditions`
-  MODIFY `medical_conditions_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `medical_conditions_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `medicines`
@@ -1356,7 +1078,7 @@ ALTER TABLE `midwife`
 -- AUTO_INCREMENT for table `personal_information`
 --
 ALTER TABLE `personal_information`
-  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `pregnancy`
@@ -1377,16 +1099,10 @@ ALTER TABLE `prenatal_schedules`
   MODIFY `sched_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `referrals`
---
-ALTER TABLE `referrals`
-  MODIFY `referral_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `residents`
 --
 ALTER TABLE `residents`
-  MODIFY `resident_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `resident_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `residents_medical_condition`
@@ -1418,6 +1134,12 @@ ALTER TABLE `admin`
   ADD CONSTRAINT `fk_adminPersonalInfoId` FOREIGN KEY (`personal_information_id`) REFERENCES `personal_information` (`personal_info_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `allergies`
+--
+ALTER TABLE `allergies`
+  ADD CONSTRAINT `fk_allergiesResId` FOREIGN KEY (`resident_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `appointments`
 --
 ALTER TABLE `appointments`
@@ -1433,13 +1155,6 @@ ALTER TABLE `bhw`
   ADD CONSTRAINT `fk_bhwPersonalInfoId` FOREIGN KEY (`personal_info_id`) REFERENCES `personal_information` (`personal_info_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `children`
---
-ALTER TABLE `children`
-  ADD CONSTRAINT `fk_childrenGuardianId` FOREIGN KEY (`guardian_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_childrenPiId` FOREIGN KEY (`personal_information_id`) REFERENCES `personal_information` (`personal_info_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `conditions_prescriptions`
 --
 ALTER TABLE `conditions_prescriptions`
@@ -1451,7 +1166,8 @@ ALTER TABLE `conditions_prescriptions`
 --
 ALTER TABLE `consultations`
   ADD CONSTRAINT `fk_consultationAppointmentId` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`appointment_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_consultationResidentId` FOREIGN KEY (`resident_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_consultationResidentId` FOREIGN KEY (`resident_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_consultationSchedId` FOREIGN KEY (`sched_id`) REFERENCES `consultation_schedules` (`con_sched_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `consultations_prescriptions`
@@ -1459,6 +1175,12 @@ ALTER TABLE `consultations`
 ALTER TABLE `consultations_prescriptions`
   ADD CONSTRAINT `fk_rmConsultationId` FOREIGN KEY (`consultation_id`) REFERENCES `consultations` (`consultation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_rmMedicineId` FOREIGN KEY (`medicine_id`) REFERENCES `medicines` (`medicine_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `families`
+--
+ALTER TABLE `families`
+  ADD CONSTRAINT `fk_fParentFamilyId` FOREIGN KEY (`parent_family_id`) REFERENCES `families` (`family_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `family_members`
@@ -1472,6 +1194,18 @@ ALTER TABLE `family_members`
 --
 ALTER TABLE `health_information`
   ADD CONSTRAINT `fk_HealthInfoResidentId` FOREIGN KEY (`resident_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hospitalizations`
+--
+ALTER TABLE `hospitalizations`
+  ADD CONSTRAINT `fk_hospitalizationResId` FOREIGN KEY (`resident_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `household`
+--
+ALTER TABLE `household`
+  ADD CONSTRAINT `fk_householdAddressId` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `household_members`

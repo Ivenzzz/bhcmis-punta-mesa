@@ -522,3 +522,15 @@ input[type="checkbox"] {
 .fc-day:hover {
     background-color: #e2e8f0;
 }
+
+.medicine-actions .fa-pencil-alt {
+    color: #f59e0b;
+}
+
+.medicine-actions .fa-trash {
+    color: #ef4444;
+}
+
+.lg-icon {
+    font-size: 6rem;
+}

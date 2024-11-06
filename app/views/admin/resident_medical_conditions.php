@@ -24,7 +24,7 @@ $title = $resident_details['firstname'] . ' ' . $resident_details['lastname'] . 
 <html lang="en">
 <head>
     <?php require './app/views/globals/head.php'; ?>
-    <link rel="stylesheet" href="./public/css/admin-resident-details.css">
+    <link rel="stylesheet" href="./public/css/admin.css">
 </head>
 <body id="body-pd">
     <?php require 'partials/top_navigation.php'; ?>
