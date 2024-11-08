@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2024 at 07:14 AM
+-- Generation Time: Nov 08, 2024 at 06:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -291,7 +291,6 @@ INSERT INTO `consultation_schedules` (`con_sched_id`, `con_sched_date`) VALUES
 
 CREATE TABLE `families` (
   `family_id` int(10) NOT NULL,
-  `family_no` int(100) NOT NULL,
   `parent_family_id` int(10) DEFAULT NULL,
   `4PsMember` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -300,9 +299,11 @@ CREATE TABLE `families` (
 -- Dumping data for table `families`
 --
 
-INSERT INTO `families` (`family_id`, `family_no`, `parent_family_id`, `4PsMember`) VALUES
-(1, 10001, NULL, 1),
-(2, 10002, 1, 1);
+INSERT INTO `families` (`family_id`, `parent_family_id`, `4PsMember`) VALUES
+(1001, NULL, 1),
+(1002, 1001, 1),
+(1009, NULL, 1),
+(1010, 1009, 0);
 
 -- --------------------------------------------------------
 
@@ -314,16 +315,20 @@ CREATE TABLE `family_members` (
   `fmember_id` int(10) NOT NULL,
   `family_id` int(10) NOT NULL,
   `resident_id` int(10) NOT NULL,
-  `role` enum('husband','wife','child') NOT NULL
+  `role` enum('husband','wife','child') NOT NULL,
+  `own_family_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `family_members`
 --
 
-INSERT INTO `family_members` (`fmember_id`, `family_id`, `resident_id`, `role`) VALUES
-(1, 1, 4, 'husband'),
-(2, 1, 5, 'wife');
+INSERT INTO `family_members` (`fmember_id`, `family_id`, `resident_id`, `role`, `own_family_id`) VALUES
+(1, 1001, 4, 'husband', NULL),
+(2, 1001, 5, 'wife', NULL),
+(38, 1009, 134, 'husband', NULL),
+(39, 1010, 135, 'child', NULL),
+(40, 1009, 136, 'child', 1010);
 
 -- --------------------------------------------------------
 
@@ -382,23 +387,24 @@ INSERT INTO `hospitalizations` (`hospitalization_id`, `resident_id`, `hospital_n
 
 CREATE TABLE `household` (
   `household_id` int(10) NOT NULL,
-  `household_no` int(100) NOT NULL,
   `address_id` int(10) NOT NULL,
-  `residency_length_years` decimal(3,1) NOT NULL,
+  `year_resided` year(4) DEFAULT NULL,
   `housing_type` enum('Owned','Rented','Other') NOT NULL,
   `construction_materials` enum('light','strong') NOT NULL,
   `lighting_facilities` enum('electricity','kerosene') NOT NULL,
   `water_source` enum('LEVEL 1 - Point Source','LEVEL 2 - Communal Faucet','LEVEL 3 - Individual Connection','OTHERS - For doubtful sources, open dug well etc.') NOT NULL,
-  `toilet_facility` enum('Pointflush type connected to septic tank','Pointflush toilet connected to septic tank and to sewerage system','Ventilated Pit','Overhung Latrine','Without toilet') NOT NULL
+  `toilet_facility` enum('Pointflush type connected to septic tank','Pointflush toilet connected to septic tank and to sewerage system','Ventilated Pit','Overhung Latrine','Without toilet') NOT NULL,
+  `recorded_by` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `household`
 --
 
-INSERT INTO `household` (`household_id`, `household_no`, `address_id`, `residency_length_years`, `housing_type`, `construction_materials`, `lighting_facilities`, `water_source`, `toilet_facility`) VALUES
-(1, 101, 6, 2.0, 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank'),
-(2, 102, 6, 2.0, 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank');
+INSERT INTO `household` (`household_id`, `address_id`, `year_resided`, `housing_type`, `construction_materials`, `lighting_facilities`, `water_source`, `toilet_facility`, `recorded_by`) VALUES
+(1001, 6, '2000', 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank', 1),
+(1002, 6, '2015', 'Rented', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank', 1),
+(1008, 11, '2000', 'Owned', 'strong', 'electricity', 'LEVEL 1 - Point Source', 'Pointflush type connected to septic tank', 1);
 
 -- --------------------------------------------------------
 
@@ -417,8 +423,10 @@ CREATE TABLE `household_members` (
 --
 
 INSERT INTO `household_members` (`hm_id`, `household_id`, `family_id`) VALUES
-(1, 1, 1),
-(2, 1, 2);
+(1, 1001, 1001),
+(2, 1001, 1002),
+(32, 1008, 1009),
+(33, 1008, 1010);
 
 -- --------------------------------------------------------
 
@@ -573,7 +581,10 @@ INSERT INTO `personal_information` (`personal_info_id`, `lastname`, `firstname`,
 (10, 'Reyes', 'Gabriela', 'Santos', '1981-08-14', 'Married', 'College Graduate', 'Barangay Health Worker', 'Roman Catholic', 'Filipino', 10, 'male', '09182345678', 'gabriel.delosreyes@example.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-10 10:44:05'),
 (13, 'Araneta', 'Roy Marjohn', 'Galjlfad', '2001-08-28', 'Married', 'College Graduate', 'Kingpin', 'Roman Catholic', 'Filipino', 6, 'male', '09308309624', 'roymarjohnaraneta@gmail.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-06 09:32:11'),
 (14, 'Angcona', 'Ruvy', 'Lakobalo', '2001-11-09', 'Married', 'College Undergraduate', 'Teacher', 'Roman Catholic', 'Filipino', 6, 'female', '09586789012', 'ruvyangcona@gmail.com', NULL, 1, 0, 0, '2024-07-25 11:07:25', '2024-09-10 03:31:46'),
-(67, 'Araneta', 'Roy Marjohn Jr.', 'Lakobalo', '2018-10-03', 'Single', NULL, NULL, 'Filipino', 'Roman Catholic', 6, 'male', NULL, NULL, NULL, 1, 0, 0, '2024-10-11 15:08:06', '2024-10-11 15:08:06');
+(67, 'Araneta', 'Roy Marjohn Jr.', 'Lakobalo', '2018-10-03', 'Single', NULL, NULL, 'Filipino', 'Roman Catholic', 6, 'male', NULL, NULL, NULL, 1, 0, 0, '2024-10-11 15:08:06', '2024-10-11 15:08:06'),
+(102, 'Loro', 'Iven', 'Balad-on', '2024-11-21', 'Single', 'Elementary Graduate', 'Banker', 'Roman Catholic', '0', 11, 'male', '09851354564', 'ivenloro@gmail.com', NULL, 1, 0, 0, '2024-11-08 11:52:23', '2024-11-08 11:52:23'),
+(103, 'Swift', 'Taylor', 'Styles', '2024-11-22', 'Single', 'Elementary Graduate', 'CSR', 'Roman Catholic', '0', 11, 'male', '09308309627', 'taylorwift@gmail.com', NULL, 1, 0, 0, '2024-11-08 11:52:23', '2024-11-08 11:52:23'),
+(104, 'Loro', 'Gelven', 'Bayona', '2024-11-21', 'Single', 'Elementary Graduate', 'Teacher', 'Roman Catholic', '0', 11, 'male', '09308309625', 'gelvenloro@gmail.com', NULL, 1, 0, 0, '2024-11-08 11:52:23', '2024-11-08 11:52:23');
 
 -- --------------------------------------------------------
 
@@ -660,7 +671,7 @@ INSERT INTO `prenatal_schedules` (`sched_id`, `sched_date`, `sched_note`) VALUES
 
 CREATE TABLE `residents` (
   `resident_id` int(10) NOT NULL,
-  `account_id` int(10) NOT NULL,
+  `account_id` int(10) DEFAULT NULL,
   `personal_info_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -671,7 +682,10 @@ CREATE TABLE `residents` (
 INSERT INTO `residents` (`resident_id`, `account_id`, `personal_info_id`) VALUES
 (4, 13, 13),
 (5, 14, 14),
-(99, 50, 67);
+(99, 50, 67),
+(134, NULL, 102),
+(135, NULL, 103),
+(136, NULL, 104);
 
 -- --------------------------------------------------------
 
@@ -846,7 +860,8 @@ ALTER TABLE `families`
 ALTER TABLE `family_members`
   ADD PRIMARY KEY (`fmember_id`),
   ADD UNIQUE KEY `resident_id` (`resident_id`),
-  ADD KEY `fk_memberFamilyId` (`family_id`);
+  ADD KEY `fk_memberFamilyId` (`family_id`),
+  ADD KEY `fk_memberOwnFamilyId` (`own_family_id`);
 
 --
 -- Indexes for table `health_information`
@@ -867,7 +882,8 @@ ALTER TABLE `hospitalizations`
 --
 ALTER TABLE `household`
   ADD PRIMARY KEY (`household_id`),
-  ADD KEY `fk_householdAddressId` (`address_id`);
+  ADD KEY `fk_householdAddressId` (`address_id`),
+  ADD KEY `fk_recordedByBHWId` (`recorded_by`);
 
 --
 -- Indexes for table `household_members`
@@ -1024,13 +1040,13 @@ ALTER TABLE `consultation_schedules`
 -- AUTO_INCREMENT for table `families`
 --
 ALTER TABLE `families`
-  MODIFY `family_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `family_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
 
 --
 -- AUTO_INCREMENT for table `family_members`
 --
 ALTER TABLE `family_members`
-  MODIFY `fmember_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `fmember_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `health_information`
@@ -1048,13 +1064,13 @@ ALTER TABLE `hospitalizations`
 -- AUTO_INCREMENT for table `household`
 --
 ALTER TABLE `household`
-  MODIFY `household_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `household_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1009;
 
 --
 -- AUTO_INCREMENT for table `household_members`
 --
 ALTER TABLE `household_members`
-  MODIFY `hm_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `hm_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `medical_conditions`
@@ -1078,7 +1094,7 @@ ALTER TABLE `midwife`
 -- AUTO_INCREMENT for table `personal_information`
 --
 ALTER TABLE `personal_information`
-  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `personal_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `pregnancy`
@@ -1102,7 +1118,7 @@ ALTER TABLE `prenatal_schedules`
 -- AUTO_INCREMENT for table `residents`
 --
 ALTER TABLE `residents`
-  MODIFY `resident_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `resident_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `residents_medical_condition`
@@ -1187,6 +1203,7 @@ ALTER TABLE `families`
 --
 ALTER TABLE `family_members`
   ADD CONSTRAINT `fk_memberFamilyId` FOREIGN KEY (`family_id`) REFERENCES `families` (`family_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_memberOwnFamilyId` FOREIGN KEY (`own_family_id`) REFERENCES `families` (`family_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_memberResidentId` FOREIGN KEY (`resident_id`) REFERENCES `residents` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -1205,7 +1222,8 @@ ALTER TABLE `hospitalizations`
 -- Constraints for table `household`
 --
 ALTER TABLE `household`
-  ADD CONSTRAINT `fk_householdAddressId` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_householdAddressId` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_recordedByBHWId` FOREIGN KEY (`recorded_by`) REFERENCES `bhw` (`bhw_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `household_members`

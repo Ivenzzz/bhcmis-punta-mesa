@@ -36,7 +36,8 @@ CREATE TABLE `household` (
   `construction_materials` enum('light','strong') NOT NULL,
   `lighting_facilities` enum('electricity','kerosene') NOT NULL,
   `water_source` enum('LEVEL 1 - Point Source','LEVEL 2 - Communal Faucet','LEVEL 3 - Individual Connection','OTHERS - For doubtful sources, open dug well etc.') NOT NULL,
-  `toilet_facility` enum('Pointflush type connected to septic tank','Pointflush toilet connected to septic tank and to sewerage system','Ventilated Pit','Overhung Latrine','Without toilet') NOT NULL
+  `toilet_facility` enum('Pointflush type connected to septic tank','Pointflush toilet connected to septic tank and to sewerage system','Ventilated Pit','Overhung Latrine','Without toilet') NOT NULL,
+  `recorded_by` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 CREATE TABLE `household_members` (
@@ -47,7 +48,6 @@ CREATE TABLE `household_members` (
 
 CREATE TABLE `families` (
   `family_id` int(10) NOT NULL,
-  `family_no` int(100) NOT NULL,
   `parent_family_id` int(10) DEFAULT NULL,
   `4PsMember` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -56,5 +56,5 @@ CREATE TABLE `family_members` (
   `fmember_id` int(10) NOT NULL,
   `family_id` int(10) NOT NULL,
   `resident_id` int(10) NOT NULL,
-  `role` enum('husband','wife','child') NOT NULL
+  `role` enum('husband','wife','child') NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;

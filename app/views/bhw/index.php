@@ -4,7 +4,6 @@ session_start();
 
 require './config/db_config.php';
 require './app/models/get_current_user.php';
-
 $title = 'BHWs Dashboard';
 $user = getCurrentUser($conn);
 

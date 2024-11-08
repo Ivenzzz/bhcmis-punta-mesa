@@ -16,10 +16,6 @@ document.getElementById('num_families').addEventListener('input', function () {
                 <div class="card-body" style="width: 100%;">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="family_no_${i}" class="form-label">Family No.</label>
-                            <input type="number" class="form-control" id="family_no_${i}" name="family_no_${i}" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="4PsMember_${i}" name="4PsMember_${i}">
                                 <label class="form-check-label" for="4PsMember_${i}">4Ps Member</label>
@@ -138,7 +134,7 @@ function addFamilyMember(familyIndex) {
 
 function addSubFamily(familyIndex, memberIndex) {
     const subFamiliesDiv = document.getElementById(`sub_families_${familyIndex}_${memberIndex}`);
-    const subFamilyCount = subFamiliesDiv.children.length + 1; // Count existing sub-families
+    const subFamilyCount = subFamiliesDiv.children.length + 1;
 
     const subFamilyCard = document.createElement('div');
     subFamilyCard.className = 'card my-4 shadow p-3 sub-family';
@@ -151,10 +147,6 @@ function addSubFamily(familyIndex, memberIndex) {
         <div id="sub_family_body_${familyIndex}_${memberIndex}_${subFamilyCount}" class="collapse" style="display: none;">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="sub_family_no_${familyIndex}_${memberIndex}_${subFamilyCount}" class="form-label">Sub-Family No.</label>
-                        <input type="number" class="form-control" id="sub_family_no_${familyIndex}_${memberIndex}_${subFamilyCount}" name="sub_family_no_${familyIndex}_${memberIndex}_${subFamilyCount}" required>
-                    </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="4PsMember_${familyIndex}_${memberIndex}_${subFamilyCount}" name="4PsMember_${familyIndex}_${memberIndex}_${subFamilyCount}">

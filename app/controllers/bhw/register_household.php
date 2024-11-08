@@ -7,41 +7,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         mysqli_autocommit($conn, false);
 
-        // Insert Household
-        $householdNo = $_POST['household_no'];
+        // Insert Household data
         $addressId = $_POST['address'];
-        $residencyLengthYears = $_POST['residency_length_years'];
+        $yearResided = $_POST['year_resided'];
         $housingType = $_POST['housing_type'];
         $constructionMaterials = $_POST['construction_materials'];
         $lightingFacilities = $_POST['lighting_facilities'];
         $waterSource = $_POST['water_source'];
         $toiletFacility = $_POST['toilet_facility'];
+        $recordedBy = $_POST['bhw_id'];
 
+        // Prepare statement with year_resided
         $stmt = mysqli_prepare($conn, "
-            INSERT INTO household (household_no, address_id, residency_length_years, housing_type, construction_materials, lighting_facilities, water_source, toilet_facility) 
+            INSERT INTO household (address_id, year_resided, housing_type, construction_materials, lighting_facilities, water_source, toilet_facility, recorded_by) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ");
-        mysqli_stmt_bind_param($stmt, "iissssss", $householdNo, $addressId, $residencyLengthYears, $housingType, $constructionMaterials, $lightingFacilities, $waterSource, $toiletFacility);
-        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_param($stmt, "iisssssi", $addressId, $yearResided, $housingType, $constructionMaterials, $lightingFacilities, $waterSource, $toiletFacility, $recordedBy);
+
+        if (!mysqli_stmt_execute($stmt)) {
+            throw new Exception("Failed to insert household: " . mysqli_stmt_error($stmt));
+        }
         $householdId = mysqli_insert_id($conn);
 
-        // Process Families and Family Members
         $numFamilies = $_POST['num_families'];
+        $parentFamilyId = null;
+
         for ($i = 1; $i <= $numFamilies; $i++) {
-            $familyNo = $_POST["family_no_$i"];
             $is4PsMember = isset($_POST["4PsMember_$i"]) ? 1 : 0;
 
-            // Insert the main family
-            $stmt = mysqli_prepare($conn, "INSERT INTO families (family_no, 4PsMember) VALUES (?, ?)");
-            mysqli_stmt_bind_param($stmt, "ii", $familyNo, $is4PsMember);
+            // Insert main family and capture the family_id as the parent family
+            $stmt = mysqli_prepare($conn, "INSERT INTO families (4PsMember) VALUES (?)");
+            mysqli_stmt_bind_param($stmt, "i", $is4PsMember);
             mysqli_stmt_execute($stmt);
             $familyId = mysqli_insert_id($conn);
 
+            // Store the first family as the parent family for subsequent sub-families
+            if ($i == 1) {
+                $parentFamilyId = $familyId;
+            }
+
+            // Insert the family-member relation with the household
             $stmt = mysqli_prepare($conn, "INSERT INTO household_members (household_id, family_id) VALUES (?, ?)");
             mysqli_stmt_bind_param($stmt, "ii", $householdId, $familyId);
             mysqli_stmt_execute($stmt);
 
-            // Main family member loop
+            // Collect member data
             $memberData = [];
             foreach ($_POST as $key => $value) {
                 if (preg_match("/^(role|lastname|firstname|middlename|date_of_birth|civil_status|educational_attainment|occupation|religion|citizenship|sex|phone_number|email)_{$i}_(\d+)$/", $key, $matches)) {
@@ -50,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
+            // Insert member details
             foreach ($memberData as $memberIndex => $member) {
-                // Insert personal information for each family member
                 $stmt = mysqli_prepare($conn, "
                     INSERT INTO personal_information (lastname, firstname, middlename, date_of_birth, civil_status, educational_attainment, occupation, religion, citizenship, address_id, sex, phone_number, email)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -74,16 +84,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 mysqli_stmt_execute($stmt);
                 $personalInfoId = mysqli_insert_id($conn);
 
+                // Insert resident data
                 $stmt = mysqli_prepare($conn, "INSERT INTO residents (account_id, personal_info_id) VALUES (NULL, ?)");
                 mysqli_stmt_bind_param($stmt, "i", $personalInfoId);
                 mysqli_stmt_execute($stmt);
                 $residentId = mysqli_insert_id($conn);
 
+                // Insert family_member data
                 $stmt = mysqli_prepare($conn, "INSERT INTO family_members (family_id, resident_id, role) VALUES (?, ?, ?)");
                 mysqli_stmt_bind_param($stmt, "iis", $familyId, $residentId, $member['role']);
                 mysqli_stmt_execute($stmt);
 
-                // Process sub-families for the current family member
+                // Sub-family handling
                 $subFamilyData = [];
                 foreach ($_POST as $subKey => $subValue) {
                     if (preg_match("/^(sub_role|sub_lastname|sub_firstname|sub_middlename|sub_date_of_birth|sub_civil_status|sub_educational_attainment|sub_occupation|sub_religion|sub_citizenship|sub_sex|sub_phone_number|sub_email)_{$i}_{$memberIndex}_(\d+)$/", $subKey, $subMatches)) {
@@ -92,28 +104,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
 
-                // Insert each sub-family member as a separate family
                 foreach ($subFamilyData as $subFamilyIndex => $subMember) {
-                    // Retrieve the parent family number
-                    $parentFamilyNo = $_POST["family_no_{$i}"]; // Assuming family_no_{$i} exists in your form
-
-                    // Generate sub-family number by incrementing the parent family number
-                    $subFamilyNo = $parentFamilyNo + 1;  // Increment the parent family number by 1 for the sub-family
-
-                    // Insert the sub-family as a new family
+                    $checkboxName = "4PsMember_{$i}_{$memberIndex}_{$subFamilyIndex}";
+                    $isSubFamily4PsMember = isset($_POST[$checkboxName]) ? 1 : 0;
+                
+                    // Insert sub-family with the parent_family_id
                     $stmt = mysqli_prepare($conn, "
-                        INSERT INTO families (family_no, 4PsMember) VALUES (?, ?)
+                        INSERT INTO families (4PsMember, parent_family_id) VALUES (?, ?)
                     ");
-
-                    // Check if the sub-family is a 4Ps member
-                    $isSubFamily4PsMember = isset($_POST["4PsMember_{$i}_{$memberIndex}_{$subFamilyIndex}"]) ? 1 : 0;
-
-                    // Insert the sub-family into the families table
-                    mysqli_stmt_bind_param($stmt, "ii", $subFamilyNo, $isSubFamily4PsMember);
+                    mysqli_stmt_bind_param($stmt, "ii", $isSubFamily4PsMember, $parentFamilyId);
                     mysqli_stmt_execute($stmt);
                     $subFamilyId = mysqli_insert_id($conn);
-
-                    // Insert sub-family member details
+                
+                    // Insert sub-member's personal information
                     $stmt = mysqli_prepare($conn, "
                         INSERT INTO personal_information (lastname, firstname, middlename, date_of_birth, civil_status, educational_attainment, occupation, religion, citizenship, address_id, sex, phone_number, email)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -135,27 +138,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     );
                     mysqli_stmt_execute($stmt);
                     $subPersonalInfoId = mysqli_insert_id($conn);
-
+                
+                    // Insert sub-resident
                     $stmt = mysqli_prepare($conn, "INSERT INTO residents (account_id, personal_info_id) VALUES (NULL, ?)");
                     mysqli_stmt_bind_param($stmt, "i", $subPersonalInfoId);
                     mysqli_stmt_execute($stmt);
                     $subResidentId = mysqli_insert_id($conn);
-
+                
                     $stmt = mysqli_prepare($conn, "INSERT INTO family_members (family_id, resident_id, role) VALUES (?, ?, ?)");
                     mysqli_stmt_bind_param($stmt, "iis", $subFamilyId, $subResidentId, $subMember['sub_role']);
                     mysqli_stmt_execute($stmt);
+                
+                    $stmt = mysqli_prepare($conn, "
+                        INSERT INTO household_members (household_id, family_id) 
+                        VALUES (?, ?)
+                    ");
+                    mysqli_stmt_bind_param($stmt, "ii", $householdId, $subFamilyId);
+                    mysqli_stmt_execute($stmt);
                 }
+                
             }
         }
 
-        // Commit transaction
         mysqli_commit($conn);
-        $_SESSION['message'] = "Household registered successfully!";
         header("Location: /bhcmis/bhw-household-profiling?status=success&action=register_household");
 
     } catch (Exception $e) {
         mysqli_rollback($conn);
-        $_SESSION['error'] = "Error registering household: " . $e->getMessage();
         header("Location: /bhcmis/bhw-household-profiling?status=error&action=register_household");
     } finally {
         mysqli_autocommit($conn, true);
